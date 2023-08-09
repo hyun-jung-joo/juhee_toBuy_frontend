@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const BodyWrapper = styled.div`
   flex: 1; /* 남은 공간을 채우도록 설정 */
-  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
+  overflow: hidden; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Topbar = styled.div`
@@ -116,7 +116,7 @@ const Infoimg = styled.div`
 const InputBox = styled.div`
   display: flex;
   margin: -2%;
-  margin-top: 1%;
+
   width: 355px;
   height: 55px;
   padding: 10px;
@@ -147,6 +147,102 @@ const Input = styled.input`
     border: none;
     outline: none;
   }
+`;
+
+const GrayBox = styled.div`
+  display: flex;
+  width: 145px;
+  height: 53px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  border-radius: 6px;
+  background: linear-gradient(0deg, #625856 0%, #625856 100%), #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+`;
+
+const Graytext = styled.div`
+  color: #fff;
+  font-family: S-Core Dream;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+const RedBox = styled.div`
+  display: flex;
+  width: 145px;
+  height: 53px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: #e22d11;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+`;
+const Redtext = styled.div`
+  color: #fff;
+  font-family: S-Core Dream;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const Ment = styled.div`
+  width: 270px;
+  margin: 0 auto;
+  display: flex;
+  color: #000;
+  text-align: center;
+  font-family: S-Core Dream;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+`;
+const MentTB = styled.div`
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  background: linear-gradient(180deg, #e02d11 0%, #05bba2 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: S-Core Dream;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+`;
+
+const Mentmint = styled.div`
+  cursor: pointer;
+
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  color: #05bba2;
+  font-family: S-Core Dream;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-decoration-line: underline;
 `;
 
 const Prevideopage = () => {
@@ -253,7 +349,6 @@ const Prevideopage = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
           </InputBox>
-          <br />
           <InputBox>
             <Input
               type={showPassword ? "text" : "password"}
@@ -261,9 +356,6 @@ const Prevideopage = () => {
               onChange={(event) => setPassword(event.target.value)}
               placeholder="비밀번호"
             />
-            <button type="button" onClick={togglePasswordVisibility}>
-              {showPassword ? "Hide" : "Show"}
-            </button>
           </InputBox>
 
           <InputBox>
@@ -273,12 +365,9 @@ const Prevideopage = () => {
               onChange={handleConfirmPasswordChange}
               placeholder="비밀번호 재입력"
             />
-            <button type="button" onClick={toggleConfirmPasswordVisibility}>
-              {showConfirmPassword ? "Hide" : "Show"}
-            </button>
           </InputBox>
+
           {!passwordMatch && <p>비밀번호가 일치하지 않습니다.</p>}
-          <br />
           <InputBox>
             <Input
               type="text"
@@ -293,9 +382,22 @@ const Prevideopage = () => {
               onChange={(e) => setPhone(e.target.value)}
             />
           </InputBox>
-          <button type="submit" onClick={handleSubmit}>
-            Sign Up
-          </button>
+          <ButtonContainer>
+            <GrayBox onClick={navigateToFirstpage}>
+              <Graytext>처음으로</Graytext>
+            </GrayBox>
+            <RedBox type="submit" onClick={handleSubmit}>
+              <Redtext>확인</Redtext>
+            </RedBox>
+          </ButtonContainer>
+          <Ment>
+            계속 진행시 <MentTB>투 바이</MentTB>의{" "}
+            <Mentmint>서비스 이용약관</Mentmint>에 동의하고
+          </Ment>
+          <Ment>
+            <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
+            간주됩니다.
+          </Ment>
         </Body>
       </BodyWrapper>
     </Container>
