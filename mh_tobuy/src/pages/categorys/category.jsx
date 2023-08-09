@@ -97,7 +97,14 @@ const BottomBar = styled.footer`
   height: 60px;
   position: fixed;
   bottom: 0;
-  width: 390px;
+  width: 100%;
+  background-color: white;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
 `;
 
 const Menu = styled.div`
