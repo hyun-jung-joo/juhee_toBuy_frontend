@@ -51,45 +51,6 @@ const Video = styled.div`
   width: 30px;
 `;
 
-const Cate = styled.div`
-  position: relative;
-  width: 200px;
-  margin-top: 12%;
-  font-family: "S-Core Dream", sans-serif;
-  font-size: 20px;
-  margin-left: 5%;
-  text-align: left;
-`;
-
-const Gra = styled.div`
-  position: relative;
-  background: linear-gradient(to right, #e02d11, #05bba2);
-  width: 100%;
-  height: 2px;
-  border: none; /* 선 없애기 */
-  margin-top: 7%;
-  margin-bottom: 7%;
-`;
-
-const CateKind = styled.div`
-  position: relative;
-  //   width: 390px;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* 상하 가운데 정렬 */
-  font-family: "S-Core Dream", sans-serif;
-  font-size: 16px;
-  padding-left: 5%;
-  text-align: left;
-  border-bottom: 1px solid #839896;
-`;
-
-const Go = styled.div`
-  cursor: pointer;
-  width: 30px;
-`;
-
 const BottomBar = styled.footer`
   display: flex;
   justify-content: space-evenly;
@@ -120,30 +81,85 @@ const My = styled.div`
   cursor: pointer;
 `;
 
-const Category = () => {
-  const navigate = useNavigate();
+const Cate = styled.div`
+  position: relative;
+  width: 200px;
+  margin-top: 12%;
+  font-family: "S-Core Dream", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 5%;
+  text-align: left;
+`;
 
+const Gra = styled.div`
+  position: relative;
+  background: linear-gradient(to right, #e02d11, #05bba2);
+  width: 100%;
+  height: 2px;
+  border: none; /* 선 없애기 */
+  margin-top: 7%;
+  margin-bottom: 7%;
+`;
+
+const ProductArea = styled.div`
+  position: relative;
+  width: 390px;
+  height: 545px;
+  background: red;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+`;
+
+const Product = styled.div`
+  position: relative;
+  height: 250px;
+  width: 180px;
+  background: blue;
+`;
+
+const Image = styled.div`
+  position: relative;
+  margin: auto;
+  margin-top: 7px;
+  width: 160px;
+  height: 160px;
+  background: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+`;
+
+const Name = styled.div`
+  position: relative;
+  background: orange;
+  margin: auto;
+  margin-top: 8px;
+  width: 160px;
+  height: 30px;
+  text-align: left;
+  font-size: 18px;
+`;
+
+const Price = styled.div`
+  position: relative;
+  background: green;
+  margin: auto;
+  margin-top: 8px;
+  width: 160px;
+  height: 30px;
+  text-align: left;
+  color: red;
+  font-size: 16px;
+`;
+
+const Daily = () => {
+  const navigate = useNavigate();
   const goBack = () => {
     navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
-  };
-
-  const goFashion = () => {
-    navigate("/Fashion");
-  };
-  const goBeauty = () => {
-    navigate("/Beauty");
-  };
-  const goFood = () => {
-    navigate("/Food");
-  };
-  const goDaily = () => {
-    navigate("/Daily");
-  };
-  const goHomeDeco = () => {
-    navigate("/HomeDeco");
-  };
-  const goHealth = () => {
-    navigate("/Health");
   };
 
   return (
@@ -172,62 +188,18 @@ const Category = () => {
             />
           </Video>
         </Topbar>
-        <Cate>카테고리</Cate>
+        <Cate>생필품</Cate>
         <Gra></Gra>
-        <CateKind onClick={goFashion}>
-          패션의류 / 잡화
-          <Go>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/right.png`}
-              width="30px"
-            />
-          </Go>
-        </CateKind>
-        <CateKind onClick={goBeauty}>
-          뷰티
-          <Go>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/right.png`}
-              width="30px"
-            />
-          </Go>
-        </CateKind>
-        <CateKind onClick={goFood}>
-          식품
-          <Go>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/right.png`}
-              width="30px"
-            />
-          </Go>
-        </CateKind>
-        <CateKind onClick={goDaily}>
-          생필품
-          <Go>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/right.png`}
-              width="30px"
-            />
-          </Go>
-        </CateKind>
-        <CateKind onClick={goHomeDeco}>
-          홈 데코
-          <Go>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/right.png`}
-              width="30px"
-            />
-          </Go>
-        </CateKind>
-        <CateKind onClick={goHealth}>
-          건강
-          <Go>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/right.png`}
-              width="30px"
-            />
-          </Go>
-        </CateKind>
+        <ProductArea>
+          <Product>
+            <Image></Image>
+            <Name>권지민</Name>
+            <Price>5억</Price>
+          </Product>
+          <Product></Product>
+          <Product></Product>
+          <Product></Product>
+        </ProductArea>
         <BottomBar>
           <Menu>
             <img
@@ -255,4 +227,4 @@ const Category = () => {
     </Container>
   );
 };
-export default Category;
+export default Daily;
