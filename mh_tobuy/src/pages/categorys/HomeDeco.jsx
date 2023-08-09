@@ -58,7 +58,14 @@ const BottomBar = styled.footer`
   height: 60px;
   position: fixed;
   bottom: 0;
-  width: 390px;
+  width: 100%;
+  background-color: white;
+
+  /* 미디어 쿼리 적용 */
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
 `;
 
 const Menu = styled.div`
@@ -104,7 +111,7 @@ const Gra = styled.div`
 
 const ProductArea = styled.div`
   position: relative;
-  width: 390px;
+  width: 100%;
   height: 545px;
   background: red;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
