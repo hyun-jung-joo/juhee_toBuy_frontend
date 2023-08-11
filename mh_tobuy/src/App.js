@@ -8,7 +8,6 @@ import Signup2 from "./pages/Signup/Signup2";
 import Category from "./pages/categorys/category";
 import Findid from "./pages/Login/findid";
 import Findpw from "./pages/Login/findpw";
-import Coachmark from "./pages/Coachmark";
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
           <Route path="/Category" element={<Category />} />
           <Route path="/Findid" element={<Findid />} />
           <Route path="/Findpw" element={<Findpw />} />
-          <Route path="/Coachmark" element={<Coachmark />} />
         </Routes>
       </div>
     </BrowserRouter>
