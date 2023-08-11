@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -29,6 +29,7 @@ const BodyWrapper = styled.div`
 `;
 
 const Topbar = styled.div`
+  margin: 0 auto;
   display: flex;
   height: 60px;
   padding: 10px;
@@ -47,7 +48,7 @@ const Back = styled.div`
 
 const Toptitle = styled.div`
   margin: auto;
-  margin-left: 5%;
+
   color: #081c19;
   font-family: S-Core Dream;
   font-size: 18px;
@@ -69,26 +70,29 @@ const Close = styled.div`
 
 const Body = styled.div`
   display: flex;
-  height: 752px;
-  padding: 30px 14px;
+  height: 650px;
+  padding: 30px 1px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: 10px;
   flex-shrink: 0;
+  margin: 0 auto;
+  margin-top: -20px;
 `;
 
 const HeadBox = styled.div`
   display: flex;
-  display: flex;
-  width: 355px;
+
+  width: 350px;
   height: 80px;
   padding: 10px;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
   background-color: #fff;
-  margin-left: -1.5%;
+
   margin-top: -5%;
+  margin: 0 auto;
 `;
 
 const Infomsg = styled.div`
@@ -111,17 +115,18 @@ const Infoimg = styled.div`
   flex-shrink: 0;
   margin-left: 15%;
   margin-top: -10%;
+  cursor: pointer;
 `;
 
 const InputBox = styled.div`
   display: flex;
-  margin: -2%;
 
+  margin: 0 auto;
   width: 355px;
   height: 55px;
-  padding: 10px;
+  padding: 5px;
   align-items: center;
-  gap: 269px;
+
   flex-shrink: 0;
   border-radius: 6px;
   border: 1px solid #60716f;
@@ -129,6 +134,7 @@ const InputBox = styled.div`
 `;
 
 const Input = styled.input`
+  margin: 0 auto;
   position: relative;
   align-items: center;
   width: 800px;
@@ -137,7 +143,7 @@ const Input = styled.input`
   border-radius: 6px;
   border: none;
   margin: auto;
-  margin-top: 9px;
+
   font-size: 17px;
   &::placeholder {
     color: #60716f;
@@ -200,6 +206,8 @@ const Redtext = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   gap: 20px;
+  margin-top: 20%;
+  margin: auto;
 `;
 
 const Ment = styled.div`
@@ -245,10 +253,182 @@ const Mentmint = styled.div`
   text-decoration-line: underline;
 `;
 
-const Prevideopage = () => {
+const ModalBackdrop = styled.div`
+  // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
+  z-index: 1; //위치지정 요소
+  position: fixed;
+
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  width: 391px;
+  margin: 0 auto;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
+const Cmfirstgroup = styled.div``;
+
+const Cmsecondgroup = styled.div``;
+
+const Cmthirdgroup = styled.div``;
+
+const Cmfirsttxt = styled.div`
+  color: #fff;
+  font-family: S-Core Dream;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+const Cmsecondtxt = styled.div`
+  color: #fff;
+  font-family: S-Core Dream;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: -15%;
+  margin-top: -3%;
+`;
+
+const Cmthirdtxt = styled.div`
+  color: #fff;
+  font-family: S-Core Dream;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: -100%;
+  margin-top: 5%;
+`;
+const CmfirstBox = styled.div`
+  width: 375px;
+  height: 220px;
+
+  position: absolute;
+  top: 16.5%;
+  left: 1.5%;
+  right: 0;
+  bottom: 0;
+
+  border-radius: 6px;
+  border: 2px dashed;
+  border-image: linear-gradient(to bottom, #e22d11, #05bba2);
+  border-image-slice: 1;
+  z-index: -1;
+`;
+const CmsecondBox = styled.div`
+  width: 375px;
+  height: 160px;
+
+  position: absolute;
+  top: 20%;
+  left: 1.5%;
+  right: 0;
+  bottom: 0;
+
+  border-radius: 6px;
+  border: 2px dashed;
+  border-image: linear-gradient(to bottom, #e22d11, #05bba2);
+  border-image-slice: 1;
+  z-index: -1;
+`;
+const CmthirdBox = styled.div`
+  width: 160px;
+  height: 70px;
+
+  position: absolute;
+  top: 79.3%;
+  left: 51.3%;
+  right: 0;
+  bottom: 0;
+
+  border-radius: 6px;
+  border: 2px dashed;
+  border-image: linear-gradient(to bottom, #e22d11, #05bba2);
+  border-image-slice: 1;
+
+  z-index: -1;
+`;
+const Cmfirstarrow = styled.div`
+  width: 27.085px;
+  height: 42.505px;
+  flex-shrink: 0;
+`;
+
+const Cmsecondarrow = styled.div`
+  width: 31.956px;
+  height: 59.909px;
+  margin-top: -10%;
+  flex-shrink: 0;
+`;
+
+const Cmthirdarrow = styled.div`
+  width: 40.548px;
+  height: 31.387px;
+  flex-shrink: 0;
+  margin-top: -12%;
+`;
+
+const Group1 = styled.div`
+  margin-left: -1%;
+`;
+const ModalView = styled.div.attrs((props) => ({
+  // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있다.
+}))`
+  // Modal창 CSS를 구현합니다.
+  /* 미디어 쿼리 적용 */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  text-align: center;
+
+  -ms-overflow-style: none;
+  font-family: "Inter", sans-serif;
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
+  div.desc {
+    margin: 100%;
+    font-size: 20px;
+    color: var(--coz-purple-600);
+  }
+`;
+
+const Signup = () => {
   const navigate = useNavigate();
   const navigateToFirstpage = () => {
     navigate("/");
+  };
+  const navigateToSignupcard = () => {
+    navigate("/Signupcard");
+  };
+
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModalHandler = () => {
+    // isOpen의 상태를 변경하는 메소드를 구현
+    // !false -> !true -> !false
+    setIsOpen(!isOpen);
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -260,6 +440,7 @@ const Prevideopage = () => {
   const [year, setYear] = useState("");
   const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -302,6 +483,7 @@ const Prevideopage = () => {
     if (password === confirmPassword) {
       // 비밀번호 일치, 회원가입 로직 실행
       console.log("회원가입 성공");
+      navigateToSignupcard();
     } else {
       // 비밀번호 불일치
       console.log("비밀번호가 일치하지 않습니다.");
@@ -338,15 +520,36 @@ const Prevideopage = () => {
               <img
                 src={`${process.env.PUBLIC_URL}/images/info.png`}
                 alt="info"
-                onClick={navigateToFirstpage}
+                onClick={openModalHandler}
               />
             </Infoimg>
+            {isOpen ? (
+              <ModalBackdrop onClick={openModalHandler}>
+                <ModalView onClick={(e) => e.stopPropagation()}>
+                  <div className="desc">
+                    <Cmfirstarrow>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/images/firstarrow.png`}
+                        alt="firstarrow"
+                      />
+                    </Cmfirstarrow>
+                    <Cmfirsttxt>
+                      로그인을 하기 위한 아이디(이메일)와 비밀번호를
+                      설정해주세요.
+                    </Cmfirsttxt>
+                    <CmfirstBox></CmfirstBox>
+                    <CmsecondBox></CmsecondBox>
+                    <CmthirdBox></CmthirdBox>
+                  </div>
+                </ModalView>
+              </ModalBackdrop>
+            ) : null}
           </HeadBox>
           <InputBox>
             <Input
               type="text"
               placeholder="아이디 (이메일)"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </InputBox>
           <InputBox>
@@ -390,17 +593,17 @@ const Prevideopage = () => {
               <Redtext>확인</Redtext>
             </RedBox>
           </ButtonContainer>
-          <Ment>
-            계속 진행시 <MentTB>투 바이</MentTB>의{" "}
-            <Mentmint>서비스 이용약관</Mentmint>에 동의하고
-          </Ment>
-          <Ment>
-            <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
-            간주됩니다.
-          </Ment>
         </Body>
+        <Ment>
+          계속 진행시 <MentTB>투 바이</MentTB>의{" "}
+          <Mentmint>서비스 이용약관</Mentmint>에 동의하고
+        </Ment>
+        <Ment>
+          <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
+          간주됩니다.
+        </Ment>
       </BodyWrapper>
     </Container>
   );
 };
-export default Prevideopage;
+export default Signup;

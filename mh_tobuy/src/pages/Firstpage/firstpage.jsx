@@ -225,7 +225,7 @@ const CmTobuytext = styled.div`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: S-Core Dream;
-  font-size: 16px;
+  font-size: 25px;
   font-style: normal;
   font-weight: 900;
   line-height: normal;
@@ -304,7 +304,7 @@ const Firstpage = () => {
   };
 
   const navigateTojoin = () => {
-    navigate("/Join");
+    navigate("/Signup");
   };
 
   const navigateToprevideopage = () => {
