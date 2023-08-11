@@ -153,6 +153,10 @@ const Category = () => {
     navigate("/Health");
   };
 
+  const goMyPage = () => {
+    navigate("/MypageMain");
+  };
+
   return (
     <Container>
       <BodyWrapper>
@@ -254,7 +258,7 @@ const Category = () => {
               width="26px"
             />
           </Home>
-          <My>
+          <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>
         </BottomBar>
