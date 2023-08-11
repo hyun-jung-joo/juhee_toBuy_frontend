@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -30,11 +30,11 @@ const BodyWrapper = styled.div`
 
 const Topbar = styled.div`
   display: flex;
+  justify-content: space-between;
   height: 60px;
   padding: 10px;
   align-items: center;
-  gap: 108px;
-  flex-shrink: 0;
+
   background: #f5f0e4;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
@@ -46,7 +46,7 @@ const Back = styled.div`
 
 const Toptitle = styled.div`
   margin: auto;
-  margin-left: 5%;
+
   color: #081c19;
   font-family: S-Core Dream;
   font-size: 18px;
@@ -66,6 +66,12 @@ const Close = styled.div`
   cursor: pointer;
 `;
 
+const BoxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 수직 가운데 정렬 */
+  margin: auto;
+`;
 const Body = styled.div`
   display: flex;
   height: 650px;
@@ -133,7 +139,7 @@ const Input = styled.input`
 `;
 const FindLinks = styled.div`
   margin-bottom: -10%;
-  margin-left: 58%;
+  margin-left: 55%;
   display: flex;
   gap: 10px; /* 아이디 찾기와 비밀번호 찾기 간격 조정 */
 `;
@@ -259,6 +265,48 @@ const Mentmint = styled.div`
   line-height: normal;
   text-decoration-line: underline;
 `;
+const ModalBackdrop = styled.div`
+  // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
+  z-index: 1; //위치지정 요소
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  width: 391px;
+  margin: 0 auto;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+const ExitBtn = styled.div`
+  display: flex;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  font-weight: 900;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  color: #fff;
+`;
+
+const CmLogo = styled.div`
+  display: flex;
+  margin: auto;
+  margin-top: -40px;
+  flex-shrink: 0;
+`;
+
+const ModalView = styled.div.attrs((props) => ({
+  // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있다.
+  role: "dialog",
+}))``;
 const Login = () => {
   const navigate = useNavigate();
   const navigateToFirstpage = () => {
@@ -282,6 +330,27 @@ const Login = () => {
   };
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  //스크롤 방지
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModalHandler = () => {
+    // isOpen의 상태를 변경하는 메소드를 구현
+    // !false -> !true -> !false
+    setIsOpen(!isOpen);
+  };
   return (
     <Container>
       <BodyWrapper>
@@ -303,27 +372,50 @@ const Login = () => {
           </Close>
         </Topbar>
         <Body>
-          <Logo>
-            <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="logo" />
-          </Logo>
-          <Infoimg>
-            <img src={`${process.env.PUBLIC_URL}/images/info.png`} alt="info" />
-          </Infoimg>
-
-          <InputBox>
-            <Input
-              type="text"
-              placeholder="아이디 (이메일)"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </InputBox>
-          <InputBox>
-            <Input
-              type="text"
-              placeholder="비밀번호"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </InputBox>
+          <BoxContainer>
+            <Logo>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/logo.png`}
+                alt="logo"
+              />
+            </Logo>
+            <Infoimg>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
+                alt="coachmark"
+                onClick={openModalHandler}
+              />
+            </Infoimg>
+            {isOpen ? (
+              <ModalBackdrop onClick={openModalHandler}>
+                <ModalView onClick={(e) => e.stopPropagation()}>
+                  <CmLogo>
+                    <img
+                      src={`${process.env.PUBLIC_URL}/images/coachmark2.png`}
+                      alt="coachmark2"
+                      width="380"
+                      height="800"
+                    />
+                  </CmLogo>
+                  <ExitBtn onClick={openModalHandler}>x</ExitBtn>
+                </ModalView>
+              </ModalBackdrop>
+            ) : null}
+            <InputBox>
+              <Input
+                type="text"
+                placeholder="아이디 (이메일)"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </InputBox>
+            <InputBox>
+              <Input
+                type="text"
+                placeholder="비밀번호"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </InputBox>
+          </BoxContainer>
           <FindLinks>
             <Findidment onClick={navigateTofindid}>아이디 찾기</Findidment>
             <Findpwment onClick={navigateTofindpw}>비밀번호 찾기</Findpwment>
