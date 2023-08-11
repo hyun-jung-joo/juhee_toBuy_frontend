@@ -41,7 +41,7 @@ const Topbar = styled.div`
 
 const Back = styled.div`
   width: 30px;
-  height: 24px;
+  height: 23px;
   cursor: pointer;
 `;
 
