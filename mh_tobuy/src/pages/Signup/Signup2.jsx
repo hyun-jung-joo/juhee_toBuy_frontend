@@ -47,7 +47,7 @@ const Back = styled.div`
 
 const Toptitle = styled.div`
   margin: 0 auto;
-  margin-left: 5%;
+
   color: #081c19;
   font-family: S-Core Dream;
   font-size: 18px;
