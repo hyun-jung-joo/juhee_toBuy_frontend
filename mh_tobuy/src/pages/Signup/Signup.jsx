@@ -252,15 +252,14 @@ const Mentmint = styled.div`
   line-height: normal;
   text-decoration-line: underline;
 `;
-
 const ModalBackdrop = styled.div`
   // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
   z-index: 1; //위치지정 요소
   position: fixed;
-
+  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
 
   width: 391px;
   margin: 0 auto;
@@ -270,138 +269,31 @@ const ModalBackdrop = styled.div`
   right: 0;
   bottom: 0;
 `;
-
-const Cmfirstgroup = styled.div``;
-
-const Cmsecondgroup = styled.div``;
-
-const Cmthirdgroup = styled.div``;
-
-const Cmfirsttxt = styled.div`
+const ExitBtn = styled.div`
+  display: flex;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  font-weight: 900;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
   color: #fff;
-  font-family: S-Core Dream;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-`;
-const Cmsecondtxt = styled.div`
-  color: #fff;
-  font-family: S-Core Dream;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-left: -15%;
-  margin-top: -3%;
 `;
 
-const Cmthirdtxt = styled.div`
-  color: #fff;
-  font-family: S-Core Dream;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-left: -100%;
-  margin-top: 5%;
-`;
-const CmfirstBox = styled.div`
-  width: 375px;
-  height: 220px;
-
-  position: absolute;
-  top: 16.5%;
-  left: 1.5%;
-  right: 0;
-  bottom: 0;
-
-  border-radius: 6px;
-  border: 2px dashed;
-  border-image: linear-gradient(to bottom, #e22d11, #05bba2);
-  border-image-slice: 1;
-  z-index: -1;
-`;
-const CmsecondBox = styled.div`
-  width: 375px;
-  height: 160px;
-
-  position: absolute;
-  top: 20%;
-  left: 1.5%;
-  right: 0;
-  bottom: 0;
-
-  border-radius: 6px;
-  border: 2px dashed;
-  border-image: linear-gradient(to bottom, #e22d11, #05bba2);
-  border-image-slice: 1;
-  z-index: -1;
-`;
-const CmthirdBox = styled.div`
-  width: 160px;
-  height: 70px;
-
-  position: absolute;
-  top: 79.3%;
-  left: 51.3%;
-  right: 0;
-  bottom: 0;
-
-  border-radius: 6px;
-  border: 2px dashed;
-  border-image: linear-gradient(to bottom, #e22d11, #05bba2);
-  border-image-slice: 1;
-
-  z-index: -1;
-`;
-const Cmfirstarrow = styled.div`
-  width: 27.085px;
-  height: 42.505px;
+const CmLogo = styled.div`
+  display: flex;
+  margin: auto;
+  margin-top: -40px;
   flex-shrink: 0;
 `;
 
-const Cmsecondarrow = styled.div`
-  width: 31.956px;
-  height: 59.909px;
-  margin-top: -10%;
-  flex-shrink: 0;
-`;
-
-const Cmthirdarrow = styled.div`
-  width: 40.548px;
-  height: 31.387px;
-  flex-shrink: 0;
-  margin-top: -12%;
-`;
-
-const Group1 = styled.div`
-  margin-left: -1%;
-`;
 const ModalView = styled.div.attrs((props) => ({
   // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있다.
-}))`
-  // Modal창 CSS를 구현합니다.
-  /* 미디어 쿼리 적용 */
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  position: relative;
-  text-align: center;
-
-  -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
-  @media (hover: hover) {
-    width: 390px;
-    margin: 0 auto;
-  }
-  div.desc {
-    margin: 100%;
-    font-size: 20px;
-    color: var(--coz-purple-600);
-  }
-`;
-
+  role: "dialog",
+}))``;
 const Signup = () => {
   const navigate = useNavigate();
   const navigateToFirstpage = () => {
@@ -409,26 +301,6 @@ const Signup = () => {
   };
   const navigateToSignupcard = () => {
     navigate("/Signupcard");
-  };
-
-  useEffect(() => {
-    document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = "";
-      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
-    };
-  }, []);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModalHandler = () => {
-    // isOpen의 상태를 변경하는 메소드를 구현
-    // !false -> !true -> !false
-    setIsOpen(!isOpen);
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -490,6 +362,27 @@ const Signup = () => {
     }
   };
 
+  //스크롤 방지
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModalHandler = () => {
+    // isOpen의 상태를 변경하는 메소드를 구현
+    // !false -> !true -> !false
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Container>
       <BodyWrapper>
@@ -518,29 +411,23 @@ const Signup = () => {
             </Infomsg>
             <Infoimg>
               <img
-                src={`${process.env.PUBLIC_URL}/images/info.png`}
-                alt="info"
+                src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
+                alt="coachmark"
                 onClick={openModalHandler}
               />
             </Infoimg>
             {isOpen ? (
               <ModalBackdrop onClick={openModalHandler}>
                 <ModalView onClick={(e) => e.stopPropagation()}>
-                  <div className="desc">
-                    <Cmfirstarrow>
-                      <img
-                        src={`${process.env.PUBLIC_URL}/images/firstarrow.png`}
-                        alt="firstarrow"
-                      />
-                    </Cmfirstarrow>
-                    <Cmfirsttxt>
-                      로그인을 하기 위한 아이디(이메일)와 비밀번호를
-                      설정해주세요.
-                    </Cmfirsttxt>
-                    <CmfirstBox></CmfirstBox>
-                    <CmsecondBox></CmsecondBox>
-                    <CmthirdBox></CmthirdBox>
-                  </div>
+                  <CmLogo>
+                    <img
+                      src={`${process.env.PUBLIC_URL}/images/coachmark1.png`}
+                      alt="coachmark1"
+                      width="380"
+                      height="800"
+                    />
+                  </CmLogo>
+                  <ExitBtn onClick={openModalHandler}>x</ExitBtn>
                 </ModalView>
               </ModalBackdrop>
             ) : null}
