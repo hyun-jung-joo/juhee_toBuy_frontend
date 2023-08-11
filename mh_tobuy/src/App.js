@@ -28,7 +28,12 @@ function App() {
           <Route path="/Signup2" element={<Signup2 />} />
           <Route path="/Category" element={<Category />} />
           <Route path="/Findid" element={<Findid />} />
-          <Route path="/Findpw" element={<Findpw />} />
+          <Route path="/Fashion" element={<Fashion />} />
+          <Route path="/Beauty" element={<Beauty />} />
+          <Route path="/Food" element={<Food />} />
+          <Route path="/Daily" element={<Daily />} />
+          <Route path="/Homedeco" element={<Homedeco />} />
+          <Route path="/Health" element={<Health />} />
         </Routes>
       </div>
     </BrowserRouter>
