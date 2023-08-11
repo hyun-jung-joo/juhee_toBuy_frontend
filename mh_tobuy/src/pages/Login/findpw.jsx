@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -33,7 +33,7 @@ const Topbar = styled.div`
   height: 60px;
   padding: 10px;
   align-items: center;
-  gap: 108px;
+  gap: 90px;
   flex-shrink: 0;
   background: #f5f0e4;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -69,7 +69,7 @@ const Close = styled.div`
 
 const Body = styled.div`
   display: flex;
-  height: 752px;
+  height: 650px;
   padding: 30px 14px;
   flex-direction: column;
   align-items: flex-start;
@@ -100,7 +100,7 @@ const Infoimg = styled.div`
 const InputBox = styled.div`
   display: flex;
   margin: -2%;
-  margin-top: 5%;
+  margin-top: 2%;
   width: 355px;
   height: 55px;
   padding: 10px;
@@ -132,40 +132,10 @@ const Input = styled.input`
     outline: none;
   }
 `;
-const FindLinks = styled.div`
-  margin-bottom: -10%;
-  margin-left: 58%;
-  display: flex;
-  gap: 10px; /* 아이디 찾기와 비밀번호 찾기 간격 조정 */
-`;
 
-const Findidment = styled.div`
-  color: #05bba2;
-  display: flex;
-  font-family: S-Core Dream;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  text-decoration-line: underline;
-  cursor: pointer;
-`;
-
-const Findpwment = styled.div`
-  color: #05bba2;
-  display: flex;
-
-  font-family: S-Core Dream;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  text-decoration-line: underline;
-  cursor: pointer;
-`;
-
-const LoginBox = styled.div`
+const MintBox = styled.div`
   margin: auto;
+  margin-top: 10%;
   display: flex;
   width: 222px;
   height: 53px;
@@ -180,7 +150,7 @@ const LoginBox = styled.div`
   cursor: pointer;
 `;
 
-const LoginText = styled.div`
+const FindText = styled.div`
   color: #fff;
   font-family: S-Core Dream;
   font-size: 14px;
@@ -188,90 +158,119 @@ const LoginText = styled.div`
   font-weight: 500;
   line-height: normal;
 `;
-const MiddleMentBox = styled.div`
+
+const ModalBackdrop = styled.div`
+  // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
+  z-index: 1; //위치지정 요소
+  position: fixed;
   display: flex;
-  margin: auto;
-  margin-top: -15%;
-`;
-const Memberq = styled.div`
-  color: #320f0a;
-  text-align: center;
-  font-family: S-Core Dream;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-`;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
 
-const Signup = styled.div`
-  margin-top: -15%;
-  color: #e02d11;
-  font-family: S-Core Dream;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  text-decoration-line: underline;
-  cursor: pointer;
-`;
-
-const Ment = styled.div`
-  width: 270px;
+  width: 391px;
   margin: 0 auto;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+const CmtxtBox = styled.div`
+  display: flex;
+  content-align: center;
+  flex-direction: column;
+`;
+const Cmtextemph = styled.div`
+  font-weight: 500;
+  margin: 0 auto;
+`;
+
+const Cmtext = styled.div`
   display: flex;
   color: #000;
-  text-align: center;
   font-family: S-Core Dream;
-  font-size: 10px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-`;
-const MentTB = styled.div`
   margin: 0 auto;
-  text-align: center;
+`;
+const BtmBox = styled.div`
+  margin: 0 auto;
+  margin-top: 30%;
   display: flex;
-  background: linear-gradient(180deg, #e02d11 0%, #05bba2 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  width: 145px;
+  height: 53px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: #05bba2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+const Btmtext = styled.div`
+  color: #fff;
   font-family: S-Core Dream;
-  font-size: 10px;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
 `;
 
-const Mentmint = styled.div`
-  cursor: pointer;
-
-  margin: 0 auto;
-  text-align: center;
-  cursor: pointer;
+const ModalView = styled.div.attrs((props) => ({
+  // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있다.
+  role: "dialog",
+}))`
+  // Modal창 CSS를 구현합니다.
   display: flex;
-  color: #05bba2;
-  font-family: S-Core Dream;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  text-decoration-line: underline;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 90%;
+  heigth: 800px;
+  background-color: #ffffff;
+
+  div.desc {
+    margin: 50px;
+    font-size: 20px;
+    color: var(--coz-purple-600);
+  }
 `;
-const Login = () => {
+
+const Findpw = () => {
   const navigate = useNavigate();
   const navigateToFirstpage = () => {
     navigate("/");
   };
-
-  const navigateTosignup = () => {
-    navigate("/signup");
+  const navigateToLogin = () => {
+    navigate("/Login");
   };
 
-  const navigateTonosign = () => {
-    navigate("/NoSign");
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModalHandler = () => {
+    // isOpen의 상태를 변경하는 메소드를 구현
+    // !false -> !true -> !false
+    setIsOpen(!isOpen);
   };
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPhonenum] = useState("");
   return (
     <Container>
       <BodyWrapper>
@@ -283,7 +282,7 @@ const Login = () => {
               onClick={() => navigate(-1)}
             />
           </Back>
-          <Toptitle>로그인</Toptitle>
+          <Toptitle>비밀번호 찾기</Toptitle>
           <Close>
             <img
               src={`${process.env.PUBLIC_URL}/images/close.png`}
@@ -304,42 +303,54 @@ const Login = () => {
             <Input
               type="text"
               placeholder="아이디 (이메일)"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </InputBox>
+          <InputBox>
+            <Input
+              type="text"
+              placeholder="이름"
               onChange={(e) => setUsername(e.target.value)}
             />
           </InputBox>
           <InputBox>
             <Input
               type="text"
-              placeholder="비밀번호"
-              onChange={(e) => setPassword(e.target.value)}
+              placeholder="휴대폰 번호 입력"
+              onChange={(e) => setPhonenum(e.target.value)}
             />
           </InputBox>
-          <FindLinks>
-            <Findidment>아이디 찾기</Findidment>
-            <Findpwment>비밀번호 찾기</Findpwment>
-          </FindLinks>
-          <LoginBox>
-            <LoginText>로그인</LoginText>
-          </LoginBox>
-          <MiddleMentBox>
-            <p>
-              <Memberq>아직 회원이 아니신가요?</Memberq>
-              <br />
-              <Signup>회원가입</Signup>
-            </p>
-          </MiddleMentBox>
-          <Ment>
-            계속 진행시 <MentTB>투 바이</MentTB>의{" "}
-            <Mentmint>서비스 이용약관</Mentmint>에 동의하고
-          </Ment>
 
-          <Ment>
-            <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
-            간주됩니다.
-          </Ment>
+          <MintBox>
+            <FindText onClick={openModalHandler}>비밀번호 찾기</FindText>
+          </MintBox>
+          {isOpen ? (
+            <ModalBackdrop onClick={openModalHandler}>
+              <ModalView onClick={(e) => e.stopPropagation()}>
+                <div className="desc">
+                  <CmtxtBox>
+                    <Cmtext>
+                      <Cmtextemph>000</Cmtextemph>
+                      님의 비밀번호는
+                    </Cmtext>
+                  </CmtxtBox>
+
+                  <CmtxtBox>
+                    <Cmtext>
+                      <Cmtextemph>PW0000</Cmtextemph>
+                      입니다.
+                    </Cmtext>
+                  </CmtxtBox>
+                  <BtmBox>
+                    <Btmtext onClick={navigateToLogin}>로그인 하러가기</Btmtext>
+                  </BtmBox>
+                </div>
+              </ModalView>
+            </ModalBackdrop>
+          ) : null}
         </Body>
       </BodyWrapper>
     </Container>
   );
 };
-export default Login;
+export default Findpw;
