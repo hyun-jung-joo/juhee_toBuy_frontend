@@ -23,6 +23,10 @@ import Food from "./pages/categorys/Food";
 import Daily from "./pages/categorys/Daily";
 import HomeDeco from "./pages/categorys/HomeDeco";
 import Health from "./pages/categorys/Health";
+// import ProductDetail from "./pages/categorys/ProductDetail";
+import Main from "./pages/Home&Search/Main";
+import FailSearch from "./pages/Home&Search/FailSearch";
+import SuccessSearch from "./pages/Home&Search/SuccessSearch";
 
 function App() {
   return (
@@ -53,6 +57,10 @@ function App() {
           <Route path="/ProductDetail" element={<ProductDetail />} />
           <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
           <Route path="/Payment" element={<Payment />} />
+          <Route path="/Main" element={<Main />} />
+          <Route path="/FailSearch" element={<FailSearch />} />
+          <Route path="/SuccessSearch" element={<SuccessSearch />} />
+          <Route path="/ProductDetail" element={<ProductDetail />} />
         </Routes>
       </div>
     </BrowserRouter>

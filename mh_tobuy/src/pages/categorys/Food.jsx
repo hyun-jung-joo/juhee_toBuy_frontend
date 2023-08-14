@@ -163,6 +163,19 @@ const Price = styled.div`
   font-size: 16px;
 `;
 
+const CoachMark = styled.div`
+  position: fixed;
+  bottom: 80px;
+  text-align: right;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
+`;
+
 const Food = () => {
   const navigate = useNavigate();
   const goBack = () => {
