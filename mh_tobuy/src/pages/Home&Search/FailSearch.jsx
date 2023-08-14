@@ -12,12 +12,10 @@ const Container = styled.div`
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
   overflow: hidden;
-
   @media (hover: hover) {
     width: 390px;
     margin: 0 auto;
   }
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -65,7 +63,6 @@ const BottomBar = styled.footer`
   bottom: 0;
   width: 100%;
   background-color: white;
-
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
     width: 390px;
@@ -97,6 +94,7 @@ const SearchBox = styled.div`
   width: 100%;
   height: 50px;
   padding-top: 40px;
+  padding-bottom: 32px;
   position: relative;
   margin: auto;
 `;
@@ -104,14 +102,14 @@ const SearchBox = styled.div`
 const RedSearch = styled.div`
   position: absolute;
   top: 65px; /* 세로 가운데 정렬 */
-  left: 15%; /* 원하는 가로 위치 조절 */
+  left: 10%; /* 원하는 가로 위치 조절 */
   transform: translateY(-50%); /* 세로 가운데 정렬을 위한 조정 */
 `;
 
 const InputSearch = styled.input`
   width: 60%; /* 인풋을 100% 너비로 설정 */
   height: 42px; /* 인풋을 100% 높이로 설정 */
-  margin-left: 26%;
+  margin-left: 20%;
   border: none; /* 기본 테두리 제거 */
   //   padding-left: 40px; /* 왼쪽 여백 추가 (이미지 너비만큼) */
   font-size: 16px;
@@ -125,15 +123,44 @@ const InputSearch = styled.input`
   caret-color: white; /* 커서 색상 설정 */
 `;
 
-// const Body = styled.div`
-//   height: 752px;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   gap: 20px;
-//   flex-shrink: 0;
-// `;
+const Gra = styled.div`
+  position: relative;
+  background: linear-gradient(to right, #e02d11, #05bba2);
+  width: 100%;
+  height: 2px;
+  border: none; /* 선 없애기 */
+`;
 
-const Main = () => {
+const Result = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: "S-Core Dream", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 5%;
+  text-align: left;
+`;
+
+const BlackSearch = styled.div`
+  width: 72px;
+  margin: auto;
+`;
+
+const NoSearch = styled.div`
+  width: 100%;
+  margin: auto;
+  margin-top: 200px;
+
+  font-family: "S-Core Dream";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+
+  color: #60716f;
+`;
+
+const FailSearch = () => {
   const navigate = useNavigate();
   const navigateToBack = () => {
     window.history.back();
@@ -168,7 +195,7 @@ const Main = () => {
         <SearchBox>
           <img
             src={`${process.env.PUBLIC_URL}/images/검색창.png`}
-            width="80%"
+            width="90%"
             height="50px"
           />
           <RedSearch>
@@ -179,7 +206,17 @@ const Main = () => {
           </RedSearch>
           <InputSearch placeholder="검색어를 입력하세요."></InputSearch>
         </SearchBox>
-
+        <Result>"[검색어]" 의 검색 결과 입니다.</Result>
+        <Gra></Gra>
+        <NoSearch>
+          <BlackSearch>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/black.png`}
+              width="72px"
+            />
+          </BlackSearch>
+          검색 결과가 없습니다.
+        </NoSearch>
         <BottomBar>
           <Menu>
             <img
@@ -208,4 +245,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default FailSearch;
