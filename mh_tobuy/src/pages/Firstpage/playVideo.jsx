@@ -8,7 +8,7 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  //   background-color: #f5f0e4;
+  background-color: #fffff;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
   overflow: hidden;

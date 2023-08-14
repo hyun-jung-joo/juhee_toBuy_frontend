@@ -8,7 +8,7 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  background-color: #f5f0e4;
+  background-color: #fffff;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
 
@@ -35,7 +35,7 @@ const Topbar = styled.div`
   align-items: center;
   gap: 108px;
   flex-shrink: 0;
-  background: #f5f0e4;
+  background-color: #fffff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
@@ -71,7 +71,7 @@ const Body = styled.div`
   margin: auto;
   display: flex;
   height: 650px;
-  padding: 30px 14px;
+  padding: 30px;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
@@ -301,7 +301,9 @@ const Mentmint = styled.div`
   line-height: normal;
   text-decoration-line: underline;
 `;
-
+const MentBox = styled.div`
+  height: 60px;
+`;
 const Signupcard = () => {
   const navigate = useNavigate();
   const navigateToFirstpage = () => {
@@ -369,14 +371,16 @@ const Signupcard = () => {
             </MintBox>
           </ButtonContainer>
         </Body>
-        <Ment>
-          계속 진행시 <MentTB>투 바이</MentTB>의{" "}
-          <Mentmint>서비스 이용약관</Mentmint>에 동의하고
-        </Ment>
-        <Ment>
-          <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
-          간주됩니다.
-        </Ment>
+        <MentBox>
+          <Ment>
+            계속 진행시 <MentTB>투 바이</MentTB>의{" "}
+            <Mentmint>서비스 이용약관</Mentmint>에 동의하고
+          </Ment>
+          <Ment>
+            <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
+            간주됩니다.
+          </Ment>
+        </MentBox>
       </BodyWrapper>
     </Container>
   );
