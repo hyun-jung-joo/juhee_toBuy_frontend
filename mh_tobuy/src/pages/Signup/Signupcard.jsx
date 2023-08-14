@@ -41,13 +41,13 @@ const Topbar = styled.div`
 
 const Back = styled.div`
   width: 30px;
-  height: 24px;
+  height: 23px;
   cursor: pointer;
 `;
 
 const Toptitle = styled.div`
   margin: 0 auto;
-  margin-left: 5%;
+
   color: #081c19;
   font-family: S-Core Dream;
   font-size: 18px;

@@ -44,7 +44,12 @@ const Logoimg = styled.div`
   flex-shrink: 0;
   margin-top: 100px;
 `;
-
+const BoxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 수평 가운데 정렬 */
+  justify-content: center; /* 수직 가운데 정렬 */
+`;
 const Box1 = styled.div`
   display: inline-flex;
   padding: 20px 80px 18px 80px;
@@ -334,77 +339,81 @@ const Firstpage = () => {
   return (
     <Container>
       <BodyWrapper>
-        <Infoimg>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/info.png`}
-            alt="info"
-            onClick={openModalHandler}
-          />
-        </Infoimg>
-        {isOpen ? (
-          <ModalBackdrop onClick={openModalHandler}>
-            <ModalView onClick={(e) => e.stopPropagation()}>
-              <ExitBtn onClick={openModalHandler}>x</ExitBtn>
-              <div className="desc">
-                <CmLogo>
-                  <img
-                    src={`${process.env.PUBLIC_URL}/images/logo.png`}
-                    alt="logo"
-                  />
-                </CmLogo>
-                <Cmtextbox>
-                  <CmTobuytext>To buy 투 바이</CmTobuytext>
-                  <Cmtext>
-                    체험형 이커머스 교육 서비스 입니다.
-                    <br />
-                    이머커스의 회원가입, 로그인, 결제 연습과
-                    <br />
-                    시연 영상을 통해 이커머스 사용의
-                    <br />
-                    어려움을 줄일 수 있습니다.
-                    <br />
-                    나이로 인해 이커머스에서 생기는
-                    <br />
-                    디지털 격차를 해소하기 위한 목적의 서비스로
-                    <br />
-                    고령층의 편리한 이커머스 사용을 위해
-                    <br />
-                    제작하였습니다.
-                  </Cmtext>
-                </Cmtextbox>
-                <Btmtext1>
-                  본 서비스는 동덕여자대학교 학생 6명이 함께 만든 서비스입니다.
-                </Btmtext1>
-                <BtmBox>
-                  <DdwulikelionLogo>
+        <BoxContainer>
+          <Infoimg>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/info.png`}
+              alt="info"
+              onClick={openModalHandler}
+            />
+          </Infoimg>
+          {isOpen ? (
+            <ModalBackdrop onClick={openModalHandler}>
+              <ModalView onClick={(e) => e.stopPropagation()}>
+                <ExitBtn onClick={openModalHandler}>x</ExitBtn>
+                <div className="desc">
+                  <CmLogo>
                     <img
-                      src={`${process.env.PUBLIC_URL}/images/Ddwulikelionlogo.png`}
-                      alt="ddwulogo"
+                      src={`${process.env.PUBLIC_URL}/images/logo.png`}
+                      alt="logo"
                     />
-                  </DdwulikelionLogo>
-                  <Btmtext2>
-                    동덕여자대학교 멋쟁이사자처럼 11기
-                    <br />
-                    막내팀_The Youngest team
-                  </Btmtext2>
-                </BtmBox>
-              </div>
-            </ModalView>
-          </ModalBackdrop>
-        ) : null}
-        <Logoimg>
-          <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="logo" />
-        </Logoimg>
-        <Box1 onClick={navigateTojoin}>
-          <Jointext>회원가입</Jointext>
-        </Box1>
-        <Box2 onClick={navigateTologin}>
-          <Logintext>로그인</Logintext>
-        </Box2>
-        <Box3 onClick={navigateToprevideopage}>
-          <Prevideologotext>To buy </Prevideologotext>
-          <Prevideotext>시연 영상</Prevideotext>
-        </Box3>
+                  </CmLogo>
+                  <Cmtextbox>
+                    <CmTobuytext>To buy 투 바이</CmTobuytext>
+                    <Cmtext>
+                      체험형 이커머스 교육 서비스 입니다.
+                      <br />
+                      이머커스의 회원가입, 로그인, 결제 연습과
+                      <br />
+                      시연 영상을 통해 이커머스 사용의
+                      <br />
+                      어려움을 줄일 수 있습니다.
+                      <br />
+                      나이로 인해 이커머스에서 생기는
+                      <br />
+                      디지털 격차를 해소하기 위한 목적의 서비스로
+                      <br />
+                      고령층의 편리한 이커머스 사용을 위해
+                      <br />
+                      제작하였습니다.
+                    </Cmtext>
+                  </Cmtextbox>
+                  <Btmtext1>
+                    본 서비스는 동덕여자대학교 학생 6명이 함께 만든
+                    서비스입니다.
+                  </Btmtext1>
+                  <BtmBox>
+                    <DdwulikelionLogo>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/images/Ddwulikelionlogo.png`}
+                        alt="ddwulogo"
+                      />
+                    </DdwulikelionLogo>
+                    <Btmtext2>
+                      동덕여자대학교 멋쟁이사자처럼 11기
+                      <br />
+                      막내팀_The Youngest team
+                    </Btmtext2>
+                  </BtmBox>
+                </div>
+              </ModalView>
+            </ModalBackdrop>
+          ) : null}
+          <Logoimg>
+            <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="logo" />
+          </Logoimg>
+
+          <Box1 onClick={navigateTojoin}>
+            <Jointext>회원가입</Jointext>
+          </Box1>
+          <Box2 onClick={navigateTologin}>
+            <Logintext>로그인</Logintext>
+          </Box2>
+          <Box3 onClick={navigateToprevideopage}>
+            <Prevideologotext>To buy </Prevideologotext>
+            <Prevideotext>시연 영상</Prevideotext>
+          </Box3>
+        </BoxContainer>
         <Ment>
           계속 진행시 <MentTB>투 바이</MentTB>의{" "}
           <Mentmint>서비스 이용약관</Mentmint>에 동의하고
