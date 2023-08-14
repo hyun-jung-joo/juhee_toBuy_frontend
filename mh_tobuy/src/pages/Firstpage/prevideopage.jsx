@@ -8,7 +8,7 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  background-color: #f5f0e4;
+  background-color: #fffff;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
 
@@ -33,9 +33,9 @@ const Topbar = styled.div`
   height: 60px;
   padding: 10px;
   align-items: center;
-  gap: 108px;
+
   flex-shrink: 0;
-  background: #f5f0e4;
+  background-color: #fffff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
@@ -46,8 +46,7 @@ const Back = styled.div`
 `;
 
 const Toplogo = styled.div`
-  width: 85.276px;
-  height: 49px;
+  margin: 0 auto;
 `;
 const Body = styled.div`
   display: flex;
@@ -65,7 +64,7 @@ const Body = styled.div`
 `;
 const WhiteBox = styled.div`
   display: flex;
-
+  margin: 0 auto;
   width: 346px;
   height: 120px;
   flex-shrink: 0;

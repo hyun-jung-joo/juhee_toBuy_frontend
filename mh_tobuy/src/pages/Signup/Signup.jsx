@@ -8,7 +8,7 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  background-color: #f5f0e4;
+  background-color: #fffff;
   -ms-overflow-style: none;
   font-family: "Inter", sans-serif;
 
@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const BodyWrapper = styled.div`
   flex: 1; /* 남은 공간을 채우도록 설정 */
-  overflow: hidden; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
+  overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
 
 const Topbar = styled.div`
@@ -34,20 +34,18 @@ const Topbar = styled.div`
   height: 60px;
   padding: 10px;
   align-items: center;
-  gap: 108px;
+
   flex-shrink: 0;
-  background: #f5f0e4;
+  background-color: #fffff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
 const Back = styled.div`
-  width: 30px;
-  height: 24px;
   cursor: pointer;
 `;
 
 const Toptitle = styled.div`
-  margin: auto;
+  margin: 0 auto;
 
   color: #081c19;
   font-family: S-Core Dream;
@@ -58,40 +56,31 @@ const Toptitle = styled.div`
 `;
 
 const Close = styled.div`
-  margin-right: 2%;
-  display: flex;
-  width: 24px;
-  height: 24px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
   cursor: pointer;
 `;
 
 const Body = styled.div`
   display: flex;
-  height: 650px;
-  padding: 30px 1px;
+  gap: 10px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+
   flex-shrink: 0;
   margin: 0 auto;
-  margin-top: -20px;
+  margin-top: 10px;
 `;
 
 const HeadBox = styled.div`
   display: flex;
 
-  width: 350px;
+  width: 345px;
   height: 80px;
   padding: 10px;
   align-items: center;
-  gap: 10px;
+
   flex-shrink: 0;
   background-color: #fff;
 
-  margin-top: -5%;
   margin: 0 auto;
 `;
 
@@ -122,8 +111,8 @@ const InputBox = styled.div`
   display: flex;
 
   margin: 0 auto;
-  width: 355px;
-  height: 55px;
+  width: 335px;
+  height: 45px;
   padding: 5px;
   align-items: center;
 
@@ -154,15 +143,27 @@ const Input = styled.input`
     outline: none;
   }
 `;
-
+const PasswordMismatchMessage = styled.div`
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fffff;
+  font-family: S-Core Dream;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  height: 20px;
+`;
 const GrayBox = styled.div`
   display: flex;
   width: 145px;
-  height: 53px;
+  height: 43px;
   padding: 10px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+
   flex-shrink: 0;
 
   border-radius: 6px;
@@ -183,11 +184,11 @@ const Graytext = styled.div`
 const RedBox = styled.div`
   display: flex;
   width: 145px;
-  height: 53px;
+  height: 43px;
   padding: 10px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+
   flex-shrink: 0;
   border-radius: 6px;
   background: #e22d11;
@@ -205,11 +206,13 @@ const Redtext = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  gap: 20px;
-  margin-top: 20%;
+  gap: 10px;
+  height: 100px;
   margin: auto;
 `;
-
+const MentBox = styled.div`
+  height: 60px;
+`;
 const Ment = styled.div`
   width: 270px;
   margin: 0 auto;
@@ -252,6 +255,7 @@ const Mentmint = styled.div`
   line-height: normal;
   text-decoration-line: underline;
 `;
+
 const ModalBackdrop = styled.div`
   // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
   z-index: 1; //위치지정 요소
@@ -261,7 +265,7 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 391px;
+  width: 390px;
   margin: 0 auto;
 
   top: 0;
@@ -271,29 +275,40 @@ const ModalBackdrop = styled.div`
 `;
 const ExitBtn = styled.div`
   display: flex;
-  margin: auto;
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
-  font-weight: 900;
+  margin: 0 auto;
+
+  font-size: 35px;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   cursor: pointer;
-  color: #fff;
 `;
 
 const CmLogo = styled.div`
   display: flex;
   margin: auto;
-  margin-top: -40px;
+  margin-top: -0%;
   flex-shrink: 0;
 `;
 
 const ModalView = styled.div.attrs((props) => ({
-  // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있다.
   role: "dialog",
-}))``;
+}))`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 90%;
+  height: 90%;
+  background-color: #ffffff;
+  overflow-y: auto; /* 스크롤을 추가 */
+
+  div.desc {
+    margin: 50px;
+    font-size: 20px;
+    color: var(--coz-purple-600);
+  }
+`;
 const Signup = () => {
   const navigate = useNavigate();
   const navigateToFirstpage = () => {
@@ -361,21 +376,29 @@ const Signup = () => {
       console.log("비밀번호가 일치하지 않습니다.");
     }
   };
-
+  const [isOpen, setIsOpen] = useState(false);
   //스크롤 방지
   useEffect(() => {
-    document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
+    if (isOpen) {
+      // 모달 창이 열려 있는 경우에는 스크롤 방지
+      document.body.style.cssText = `
+        position: fixed; 
+        top: -${window.scrollY}px;
+        overflow-y: scroll;
+        width: 100%;`;
+    } else {
+      // 모달 창이 닫혀 있는 경우에는 스크롤 가능하도록 설정
       document.body.style.cssText = "";
-      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    }
+
+    return () => {
+      if (isOpen) {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
     };
-  }, []);
-  const [isOpen, setIsOpen] = useState(false);
+  }, [isOpen]);
 
   const openModalHandler = () => {
     // isOpen의 상태를 변경하는 메소드를 구현
@@ -419,15 +442,15 @@ const Signup = () => {
             {isOpen ? (
               <ModalBackdrop onClick={openModalHandler}>
                 <ModalView onClick={(e) => e.stopPropagation()}>
+                  <ExitBtn onClick={openModalHandler}>x</ExitBtn>
                   <CmLogo>
                     <img
                       src={`${process.env.PUBLIC_URL}/images/coachmark1.png`}
                       alt="coachmark1"
-                      width="380"
-                      height="800"
+                      width="300"
+                      height="700"
                     />
                   </CmLogo>
-                  <ExitBtn onClick={openModalHandler}>x</ExitBtn>
                 </ModalView>
               </ModalBackdrop>
             ) : null}
@@ -457,7 +480,11 @@ const Signup = () => {
             />
           </InputBox>
 
-          {!passwordMatch && <p>비밀번호가 일치하지 않습니다.</p>}
+          {!passwordMatch && (
+            <PasswordMismatchMessage>
+              비밀번호가 일치하지 않습니다.
+            </PasswordMismatchMessage>
+          )}
           <InputBox>
             <Input
               type="text"
@@ -481,14 +508,16 @@ const Signup = () => {
             </RedBox>
           </ButtonContainer>
         </Body>
-        <Ment>
-          계속 진행시 <MentTB>투 바이</MentTB>의{" "}
-          <Mentmint>서비스 이용약관</Mentmint>에 동의하고
-        </Ment>
-        <Ment>
-          <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
-          간주됩니다.
-        </Ment>
+        <MentBox>
+          <Ment>
+            계속 진행시 <MentTB>투 바이</MentTB>의{" "}
+            <Mentmint>서비스 이용약관</Mentmint>에 동의하고
+          </Ment>
+          <Ment>
+            <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
+            간주됩니다.
+          </Ment>
+        </MentBox>
       </BodyWrapper>
     </Container>
   );

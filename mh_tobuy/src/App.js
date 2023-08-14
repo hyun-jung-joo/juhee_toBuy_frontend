@@ -3,7 +3,7 @@ import Firstpage from "./pages/Firstpage/firstpage";
 import Prevideopage from "./pages/Firstpage/prevideopage";
 import Login from "./pages/Login/login";
 import Signup from "./pages/Signup/Signup";
-import PlayVideo from "./pages/playVideo";
+import PlayVideo from "./pages/Firstpage/playVideo";
 import Signupcard from "./pages/Signup/Signupcard";
 import Signup2 from "./pages/Signup/Signup2";
 import Category from "./pages/categorys/category";
