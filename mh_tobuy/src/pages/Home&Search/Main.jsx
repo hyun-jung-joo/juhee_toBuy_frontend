@@ -311,15 +311,14 @@ const ModalBackdrop = styled.div`
   z-index: 1; //위치지정 요소
   position: fixed;
   display: flex;
-  justify-content: center;s
+  justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-
+  width: 391px;
   margin: 0 auto;
-  // width: 100%;
-  max-width: 390px;
-    top: 0;
+
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -361,6 +360,7 @@ const Main = () => {
   const [recentSearches, setRecentSearches] = useState([]);
   const [inputFocused, setInputFocused] = useState(false); // 초기값 설정
   const [inputValue, setInputValue] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleInputFocus = () => {
     setInputFocused(true);
@@ -381,22 +381,20 @@ const Main = () => {
 
   //스크롤 방지
   useEffect(() => {
-    document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    return () => {
+    if (isOpen) {
+      document.body.style.cssText = `
+        position: fixed; 
+        top: -${window.scrollY}px;
+        overflow-y: scroll;
+        width: 100%;`;
+    } else {
       const scrollY = document.body.style.top;
       document.body.style.cssText = "";
       window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
-    };
-  }, []);
-  const [isOpen, setIsOpen] = useState(false);
+    }
+  }, [isOpen]);
 
   const openModalHandler = () => {
-    // isOpen의 상태를 변경하는 메소드를 구현
-    // !false -> !true -> !false
     setIsOpen(!isOpen);
   };
 

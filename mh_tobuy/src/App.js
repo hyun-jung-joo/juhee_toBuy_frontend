@@ -15,6 +15,7 @@ import Charge from "./pages/mypage/charge";
 import ProductDetail from "./pages/pay/productDetail";
 import PaymentSuccess from "./pages/pay/paymentSuccess";
 import Payment from "./pages/pay/payment";
+import Complete from "./pages/pay/Complete";
 import Findid from "./pages/Login/findid";
 import Findpw from "./pages/Login/findpw";
 import Fashion from "./pages/categorys/Fashion";
@@ -23,7 +24,6 @@ import Food from "./pages/categorys/Food";
 import Daily from "./pages/categorys/Daily";
 import HomeDeco from "./pages/categorys/HomeDeco";
 import Health from "./pages/categorys/Health";
-// import ProductDetail from "./pages/categorys/ProductDetail";
 import Main from "./pages/Home&Search/Main";
 import FailSearch from "./pages/Home&Search/FailSearch";
 import SuccessSearch from "./pages/Home&Search/SuccessSearch";
@@ -60,7 +60,7 @@ function App() {
           <Route path="/Main" element={<Main />} />
           <Route path="/FailSearch" element={<FailSearch />} />
           <Route path="/SuccessSearch" element={<SuccessSearch />} />
-          <Route path="/ProductDetail" element={<ProductDetail />} />
+          <Route path="/Complete" element={<Complete />} />
         </Routes>
       </div>
     </BrowserRouter>
