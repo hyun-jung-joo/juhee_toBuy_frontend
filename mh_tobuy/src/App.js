@@ -23,6 +23,7 @@ import Food from "./pages/categorys/Food";
 import Daily from "./pages/categorys/Daily";
 import HomeDeco from "./pages/categorys/HomeDeco";
 import Health from "./pages/categorys/Health";
+import Main from "./pages/categorys/Main";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path="/ProductDetail" element={<ProductDetail />} />
           <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
           <Route path="/Payment" element={<Payment />} />
+          <Route path="/Main" element={<Main />} />
         </Routes>
       </div>
     </BrowserRouter>
