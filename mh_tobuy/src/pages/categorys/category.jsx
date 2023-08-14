@@ -127,6 +127,19 @@ const My = styled.div`
   cursor: pointer;
 `;
 
+const CoachMark = styled.div`
+  position: fixed;
+  bottom: 80px;
+  text-align: right;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  @media (hover: hover) {
+    width: 390px;
+    margin: 0 auto;
+  }
+`;
+
 const Category = () => {
   const navigate = useNavigate();
 
@@ -239,6 +252,9 @@ const Category = () => {
             />
           </Go>
         </CateKind>
+        <CoachMark>
+          <img src={`${process.env.PUBLIC_URL}/images/help.png`} width="48px" />
+        </CoachMark>
         <BottomBar>
           <Menu>
             <img
