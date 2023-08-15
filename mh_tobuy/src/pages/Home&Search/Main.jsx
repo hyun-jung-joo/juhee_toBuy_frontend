@@ -289,7 +289,6 @@ const Clock = styled.span`
   margin-left: 20px;
   margin-right: 10px;
 `;
-
 const CoachMark = styled.div`
   position: fixed;
   bottom: 80px;
@@ -302,7 +301,6 @@ const CoachMark = styled.div`
     margin: 0 auto;
   }
 `;
-
 const ModalBackdrop = styled.div`
   // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
   z-index: 1; //위치지정 요소
@@ -312,7 +310,7 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 391px;
+  width: 390px;
   margin: 0 auto;
 
   top: 0;
@@ -320,33 +318,42 @@ const ModalBackdrop = styled.div`
   right: 0;
   bottom: 0;
 `;
+const ExitBtn = styled.div`
+  display: flex;
+  margin: 0 auto;
 
-// const ExitBtn = styled.div`
-//   display: flex;
-//   margin: auto;
-//   width: 50px;
-//   height: 50px;
-//   font-size: 40px;
-//   font-weight: 900;
-//   justify-content: center;
-//   align-items: center;
-//   flex-shrink: 0;
-//   cursor: pointer;
-//   color: #fff;
-// `;
+  font-size: 35px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+`;
 
 const CmLogo = styled.div`
   display: flex;
   margin: auto;
-  width: 100%;
-  // margin-top: -40px;
+  margin-top: -0%;
   flex-shrink: 0;
 `;
 
 const ModalView = styled.div.attrs((props) => ({
-  // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있다.
   role: "dialog",
-}))``;
+}))`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 90%;
+  height: 90%;
+  background-color: #ffffff;
+  overflow-y: auto; /* 스크롤을 추가 */
+
+  div.desc {
+    margin: 50px;
+    font-size: 20px;
+    color: var(--coz-purple-600);
+  }
+`;
 
 const Main = () => {
   const navigate = useNavigate();
@@ -379,19 +386,29 @@ const Main = () => {
   //스크롤 방지
   useEffect(() => {
     if (isOpen) {
+      // 모달 창이 열려 있는 경우에는 스크롤 방지
       document.body.style.cssText = `
         position: fixed; 
         top: -${window.scrollY}px;
         overflow-y: scroll;
         width: 100%;`;
     } else {
-      const scrollY = document.body.style.top;
+      // 모달 창이 닫혀 있는 경우에는 스크롤 가능하도록 설정
       document.body.style.cssText = "";
-      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
     }
+
+    return () => {
+      if (isOpen) {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
+    };
   }, [isOpen]);
 
   const openModalHandler = () => {
+    // isOpen의 상태를 변경하는 메소드를 구현
+    // !false -> !true -> !false
     setIsOpen(!isOpen);
   };
 
@@ -575,15 +592,15 @@ const Main = () => {
         {isOpen ? (
           <ModalBackdrop onClick={openModalHandler}>
             <ModalView onClick={(e) => e.stopPropagation()}>
+              <ExitBtn onClick={openModalHandler}>x</ExitBtn>
               <CmLogo>
                 <img
-                  src={`${process.env.PUBLIC_URL}/images/mainCoach.png`}
-                  width="100%"
-                  height="100%"
-                  onClick={openModalHandler}
+                  src={`${process.env.PUBLIC_URL}/images/maincoachmark.png`}
+                  alt="maincoachmark"
+                  width="300"
+                  height="700"
                 />
               </CmLogo>
-              {/* <ExitBtn onClick={openModalHandler}>x</ExitBtn> */}
             </ModalView>
           </ModalBackdrop>
         ) : null}
