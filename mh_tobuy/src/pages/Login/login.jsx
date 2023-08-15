@@ -8,9 +8,8 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  background-color: #f5f0e4;
+  background-color: #fffff;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -35,7 +34,7 @@ const Topbar = styled.div`
   padding: 10px;
   align-items: center;
 
-  background: #f5f0e4;
+  background-color: #fffff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
@@ -48,7 +47,6 @@ const Toptitle = styled.div`
   margin: auto;
 
   color: #081c19;
-  font-family: S-Core Dream;
   font-size: 18px;
   font-style: normal;
   font-weight: 900;
@@ -73,19 +71,20 @@ const BoxContainer = styled.div`
   margin: auto;
 `;
 const Body = styled.div`
+  margin: 0 auto;
   display: flex;
   height: 650px;
-  padding: 30px 14px;
+  padding-top: 30px;
+  gap: 20px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+
   flex-shrink: 0;
 `;
 
 const Logo = styled.div`
-  margin-top: 5%;
   width: 278.452px;
-  height: 160px;
+  height: 250px;
   flex-shrink: 0;
 `;
 const Infoimg = styled.div`
@@ -97,20 +96,21 @@ const Infoimg = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-top: -57%;
+  margin-top: %;
   margin-left: 87%;
-  margin-bottom: 60%;
+  margin-bottom: 10%;
 `;
 
 const InputBox = styled.div`
   display: flex;
-  margin: -2%;
-  margin-top: 2%;
-  width: 355px;
-  height: 55px;
-  padding: 10px;
+
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 335px;
+  height: 45px;
+  padding: 5px;
   align-items: center;
-  gap: 269px;
+
   flex-shrink: 0;
   border-radius: 6px;
   border: 1px solid #60716f;
@@ -147,7 +147,6 @@ const FindLinks = styled.div`
 const Findidment = styled.div`
   color: #05bba2;
   display: flex;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -159,8 +158,6 @@ const Findidment = styled.div`
 const Findpwment = styled.div`
   color: #05bba2;
   display: flex;
-
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -188,7 +185,6 @@ const LoginBox = styled.div`
 
 const LoginText = styled.div`
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -197,12 +193,11 @@ const LoginText = styled.div`
 const MiddleMentBox = styled.div`
   display: flex;
   margin: auto;
-  margin-top: -5%;
+  margin-top: 0.5%;
 `;
 const Memberq = styled.div`
   color: #320f0a;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -212,7 +207,6 @@ const Memberq = styled.div`
 const Signup = styled.div`
   margin-top: -15%;
   color: #e02d11;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -229,7 +223,6 @@ const Ment = styled.div`
   display: flex;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -243,7 +236,6 @@ const MentTB = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 600;
@@ -258,7 +250,6 @@ const Mentmint = styled.div`
   cursor: pointer;
   display: flex;
   color: #05bba2;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -274,7 +265,7 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 391px;
+  width: 390px;
   margin: 0 auto;
 
   top: 0;
@@ -284,29 +275,45 @@ const ModalBackdrop = styled.div`
 `;
 const ExitBtn = styled.div`
   display: flex;
-  margin: auto;
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
-  font-weight: 900;
+  margin: 0 auto;
+
+  font-size: 35px;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   cursor: pointer;
-  color: #fff;
 `;
 
 const CmLogo = styled.div`
   display: flex;
   margin: auto;
-  margin-top: -40px;
+  margin-top: -0%;
   flex-shrink: 0;
 `;
 
+const MentBox = styled.div`
+  margin-top: 15%;
+  height: 60px;
+`;
+
 const ModalView = styled.div.attrs((props) => ({
-  // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있다.
   role: "dialog",
-}))``;
+}))`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 90%;
+  height: 90%;
+  background-color: #ffffff;
+  overflow-y: auto; /* 스크롤을 추가 */
+
+  div.desc {
+    margin: 50px;
+    font-size: 20px;
+    color: var(--coz-purple-600);
+  }
+`;
 const Login = () => {
   const navigate = useNavigate();
   const navigateToFirstpage = () => {
@@ -331,20 +338,29 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [isOpen, setIsOpen] = useState(false);
   //스크롤 방지
   useEffect(() => {
-    document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
+    if (isOpen) {
+      // 모달 창이 열려 있는 경우에는 스크롤 방지
+      document.body.style.cssText = `
+        position: fixed; 
+        top: -${window.scrollY}px;
+        overflow-y: scroll;
+        width: 100%;`;
+    } else {
+      // 모달 창이 닫혀 있는 경우에는 스크롤 가능하도록 설정
       document.body.style.cssText = "";
-      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    }
+
+    return () => {
+      if (isOpen) {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
     };
-  }, []);
-  const [isOpen, setIsOpen] = useState(false);
+  }, [isOpen]);
 
   const openModalHandler = () => {
     // isOpen의 상태를 변경하는 메소드를 구현
@@ -373,12 +389,6 @@ const Login = () => {
         </Topbar>
         <Body>
           <BoxContainer>
-            <Logo>
-              <img
-                src={`${process.env.PUBLIC_URL}/images/logo.png`}
-                alt="logo"
-              />
-            </Logo>
             <Infoimg>
               <img
                 src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
@@ -386,18 +396,25 @@ const Login = () => {
                 onClick={openModalHandler}
               />
             </Infoimg>
+            <Logo>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/logo.png`}
+                alt="logo"
+              />
+            </Logo>
+
             {isOpen ? (
               <ModalBackdrop onClick={openModalHandler}>
                 <ModalView onClick={(e) => e.stopPropagation()}>
+                  <ExitBtn onClick={openModalHandler}>x</ExitBtn>
                   <CmLogo>
                     <img
                       src={`${process.env.PUBLIC_URL}/images/coachmark2.png`}
                       alt="coachmark2"
-                      width="380"
-                      height="800"
+                      width="300"
+                      height="700"
                     />
                   </CmLogo>
-                  <ExitBtn onClick={openModalHandler}>x</ExitBtn>
                 </ModalView>
               </ModalBackdrop>
             ) : null}
@@ -420,8 +437,8 @@ const Login = () => {
             <Findidment onClick={navigateTofindid}>아이디 찾기</Findidment>
             <Findpwment onClick={navigateTofindpw}>비밀번호 찾기</Findpwment>
           </FindLinks>
-          <LoginBox>
-            <LoginText onClick={navigateToCategory}>로그인</LoginText>
+          <LoginBox onClick={navigateToCategory}>
+            <LoginText>로그인</LoginText>
           </LoginBox>
           <MiddleMentBox>
             <p>
@@ -431,15 +448,17 @@ const Login = () => {
             </p>
           </MiddleMentBox>
         </Body>
-        <Ment>
-          계속 진행시 <MentTB>투 바이</MentTB>의{" "}
-          <Mentmint>서비스 이용약관</Mentmint>에 동의하고
-        </Ment>
+        <MentBox>
+          <Ment>
+            계속 진행시 <MentTB>투 바이</MentTB>의{" "}
+            <Mentmint>서비스 이용약관</Mentmint>에 동의하고
+          </Ment>
 
-        <Ment>
-          <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
-          간주됩니다.
-        </Ment>
+          <Ment>
+            <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
+            간주됩니다.
+          </Ment>
+        </MentBox>
       </BodyWrapper>
     </Container>
   );

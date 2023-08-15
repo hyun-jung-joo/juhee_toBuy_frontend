@@ -109,7 +109,92 @@ const My = styled.div`
   cursor: pointer;
 `;
 
-const PaymentSuccess = () => {
+const Logo1 = styled.div`
+  cursor: pointer;
+  width: 300px;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 50px;
+`;
+
+const ProductWrapper = styled.div`
+  position: relative;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  height: 78px;
+  padding-top: 2px;
+  height: 78px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25);
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 10px;
+`;
+
+const ProductImg = styled.div`
+  float: left;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 3px;
+`;
+const ProductInfoWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-start;
+  width: 150px;
+  margin-top: 16px;
+  margin-bottom: 9px;
+  background: red;
+`;
+const ProductName = styled.div`
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 80px;
+  text-align: left;
+  //   margin-right: auto;
+`;
+const PriceWrapper = styled.div`
+<<<<<<< HEAD
+color: #000;
+=======
+    color: #000;
+    font-family: S-Core Dream;
+>>>>>>> 09df5173a9857bb44610563be75a793192a2553e
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: auto;
+    width: 200px;
+    text-align: left;
+    align-items: center;
+}`;
+const Price = styled.span``;
+const Won = styled.span``;
+
+const QuantityWrapper = styled.div`
+  color: #60716f;
+<<<<<<< HEAD
+  font-size: 16px;
+=======
+  font-family: S-Core Dream;
+  font-size: 13px;
+>>>>>>> 09df5173a9857bb44610563be75a793192a2553e
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+const Whole = styled.span``;
+const Quantity = styled.span``;
+const Count = styled.span``;
+
+const Complete = () => {
   const navigate = useNavigate();
   const navigateToBack = () => {
     window.history.back();
@@ -142,7 +227,33 @@ const PaymentSuccess = () => {
           </Video>
         </Topbar>
 
-        <Body></Body>
+        <Logo1>
+          <img
+            src={`${process.env.PUBLIC_URL}/images/로고3.png`}
+            width="300px"
+          />
+        </Logo1>
+        <ProductWrapper>
+          <ProductImg>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/productSample.png`}
+              width="70px"
+              height="70px"
+            ></img>
+          </ProductImg>
+          <ProductInfoWrapper>
+            <ProductName>상품명</ProductName>
+            <QuantityWrapper>
+              <Whole>총 </Whole>
+              <Quantity>N</Quantity>
+              <Count> 개</Count>
+            </QuantityWrapper>
+            <PriceWrapper>
+              <Price>00,000</Price>
+              <Won> 원</Won>
+            </PriceWrapper>
+          </ProductInfoWrapper>
+        </ProductWrapper>
         <BottomBar>
           <Menu>
             <img
@@ -171,4 +282,4 @@ const PaymentSuccess = () => {
   );
 };
 
-export default PaymentSuccess;
+export default Complete;

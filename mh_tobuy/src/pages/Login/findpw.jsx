@@ -8,9 +8,8 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  background-color: #f5f0e4;
+  background-color: #fffff;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -35,7 +34,7 @@ const Topbar = styled.div`
   align-items: center;
   gap: 90px;
   flex-shrink: 0;
-  background: #f5f0e4;
+  background-color: #fffff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
@@ -46,10 +45,9 @@ const Back = styled.div`
 `;
 
 const Toptitle = styled.div`
-  margin: auto;
-  margin-left: 5%;
+  margin: 0 auto;
+
   color: #081c19;
-  font-family: S-Core Dream;
   font-size: 18px;
   font-style: normal;
   font-weight: 900;
@@ -68,44 +66,44 @@ const Close = styled.div`
 `;
 
 const Body = styled.div`
+  margin: 0 auto;
   display: flex;
   height: 650px;
-  padding: 30px 14px;
+  padding-top: 30px;
+  padding-bottom: 100px;
+  gap: 20px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+
   flex-shrink: 0;
 `;
 
 const Logo = styled.div`
-  margin-top: 5%;
-  width: 278.452px;
-  height: 160px;
+  margin: 0 auto;
+
   flex-shrink: 0;
 `;
 const Infoimg = styled.div`
   display: flex;
-  width: 40px;
-  height: 40px;
+
   flex-shrink: 0;
-  padding: 4px;
+
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-top: -57%;
+
   margin-left: 87%;
-  margin-bottom: 60%;
 `;
 
 const InputBox = styled.div`
   display: flex;
-  margin: -2%;
-  margin-top: 2%;
-  width: 355px;
-  height: 55px;
-  padding: 10px;
+
+  margin: 0 auto;
+  width: 335px;
+  height: 45px;
+  padding: 5px;
   align-items: center;
-  gap: 269px;
+
   flex-shrink: 0;
   border-radius: 6px;
   border: 1px solid #60716f;
@@ -113,6 +111,7 @@ const InputBox = styled.div`
 `;
 
 const Input = styled.input`
+  margin: 0 auto;
   position: relative;
   align-items: center;
   width: 800px;
@@ -121,7 +120,7 @@ const Input = styled.input`
   border-radius: 6px;
   border: none;
   margin: auto;
-  margin-top: 9px;
+
   font-size: 17px;
   &::placeholder {
     color: #60716f;
@@ -134,7 +133,7 @@ const Input = styled.input`
 `;
 
 const MintBox = styled.div`
-  margin: auto;
+  margin: 0 auto;
   margin-top: 10%;
   display: flex;
   width: 222px;
@@ -142,24 +141,23 @@ const MintBox = styled.div`
   padding: 10px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+
   flex-shrink: 0;
   border-radius: 6px;
   background: #05bba2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 `;
-
 const FindText = styled.div`
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  cursor: pointer;
 `;
 
-const ModalBackdrop = styled.div`
+const ModalBackdrop1 = styled.div`
   // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
   z-index: 1; //위치지정 요소
   position: fixed;
@@ -168,7 +166,7 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 391px;
+  width: 390px;
   margin: 0 auto;
 
   top: 0;
@@ -176,20 +174,55 @@ const ModalBackdrop = styled.div`
   right: 0;
   bottom: 0;
 `;
+const ModalBackdrop2 = styled.div`
+  // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
+  z-index: 1; //위치지정 요소
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  width: 390px;
+  margin: 0 auto;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+const ExitBtn = styled.div`
+  display: flex;
+  margin: 0 auto;
+
+  font-size: 35px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+`;
+
+const CmLogo = styled.div`
+  display: flex;
+  margin: auto;
+  margin-top: -0%;
+  flex-shrink: 0;
+`;
 const CmtxtBox = styled.div`
   display: flex;
   content-align: center;
   flex-direction: column;
+  margin: 0 auto;
+  margin-top: 10px;
 `;
 const Cmtextemph = styled.div`
-  font-weight: 500;
+  font-weight: 700;
   margin: 0 auto;
 `;
 
 const Cmtext = styled.div`
   display: flex;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 24px;
   font-style: normal;
   font-weight: 300;
@@ -198,7 +231,8 @@ const Cmtext = styled.div`
 `;
 const BtmBox = styled.div`
   margin: 0 auto;
-  margin-top: 30%;
+  margin-top: 20%;
+
   display: flex;
   width: 145px;
   height: 53px;
@@ -210,10 +244,10 @@ const BtmBox = styled.div`
   border-radius: 6px;
   background: #05bba2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 `;
 const Btmtext = styled.div`
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -221,18 +255,36 @@ const Btmtext = styled.div`
 `;
 
 const ModalView = styled.div.attrs((props) => ({
-  // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있다.
   role: "dialog",
 }))`
-  // Modal창 CSS를 구현합니다.
   display: flex;
   align-items: center;
   flex-direction: column;
   border-radius: 20px;
   width: 90%;
-  heigth: 800px;
+  padding-top: 10px;
+  padding-bottom: 30px;
   background-color: #ffffff;
+  overflow-y: auto; /* 스크롤을 추가 */
 
+  div.desc {
+    margin: 50px;
+    font-size: 20px;
+    color: var(--coz-purple-600);
+  }
+`;
+const ModalView2 = styled.div.attrs((props) => ({
+  role: "dialog",
+}))`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 90%;
+  height: 90%;
+  background-color: #ffffff;
+  overflow-y: auto; /* 스크롤을 추가 */
+  padding-bottom: 20px;
   div.desc {
     margin: 50px;
     font-size: 20px;
@@ -249,24 +301,62 @@ const Findpw = () => {
     navigate("/Login");
   };
 
+  const [isOpen1, setIsOpen1] = useState(false);
+  //스크롤 방지
   useEffect(() => {
-    document.body.style.cssText = `
+    if (isOpen1) {
+      // 모달 창이 열려 있는 경우에는 스크롤 방지
+      document.body.style.cssText = `
       position: fixed; 
       top: -${window.scrollY}px;
       overflow-y: scroll;
       width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
+    } else {
+      // 모달 창이 닫혀 있는 경우에는 스크롤 가능하도록 설정
       document.body.style.cssText = "";
-      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
-    };
-  }, []);
-  const [isOpen, setIsOpen] = useState(false);
+    }
 
+    return () => {
+      if (isOpen1) {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
+    };
+  }, [isOpen1]);
+  const [isOpen2, setIsOpen2] = useState(false);
+  //스크롤 방지
+  useEffect(() => {
+    if (isOpen2) {
+      // 모달 창이 열려 있는 경우에는 스크롤 방지
+      document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    } else {
+      // 모달 창이 닫혀 있는 경우에는 스크롤 가능하도록 설정
+      document.body.style.cssText = "";
+    }
+
+    return () => {
+      if (isOpen2) {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
+    };
+  }, [isOpen2]);
   const openModalHandler = () => {
     // isOpen의 상태를 변경하는 메소드를 구현
     // !false -> !true -> !false
-    setIsOpen(!isOpen);
+    setIsOpen1(!isOpen1);
+  };
+
+  const openModalHandler2 = () => {
+    // isOpen의 상태를 변경하는 메소드를 구현
+    // !false -> !true -> !false
+    setIsOpen2(!isOpen2);
   };
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -292,13 +382,31 @@ const Findpw = () => {
           </Close>
         </Topbar>
         <Body>
+          <Infoimg>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
+              alt="coachmark"
+              onClick={openModalHandler2}
+            />{" "}
+          </Infoimg>
+          {isOpen2 ? (
+            <ModalBackdrop2 onClick={openModalHandler2}>
+              <ModalView2 onClick={(e) => e.stopPropagation()}>
+                <ExitBtn onClick={openModalHandler2}>x</ExitBtn>
+                <CmLogo>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/images/findpwcoachmark.png`}
+                    alt="coachmark3"
+                    width="300"
+                    height="700"
+                  />
+                </CmLogo>
+              </ModalView2>
+            </ModalBackdrop2>
+          ) : null}
           <Logo>
             <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="logo" />
           </Logo>
-          <Infoimg>
-            <img src={`${process.env.PUBLIC_URL}/images/info.png`} alt="info" />
-          </Infoimg>
-
           <InputBox>
             <Input
               type="text"
@@ -324,29 +432,27 @@ const Findpw = () => {
           <MintBox>
             <FindText onClick={openModalHandler}>비밀번호 찾기</FindText>
           </MintBox>
-          {isOpen ? (
-            <ModalBackdrop onClick={openModalHandler}>
+          {isOpen1 ? (
+            <ModalBackdrop1 onClick={openModalHandler}>
               <ModalView onClick={(e) => e.stopPropagation()}>
-                <div className="desc">
-                  <CmtxtBox>
-                    <Cmtext>
-                      <Cmtextemph>000</Cmtextemph>
-                      님의 비밀번호는
-                    </Cmtext>
-                  </CmtxtBox>
+                <CmtxtBox>
+                  <Cmtext>
+                    <Cmtextemph>000</Cmtextemph>
+                    님의 비밀번호는
+                  </Cmtext>
+                </CmtxtBox>
 
-                  <CmtxtBox>
-                    <Cmtext>
-                      <Cmtextemph>PW0000</Cmtextemph>
-                      입니다.
-                    </Cmtext>
-                  </CmtxtBox>
-                  <BtmBox>
-                    <Btmtext onClick={navigateToLogin}>로그인 하러가기</Btmtext>
-                  </BtmBox>
-                </div>
+                <CmtxtBox>
+                  <Cmtext>
+                    <Cmtextemph>PW0000</Cmtextemph>
+                    입니다.
+                  </Cmtext>
+                </CmtxtBox>
+                <BtmBox>
+                  <Btmtext onClick={navigateToLogin}>로그인 하러가기</Btmtext>
+                </BtmBox>
               </ModalView>
-            </ModalBackdrop>
+            </ModalBackdrop1>
           ) : null}
         </Body>
       </BodyWrapper>

@@ -8,9 +8,8 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  background-color: #f5f0e4;
+  background-color: #fffff;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -27,7 +26,16 @@ const BodyWrapper = styled.div`
   flex: 1; /* 남은 공간을 채우도록 설정 */
   overflow: auto; /* 스크롤이 있는 경우 내용을 스크롤합니다. */
 `;
+const Body = styled.div`
+  display: flex;
 
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+  margin: 0 auto;
+  margin-top: 10px;
+`;
 const Infoimg = styled.div`
   display: flex;
   width: 48px;
@@ -42,10 +50,11 @@ const Logoimg = styled.div`
   width: 369px;
   height: 212.029px;
   flex-shrink: 0;
-  margin-top: 100px;
+  margin: 0 auto;
 `;
 const BoxContainer = styled.div`
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
   align-items: center; /* 수평 가운데 정렬 */
   justify-content: center; /* 수직 가운데 정렬 */
@@ -65,7 +74,6 @@ const Box1 = styled.div`
 const Jointext = styled.div`
   color: #fff;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -87,7 +95,6 @@ const Box2 = styled.div`
 const Logintext = styled.div`
   color: #fff;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -109,7 +116,6 @@ const Box3 = styled.div`
 
 const Prevideologotext = styled.div`
   text-align: center;
-  font-family: Sonsie One;
   font-size: 25px;
   font-style: normal;
   font-weight: 800;
@@ -124,7 +130,6 @@ const Prevideologotext = styled.div`
 const Prevideotext = styled.div`
   margin-left: 10%;
   color: #60716f;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -137,7 +142,6 @@ const Ment = styled.div`
   display: flex;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -151,7 +155,6 @@ const MentTB = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 600;
@@ -166,7 +169,6 @@ const Mentmint = styled.div`
   cursor: pointer;
   display: flex;
   color: #05bba2;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -183,7 +185,7 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 391px;
+  width: 390px;
   margin: 0 auto;
 
   top: 0;
@@ -194,9 +196,8 @@ const ModalBackdrop = styled.div`
 const ExitBtn = styled.div`
   display: flex;
   margin-left: 80%;
-  margin-top: 5%;
-  width: 24px;
-  height: 24px;
+  margin-top: 2%;
+
   font-size: 40px;
   justify-content: center;
   align-items: center;
@@ -210,13 +211,13 @@ const CmLogo = styled.div`
   width: 278.452px;
   height: 160px;
   flex-shrink: 0;
+  margin-top: -10%;
 `;
 
 const Cmtextbox = styled.div`
   margin-top: 50px;
   margin-left: -25px;
   text-align: center;
-  font-family: Sonsie One;
   font-size: 16px;
   font-style: normal;
   font-weight: 900;
@@ -229,7 +230,6 @@ const CmTobuytext = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: S-Core Dream;
   font-size: 25px;
   font-style: normal;
   font-weight: 900;
@@ -238,7 +238,6 @@ const CmTobuytext = styled.div`
 
 const Cmtext = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 900;
@@ -252,7 +251,6 @@ const Btmtext1 = styled.div`
   margin: auto;
   margin-top: 50px;
   margin-left: -10%;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -263,7 +261,6 @@ const Btmtext1 = styled.div`
 `;
 const Btmtext2 = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -283,17 +280,16 @@ const DdwulikelionLogo = styled.div`
   display: flex;
 `;
 const ModalView = styled.div.attrs((props) => ({
-  // attrs 메소드를 이용해서 아래와 같이 div 엘리먼트에 속성을 추가할 수 있다.
   role: "dialog",
 }))`
-  // Modal창 CSS를 구현합니다.
   display: flex;
   align-items: center;
   flex-direction: column;
   border-radius: 20px;
   width: 90%;
-  heigth: 800px;
+  height: 90%;
   background-color: #ffffff;
+  overflow-y: auto; /* 스크롤을 추가 */
 
   div.desc {
     margin: 50px;
@@ -301,7 +297,9 @@ const ModalView = styled.div.attrs((props) => ({
     color: var(--coz-purple-600);
   }
 `;
-
+const MentBox = styled.div`
+  height: 60px;
+`;
 const Firstpage = () => {
   const navigate = useNavigate();
   const navigateTologin = () => {
@@ -317,20 +315,29 @@ const Firstpage = () => {
   };
 
   //스크롤 방지
-  useEffect(() => {
-    document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = "";
-      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
-    };
-  }, []);
-  const [isOpen, setIsOpen] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    if (isOpen) {
+      // 모달 창이 열려 있는 경우에는 스크롤 방지
+      document.body.style.cssText = `
+        position: fixed; 
+        top: -${window.scrollY}px;
+        overflow-y: scroll;
+        width: 100%;`;
+    } else {
+      // 모달 창이 닫혀 있는 경우에는 스크롤 가능하도록 설정
+      document.body.style.cssText = "";
+    }
+
+    return () => {
+      if (isOpen) {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
+    };
+  }, [isOpen]);
   const openModalHandler = () => {
     // isOpen의 상태를 변경하는 메소드를 구현
     // !false -> !true -> !false
@@ -339,90 +346,97 @@ const Firstpage = () => {
   return (
     <Container>
       <BodyWrapper>
-        <BoxContainer>
-          <Infoimg>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/info.png`}
-              alt="info"
-              onClick={openModalHandler}
-            />
-          </Infoimg>
-          {isOpen ? (
-            <ModalBackdrop onClick={openModalHandler}>
-              <ModalView onClick={(e) => e.stopPropagation()}>
-                <ExitBtn onClick={openModalHandler}>x</ExitBtn>
-                <div className="desc">
-                  <CmLogo>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/images/logo.png`}
-                      alt="logo"
-                    />
-                  </CmLogo>
-                  <Cmtextbox>
-                    <CmTobuytext>To buy 투 바이</CmTobuytext>
-                    <Cmtext>
-                      체험형 이커머스 교육 서비스 입니다.
-                      <br />
-                      이머커스의 회원가입, 로그인, 결제 연습과
-                      <br />
-                      시연 영상을 통해 이커머스 사용의
-                      <br />
-                      어려움을 줄일 수 있습니다.
-                      <br />
-                      나이로 인해 이커머스에서 생기는
-                      <br />
-                      디지털 격차를 해소하기 위한 목적의 서비스로
-                      <br />
-                      고령층의 편리한 이커머스 사용을 위해
-                      <br />
-                      제작하였습니다.
-                    </Cmtext>
-                  </Cmtextbox>
-                  <Btmtext1>
-                    본 서비스는 동덕여자대학교 학생 6명이 함께 만든
-                    서비스입니다.
-                  </Btmtext1>
-                  <BtmBox>
-                    <DdwulikelionLogo>
+        <Body>
+          <BoxContainer>
+            <Infoimg>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/info.png`}
+                alt="info"
+                onClick={openModalHandler}
+              />
+            </Infoimg>
+            {isOpen ? (
+              <ModalBackdrop onClick={openModalHandler}>
+                <ModalView onClick={(e) => e.stopPropagation()}>
+                  <ExitBtn onClick={openModalHandler}>x</ExitBtn>
+                  <div className="desc">
+                    <CmLogo>
                       <img
-                        src={`${process.env.PUBLIC_URL}/images/Ddwulikelionlogo.png`}
-                        alt="ddwulogo"
+                        src={`${process.env.PUBLIC_URL}/images/logo.png`}
+                        alt="logo"
                       />
-                    </DdwulikelionLogo>
-                    <Btmtext2>
-                      동덕여자대학교 멋쟁이사자처럼 11기
-                      <br />
-                      막내팀_The Youngest team
-                    </Btmtext2>
-                  </BtmBox>
-                </div>
-              </ModalView>
-            </ModalBackdrop>
-          ) : null}
-          <Logoimg>
-            <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="logo" />
-          </Logoimg>
+                    </CmLogo>
+                    <Cmtextbox>
+                      <CmTobuytext>To buy 투 바이</CmTobuytext>
+                      <Cmtext>
+                        체험형 이커머스 교육 서비스 입니다.
+                        <br />
+                        이머커스의 회원가입, 로그인, 결제 연습과
+                        <br />
+                        시연 영상을 통해 이커머스 사용의
+                        <br />
+                        어려움을 줄일 수 있습니다.
+                        <br />
+                        나이로 인해 이커머스에서 생기는
+                        <br />
+                        디지털 격차를 해소하기 위한 목적의 서비스로
+                        <br />
+                        고령층의 편리한 이커머스 사용을 위해
+                        <br />
+                        제작하였습니다.
+                      </Cmtext>
+                    </Cmtextbox>
+                    <Btmtext1>
+                      본 서비스는 동덕여자대학교 학생 6명이 함께 만든
+                      서비스입니다.
+                    </Btmtext1>
+                    <BtmBox>
+                      <DdwulikelionLogo>
+                        <img
+                          src={`${process.env.PUBLIC_URL}/images/Ddwulikelionlogo.png`}
+                          alt="ddwulogo"
+                        />
+                      </DdwulikelionLogo>
+                      <Btmtext2>
+                        동덕여자대학교 멋쟁이사자처럼 11기
+                        <br />
+                        막내팀_The Youngest team
+                      </Btmtext2>
+                    </BtmBox>
+                  </div>
+                </ModalView>
+              </ModalBackdrop>
+            ) : null}
+            <Logoimg>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/logo.png`}
+                alt="logo"
+              />
+            </Logoimg>
 
-          <Box1 onClick={navigateTojoin}>
-            <Jointext>회원가입</Jointext>
-          </Box1>
-          <Box2 onClick={navigateTologin}>
-            <Logintext>로그인</Logintext>
-          </Box2>
-          <Box3 onClick={navigateToprevideopage}>
-            <Prevideologotext>To buy </Prevideologotext>
-            <Prevideotext>시연 영상</Prevideotext>
-          </Box3>
-        </BoxContainer>
-        <Ment>
-          계속 진행시 <MentTB>투 바이</MentTB>의{" "}
-          <Mentmint>서비스 이용약관</Mentmint>에 동의하고
-        </Ment>
+            <Box1 onClick={navigateTojoin}>
+              <Jointext>회원가입</Jointext>
+            </Box1>
+            <Box2 onClick={navigateTologin}>
+              <Logintext>로그인</Logintext>
+            </Box2>
+            <Box3 onClick={navigateToprevideopage}>
+              <Prevideologotext>To buy </Prevideologotext>
+              <Prevideotext>시연 영상</Prevideotext>
+            </Box3>
+          </BoxContainer>
+        </Body>
+        <MentBox>
+          <Ment>
+            계속 진행시 <MentTB>투 바이</MentTB>의{" "}
+            <Mentmint>서비스 이용약관</Mentmint>에 동의하고
+          </Ment>
 
-        <Ment>
-          <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
-          간주됩니다.
-        </Ment>
+          <Ment>
+            <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
+            간주됩니다.
+          </Ment>
+        </MentBox>
       </BodyWrapper>
     </Container>
   );

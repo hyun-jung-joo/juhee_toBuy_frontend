@@ -3,7 +3,7 @@ import Firstpage from "./pages/Firstpage/firstpage";
 import Prevideopage from "./pages/Firstpage/prevideopage";
 import Login from "./pages/Login/login";
 import Signup from "./pages/Signup/Signup";
-import PlayVideo from "./pages/playVideo";
+import PlayVideo from "./pages/Firstpage/playVideo";
 import Signupcard from "./pages/Signup/Signupcard";
 import Signup2 from "./pages/Signup/Signup2";
 import Category from "./pages/categorys/category";
@@ -15,6 +15,7 @@ import Charge from "./pages/mypage/charge";
 import ProductDetail from "./pages/pay/productDetail";
 import PaymentSuccess from "./pages/pay/paymentSuccess";
 import Payment from "./pages/pay/payment";
+import Complete from "./pages/pay/Complete";
 import Findid from "./pages/Login/findid";
 import Findpw from "./pages/Login/findpw";
 import Fashion from "./pages/categorys/Fashion";
@@ -23,6 +24,10 @@ import Food from "./pages/categorys/Food";
 import Daily from "./pages/categorys/Daily";
 import HomeDeco from "./pages/categorys/HomeDeco";
 import Health from "./pages/categorys/Health";
+import Main from "./pages/Home&Search/Main";
+import FailSearch from "./pages/Home&Search/FailSearch";
+import SuccessSearch from "./pages/Home&Search/SuccessSearch";
+import "./index.css";
 
 function App() {
   return (
@@ -53,6 +58,10 @@ function App() {
           <Route path="/ProductDetail" element={<ProductDetail />} />
           <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
           <Route path="/Payment" element={<Payment />} />
+          <Route path="/Main" element={<Main />} />
+          <Route path="/FailSearch" element={<FailSearch />} />
+          <Route path="/SuccessSearch" element={<SuccessSearch />} />
+          <Route path="/Complete" element={<Complete />} />
         </Routes>
       </div>
     </BrowserRouter>

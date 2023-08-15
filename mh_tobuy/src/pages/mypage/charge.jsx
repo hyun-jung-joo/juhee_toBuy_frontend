@@ -9,7 +9,6 @@ const Container = styled.div`
   position: relative;
   text-align: center;
   //   background-color: #f5f0e4;
-  font-family: "Inter", sans-serif;
 
   @media (hover: hover) {
     width: 390px;
@@ -68,7 +67,6 @@ const HeaderContent = styled.div`
   left: 22px;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -110,7 +108,6 @@ const CardImg = styled.div`
 const AmountWrapper = styled.div`
   color: #60716f;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10.4px;
   font-style: normal;
   font-weight: 500;
@@ -213,7 +210,6 @@ export const ExitBtn = styled(ModalBtn)`
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -241,7 +237,6 @@ export const ModalView = styled.div.attrs((props) => ({
     margin: 50px;
     margin: 50px;
     color: #000;
-    font-family: S-Core Dream;
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
@@ -252,15 +247,15 @@ export const ModalView = styled.div.attrs((props) => ({
 const Charge = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [modalAmount, setModalAmount] = useState(0); // 모달 내부에서 사용할 amount 값을 저장
 
   const navigateToBack = () => {
     window.history.back();
   };
 
-  const openModalHandler = () => {
-    // isOpen의 상태를 변경하는 메소드를 구현
-    // !false -> !true -> !false
+  const openModalHandler = (amount) => {
     setIsOpen(!isOpen);
+    setModalAmount(amount);
   };
 
   return (
@@ -304,7 +299,7 @@ const Charge = () => {
                   height="84px"
                 />
               </Ad>
-              <Circle onClick={openModalHandler}>
+              <Circle onClick={() => openModalHandler(10000)}>
                 <CardImg>
                   <img
                     src={`${process.env.PUBLIC_URL}/images/charge.png`}
@@ -319,12 +314,12 @@ const Charge = () => {
                 </AmountWrapper>
               </Circle>
               {isOpen ? (
-                <ModalBackdrop onClick={openModalHandler}>
+                <ModalBackdrop onClick={() => setIsOpen(false)}>
                   <ModalView onClick={(e) => e.stopPropagation()}>
                     <div className="desc">
-                      카드잔액 {Amount.firstChild}원이 충전 되었습니다!{" "}
+                      카드잔액 {modalAmount}원이 충전 되었습니다!
                     </div>
-                    <ExitBtn onClick={openModalHandler}>확인</ExitBtn>
+                    <ExitBtn onClick={() => setIsOpen(false)}>확인</ExitBtn>
                   </ModalView>
                 </ModalBackdrop>
               ) : null}
@@ -338,7 +333,7 @@ const Charge = () => {
                   height="84px"
                 />
               </Ad>
-              <Circle>
+              <Circle onClick={() => openModalHandler(20000)}>
                 <CardImg>
                   <img
                     src={`${process.env.PUBLIC_URL}/images/charge.png`}
@@ -362,7 +357,7 @@ const Charge = () => {
                   height="84px"
                 />
               </Ad>
-              <Circle>
+              <Circle onClick={() => openModalHandler(30000)}>
                 <CardImg>
                   <img
                     src={`${process.env.PUBLIC_URL}/images/charge.png`}
@@ -386,7 +381,7 @@ const Charge = () => {
                   height="84px"
                 />
               </Ad>
-              <Circle>
+              <Circle onClick={() => openModalHandler(40000)}>
                 <CardImg>
                   <img
                     src={`${process.env.PUBLIC_URL}/images/charge.png`}
@@ -410,7 +405,7 @@ const Charge = () => {
                   height="84px"
                 />
               </Ad>
-              <Circle>
+              <Circle onClick={() => openModalHandler(50000)}>
                 <CardImg>
                   <img
                     src={`${process.env.PUBLIC_URL}/images/charge.png`}

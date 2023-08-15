@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
 
   @media (hover: hover) {
@@ -91,7 +90,6 @@ const PlusImg = styled.div`
 `;
 const ProductName = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 32px;
   font-style: normal;
   font-weight: 500;
@@ -109,7 +107,6 @@ const ProductWrapper = styled.div`
   align-items: center;
   padding: 0 10px;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -138,7 +135,6 @@ const TypeHeaderContent = styled.div`
   left: 10px;
   position: absolute;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -153,7 +149,6 @@ const CardWrapper = styled.div`
   margin-top: 10px;
   padding: 0 10px;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
@@ -176,7 +171,6 @@ const WhenHeaderContent = styled.div`
   left: 10px;
   position: absolute;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -184,7 +178,6 @@ const WhenHeaderContent = styled.div`
 `;
 const When = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
