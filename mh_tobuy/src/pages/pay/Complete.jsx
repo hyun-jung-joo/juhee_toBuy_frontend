@@ -119,9 +119,9 @@ const Logo1 = styled.div`
 
 const ProductWrapper = styled.div`
   position: relative;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 78px;
   padding-top: 2px;
   height: 78px;
@@ -129,25 +129,20 @@ const ProductWrapper = styled.div`
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25);
   margin-left: 3%;
   margin-right: 3%;
-  margin-top: 10px;
+  margin-top: 22px;
 `;
-
 const ProductImg = styled.div`
-  float: left;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 3px;
+  margin-top: 2px;
 `;
 const ProductInfoWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   align-content: center;
-  justify-content: flex-start;
-  width: 150px;
-  margin-top: 16px;
+  justify-content: center;
+  margin-left: 9px;
+  width: 70%;
   margin-bottom: 9px;
-  background: red;
 `;
 const ProductName = styled.div`
   color: #000;
@@ -156,36 +151,22 @@ const ProductName = styled.div`
   font-weight: 500;
   line-height: normal;
   width: 80px;
-  text-align: left;
-  //   margin-right: auto;
+  margin-right: auto;
 `;
 const PriceWrapper = styled.div`
-<<<<<<< HEAD
 color: #000;
-=======
-    color: #000;
-    font-family: S-Core Dream;
->>>>>>> 09df5173a9857bb44610563be75a793192a2553e
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-left: auto;
-    width: 200px;
     text-align: left;
-    align-items: center;
+    margin-left: auto;
 }`;
 const Price = styled.span``;
 const Won = styled.span``;
-
 const QuantityWrapper = styled.div`
   color: #60716f;
-<<<<<<< HEAD
   font-size: 16px;
-=======
-  font-family: S-Core Dream;
-  font-size: 13px;
->>>>>>> 09df5173a9857bb44610563be75a793192a2553e
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -194,10 +175,46 @@ const Whole = styled.span``;
 const Quantity = styled.span``;
 const Count = styled.span``;
 
+const Ment = styled.div`
+  width: 300px;
+  height: 58px;
+
+  font-family: "S-Core Dream";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+
+  color: #000000;
+
+  margin: auto;
+  margin-top: 40px;
+`;
+
+const Check = styled.div`
+  position: relatvie;
+  margin: auto;
+  margin-top: 40px;
+`;
+
 const Complete = () => {
   const navigate = useNavigate();
   const navigateToBack = () => {
     window.history.back();
+  };
+
+  const goMenu = () => {
+    navigate("/Category");
+  };
+  const goSearch = () => {
+    navigate("/Main");
+  };
+  const goMain = () => {
+    navigate("/Main");
+  };
+  const goMyPage = () => {
+    navigate("/MypageMain");
   };
 
   return (
@@ -233,6 +250,7 @@ const Complete = () => {
             width="300px"
           />
         </Logo1>
+
         <ProductWrapper>
           <ProductImg>
             <img
@@ -254,26 +272,41 @@ const Complete = () => {
             </PriceWrapper>
           </ProductInfoWrapper>
         </ProductWrapper>
+        <Ment>
+          해당 상품의 결제과 완료되었습니다!
+          <br />
+          마이페이지-결제내역에서
+          <br />
+          확인 가능합니다.
+        </Ment>
+        <Check>
+          <img
+            onClick={goMain}
+            src={`${process.env.PUBLIC_URL}/images/Frame 33.png`}
+            width="300px"
+          />
+        </Check>
         <BottomBar>
-          <Menu>
+          <Menu onClick={goMenu}>
             <img
               src={`${process.env.PUBLIC_URL}/images/menu.png`}
               width="26px"
             />
           </Menu>
-          <Search>
+          <Search onClick={goSearch}>
             <img
               src={`${process.env.PUBLIC_URL}/images/search.png`}
               width="26px"
             />
           </Search>
-          <Home>
+          <Home onClick={goMain}>
             <img
               src={`${process.env.PUBLIC_URL}/images/home.png`}
               width="26px"
             />
           </Home>
-          <My>
+
+          <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>
         </BottomBar>
