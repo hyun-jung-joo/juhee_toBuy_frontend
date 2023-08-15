@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
 
   @media (hover: hover) {
@@ -152,7 +151,6 @@ const ProductInfoWrapper = styled.div`
 `;
 const ProductName = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -163,7 +161,6 @@ const ProductName = styled.div`
 `;
 const PriceWrapper = styled.div`
 color: #000;
-    font-family: S-Core Dream;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -176,7 +173,6 @@ const Won = styled.span``;
 
 const QuantityWrapper = styled.div`
   color: #60716f;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

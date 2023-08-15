@@ -8,7 +8,7 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  background-color: #fffff;
+  //   background-color: #f5f0e4;
   -ms-overflow-style: none;
   overflow: hidden;
 
@@ -139,7 +139,7 @@ const My = styled.div`
 const PlayVideo = () => {
   const navigate = useNavigate();
   const navigateToBack = () => {
-    window.history.back();
+    navigate("/");
   };
 
   return (

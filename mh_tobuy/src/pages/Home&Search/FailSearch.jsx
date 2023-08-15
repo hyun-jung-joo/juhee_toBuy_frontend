@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
   @media (hover: hover) {
     width: 390px;
@@ -135,7 +134,6 @@ const Result = styled.div`
   position: relative;
   width: 100%;
   margin-bottom: 10px;
-  font-family: "S-Core Dream", sans-serif;
   font-size: 20px;
   font-weight: bold;
   margin-left: 5%;
@@ -151,8 +149,6 @@ const NoSearch = styled.div`
   width: 100%;
   margin: auto;
   margin-top: 200px;
-
-  font-family: "S-Core Dream";
   font-style: normal;
   font-weight: bold;
   font-size: 20px;

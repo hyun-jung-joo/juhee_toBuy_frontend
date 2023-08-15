@@ -11,7 +11,6 @@ const Container = styled.div`
   position: relative;
   text-align: center;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
 
   @media (hover: hover) {
@@ -173,7 +172,6 @@ const Cate = styled.div`
   width: 200px;
   margin-top: 40px;
   margin-bottom: 10px;
-  font-family: "S-Core Dream", sans-serif;
   font-size: 20px;
   font-weight: bold;
   margin-left: 5%;
@@ -251,7 +249,6 @@ const Info2 = styled.div`
 `;
 
 const Detail = styled.div`
-  font-family: "S-Core Dream";
   font-style: normal;
   font-weight: 300;
   font-size: 10px;

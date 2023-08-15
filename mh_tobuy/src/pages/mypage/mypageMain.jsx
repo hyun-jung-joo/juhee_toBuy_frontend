@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
 
   /* 미디어 쿼리 적용 */
@@ -78,7 +77,6 @@ const ProFileImg = styled.img`
 `;
 const ProFileName = styled.span`
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   position: absolute;
   top: 64px;
@@ -87,7 +85,6 @@ const ProFileName = styled.span`
 const Logout = styled.div`
   color: #60716f;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-weight: 500;
   text-decoration-line: underline;
@@ -105,7 +102,6 @@ const MemHeader = styled.div`
   position: relative;
 `;
 const MemHeaderContent = styled.div`
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -119,7 +115,6 @@ const Edit = styled.div`
   top: 47px;
   right: 15px;
   color: #05bba2;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-weight: 300;
   text-decoration-line: underline;
@@ -143,7 +138,6 @@ const MemContent = styled.div`
 `;
 const Name = styled.div`
   color: #60716f;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -153,7 +147,6 @@ const Name = styled.div`
   padding-bottom: 18px;
 `;
 const Uname = styled.div`
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -164,7 +157,6 @@ const Uname = styled.div`
 `;
 const Id = styled.div`
   color: #60716f;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -174,7 +166,6 @@ const Id = styled.div`
   padding-bottom: 18px;
 `;
 const Uid = styled.div`
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -184,7 +175,6 @@ const Uid = styled.div`
 `;
 const Phone = styled.div`
   color: #60716f;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -193,7 +183,6 @@ const Phone = styled.div`
   text-align: left;
 `;
 const Uphone = styled.div`
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -212,7 +201,6 @@ const CardHeader = styled.div`
 `;
 
 const CardHeaderContent = styled.div`
-  font-family: "S-Core Dream";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -249,7 +237,6 @@ const NumWrapper = styled.div`
   width: 220px;
   margin-right: auto;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   line-height: normal;
@@ -288,7 +275,6 @@ const Unum = styled.span`
 `;
 const Pw = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -299,7 +285,6 @@ const Pw = styled.span`
 `;
 const Upw = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -307,7 +292,6 @@ const Upw = styled.span`
 `;
 const CVC = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -318,7 +302,6 @@ const CVC = styled.span`
 `;
 const Ucvc = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -326,7 +309,6 @@ const Ucvc = styled.span`
 `;
 const Date = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -337,7 +319,6 @@ const Date = styled.span`
 `;
 const Udate = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -346,7 +327,6 @@ const Udate = styled.span`
 const Balance = styled.span`
   color: #60716f;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -355,7 +335,6 @@ const Balance = styled.span`
 const UbalanceWrapper = styled.div`
   display: inline-block;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -367,7 +346,6 @@ const Won = styled.span``;
 const Charge = styled.div`
   color: #e22d11;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -387,7 +365,6 @@ const PayHeader = styled.div`
   margin-bottom: 1px;
 `;
 const PayHeaderContent = styled.div`
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -428,7 +405,6 @@ const PayinfoWrapper = styled.div`
 `;
 const ProductName = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -437,7 +413,6 @@ const ProductName = styled.div`
 `;
 const QuantityWrapper = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -452,7 +427,6 @@ const Detail = styled.div`
   width: 123px;
   text-align: right;
   color: #e22d11;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -464,7 +438,6 @@ const Detail = styled.div`
 `;
 const PriceWrapper = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -478,7 +451,6 @@ const PriceWrapper = styled.div`
 const Price = styled.span``;
 const TypeWrapper = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
