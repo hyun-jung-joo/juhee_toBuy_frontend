@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   background-color: #fffff;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -75,7 +74,6 @@ const Box1 = styled.div`
 const Jointext = styled.div`
   color: #fff;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -97,7 +95,6 @@ const Box2 = styled.div`
 const Logintext = styled.div`
   color: #fff;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -119,7 +116,6 @@ const Box3 = styled.div`
 
 const Prevideologotext = styled.div`
   text-align: center;
-  font-family: Sonsie One;
   font-size: 25px;
   font-style: normal;
   font-weight: 800;
@@ -134,7 +130,6 @@ const Prevideologotext = styled.div`
 const Prevideotext = styled.div`
   margin-left: 10%;
   color: #60716f;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -147,7 +142,6 @@ const Ment = styled.div`
   display: flex;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -161,7 +155,6 @@ const MentTB = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 600;
@@ -176,7 +169,6 @@ const Mentmint = styled.div`
   cursor: pointer;
   display: flex;
   color: #05bba2;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -226,7 +218,6 @@ const Cmtextbox = styled.div`
   margin-top: 50px;
   margin-left: -25px;
   text-align: center;
-  font-family: Sonsie One;
   font-size: 16px;
   font-style: normal;
   font-weight: 900;
@@ -239,7 +230,6 @@ const CmTobuytext = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: S-Core Dream;
   font-size: 25px;
   font-style: normal;
   font-weight: 900;
@@ -248,7 +238,6 @@ const CmTobuytext = styled.div`
 
 const Cmtext = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 900;
@@ -262,7 +251,6 @@ const Btmtext1 = styled.div`
   margin: auto;
   margin-top: 50px;
   margin-left: -10%;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -273,7 +261,6 @@ const Btmtext1 = styled.div`
 `;
 const Btmtext2 = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;

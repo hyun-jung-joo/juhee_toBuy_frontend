@@ -27,6 +27,7 @@ import Health from "./pages/categorys/Health";
 import Main from "./pages/Home&Search/Main";
 import FailSearch from "./pages/Home&Search/FailSearch";
 import SuccessSearch from "./pages/Home&Search/SuccessSearch";
+import "./index.css";
 
 function App() {
   return (

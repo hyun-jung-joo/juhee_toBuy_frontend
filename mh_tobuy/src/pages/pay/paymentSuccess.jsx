@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
 
   @media (hover: hover) {

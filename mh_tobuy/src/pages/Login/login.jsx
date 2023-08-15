@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   background-color: #fffff;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -48,7 +47,6 @@ const Toptitle = styled.div`
   margin: auto;
 
   color: #081c19;
-  font-family: S-Core Dream;
   font-size: 18px;
   font-style: normal;
   font-weight: 900;
@@ -149,7 +147,6 @@ const FindLinks = styled.div`
 const Findidment = styled.div`
   color: #05bba2;
   display: flex;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -161,8 +158,6 @@ const Findidment = styled.div`
 const Findpwment = styled.div`
   color: #05bba2;
   display: flex;
-
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -190,7 +185,6 @@ const LoginBox = styled.div`
 
 const LoginText = styled.div`
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -204,7 +198,6 @@ const MiddleMentBox = styled.div`
 const Memberq = styled.div`
   color: #320f0a;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -214,7 +207,6 @@ const Memberq = styled.div`
 const Signup = styled.div`
   margin-top: -15%;
   color: #e02d11;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 300;
@@ -231,7 +223,6 @@ const Ment = styled.div`
   display: flex;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -245,7 +236,6 @@ const MentTB = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 600;
@@ -260,7 +250,6 @@ const Mentmint = styled.div`
   cursor: pointer;
   display: flex;
   color: #05bba2;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -448,8 +437,8 @@ const Login = () => {
             <Findidment onClick={navigateTofindid}>아이디 찾기</Findidment>
             <Findpwment onClick={navigateTofindpw}>비밀번호 찾기</Findpwment>
           </FindLinks>
-          <LoginBox>
-            <LoginText onClick={navigateToCategory}>로그인</LoginText>
+          <LoginBox onClick={navigateToCategory}>
+            <LoginText>로그인</LoginText>
           </LoginBox>
           <MiddleMentBox>
             <p>

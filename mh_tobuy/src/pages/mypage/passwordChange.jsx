@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
 
   @media (hover: hover) {
@@ -73,7 +72,6 @@ const HeaderContent = styled.div`
   bottom: 4px;
   left: 26px;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -100,7 +98,6 @@ const FormContent = styled.div`
 const Pwlabel = styled.div`
   width: 75px;
   color: #60716f;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

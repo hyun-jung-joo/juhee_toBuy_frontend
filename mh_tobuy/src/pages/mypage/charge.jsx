@@ -9,7 +9,6 @@ const Container = styled.div`
   position: relative;
   text-align: center;
   //   background-color: #f5f0e4;
-  font-family: "Inter", sans-serif;
 
   @media (hover: hover) {
     width: 390px;
@@ -68,7 +67,6 @@ const HeaderContent = styled.div`
   left: 22px;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -110,7 +108,6 @@ const CardImg = styled.div`
 const AmountWrapper = styled.div`
   color: #60716f;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10.4px;
   font-style: normal;
   font-weight: 500;
@@ -213,7 +210,6 @@ export const ExitBtn = styled(ModalBtn)`
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -241,7 +237,6 @@ export const ModalView = styled.div.attrs((props) => ({
     margin: 50px;
     margin: 50px;
     color: #000;
-    font-family: S-Core Dream;
     font-size: 15px;
     font-style: normal;
     font-weight: 500;

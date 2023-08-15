@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -55,7 +54,6 @@ const Cate = styled.div`
   position: relative;
   width: 200px;
   margin-top: 12%;
-  font-family: "S-Core Dream", sans-serif;
   font-size: 20px;
   margin-left: 5%;
   text-align: left;
@@ -78,7 +76,6 @@ const CateKind = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center; /* 상하 가운데 정렬 */
-  font-family: "S-Core Dream", sans-serif;
   font-size: 16px;
   padding-left: 5%;
   text-align: left;
@@ -156,6 +153,9 @@ const Category = () => {
   const goMyPage = () => {
     navigate("/MypageMain");
   };
+  const navigateToVideo = () => {
+    navigate("/PlayVideo");
+  };
 
   return (
     <Container>
@@ -175,7 +175,7 @@ const Category = () => {
               width="90px"
             />
           </Logo>
-          <Video>
+          <Video onClick={navigateToVideo}>
             <img
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"
