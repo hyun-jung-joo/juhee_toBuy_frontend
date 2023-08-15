@@ -206,6 +206,10 @@ const Signup2 = () => {
     navigate("/Login");
   };
 
+  const url1 =
+    "https://harvest-machine-d20.notion.site/77980ca8efd3435e9915e88b830a5ca4";
+  const url2 =
+    "https://harvest-machine-d20.notion.site/d76bf5b332524288a9db8d1857c6bc19";
   return (
     <Container>
       <BodyWrapper>
@@ -253,11 +257,25 @@ const Signup2 = () => {
         <MentBox2>
           <Ment>
             계속 진행시 <MentTB>투 바이</MentTB>의{" "}
-            <Mentmint>서비스 이용약관</Mentmint>에 동의하고
+            <Mentmint
+              onClick={() => {
+                window.open(url1);
+              }}
+            >
+              서비스 이용약관
+            </Mentmint>
+            에 동의하고
           </Ment>
+
           <Ment>
-            <Mentmint>개인정보 처리방침</Mentmint>을 읽었음을 인정하는 것으로
-            간주됩니다.
+            <Mentmint
+              onClick={() => {
+                window.open(url2);
+              }}
+            >
+              개인정보 처리방침
+            </Mentmint>
+            을 읽었음을 인정하는 것으로 간주됩니다.
           </Ment>
         </MentBox2>
       </BodyWrapper>
