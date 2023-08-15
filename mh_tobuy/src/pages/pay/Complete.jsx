@@ -281,7 +281,8 @@ const Complete = () => {
         </Ment>
         <Check>
           <img
-            src={`${process.env.PUBLIC_URL}/images/checkBtn.png`}
+            onClick={goMain}
+            src={`${process.env.PUBLIC_URL}/images/Frame 33.png`}
             width="300px"
           />
         </Check>
@@ -304,7 +305,7 @@ const Complete = () => {
               width="26px"
             />
           </Home>
-          a
+
           <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>

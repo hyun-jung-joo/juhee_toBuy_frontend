@@ -50,7 +50,9 @@ const Logoimg = styled.div`
   width: 369px;
   height: 212.029px;
   flex-shrink: 0;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: -50px;
 `;
 const BoxContainer = styled.div`
   display: flex;
@@ -67,7 +69,7 @@ const Box1 = styled.div`
   margin-top: 120px;
   border-radius: 6px;
   background: #e02d11;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.24);
   cursor: pointer;
 `;
 
@@ -362,7 +364,7 @@ const Firstpage = () => {
                   <div className="desc">
                     <CmLogo>
                       <img
-                        src={`${process.env.PUBLIC_URL}/images/logo.png`}
+                        src={`${process.env.PUBLIC_URL}/images/로고3.png`}
                         alt="logo"
                       />
                     </CmLogo>
@@ -409,8 +411,9 @@ const Firstpage = () => {
             ) : null}
             <Logoimg>
               <img
-                src={`${process.env.PUBLIC_URL}/images/logo.png`}
+                src={`${process.env.PUBLIC_URL}/images/로고3.png`}
                 alt="logo"
+                width="300px"
               />
             </Logoimg>
 
