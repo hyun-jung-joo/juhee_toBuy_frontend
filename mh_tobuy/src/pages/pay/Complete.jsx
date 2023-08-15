@@ -160,20 +160,32 @@ const ProductName = styled.div`
   //   margin-right: auto;
 `;
 const PriceWrapper = styled.div`
+<<<<<<< HEAD
 color: #000;
+=======
+    color: #000;
+    font-family: S-Core Dream;
+>>>>>>> 09df5173a9857bb44610563be75a793192a2553e
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    text-align: left;
     margin-left: auto;
+    width: 200px;
+    text-align: left;
+    align-items: center;
 }`;
 const Price = styled.span``;
 const Won = styled.span``;
 
 const QuantityWrapper = styled.div`
   color: #60716f;
+<<<<<<< HEAD
   font-size: 16px;
+=======
+  font-family: S-Core Dream;
+  font-size: 13px;
+>>>>>>> 09df5173a9857bb44610563be75a793192a2553e
   font-style: normal;
   font-weight: 500;
   line-height: normal;
