@@ -162,14 +162,16 @@ const ProductName = styled.div`
   //   margin-right: auto;
 `;
 const PriceWrapper = styled.div`
-color: #000;
+    color: #000;
     font-family: S-Core Dream;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    text-align: left;
     margin-left: auto;
+    width: 200px;
+    text-align: left;
+    align-items: center;
 }`;
 const Price = styled.span``;
 const Won = styled.span``;
@@ -177,7 +179,7 @@ const Won = styled.span``;
 const QuantityWrapper = styled.div`
   color: #60716f;
   font-family: S-Core Dream;
-  font-size: 16px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
