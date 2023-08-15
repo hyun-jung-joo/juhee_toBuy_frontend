@@ -281,6 +281,19 @@ class ProductDetail extends React.Component {
         margin: "0 10px", // Adjusted margin for better alignment
       },
     };
+    // const navigate = useNavigate();
+    // const goMenu = () => {
+    //   navigate("/Category");
+    // };
+    // const goSearch = () => {
+    //   navigate("/Main");
+    // };
+    // const goMain = () => {
+    //   navigate("/Main");
+    // };
+    // const goMyPage = () => {
+    //   navigate("/MypageMain");
+    // };
 
     return (
       <Container>
@@ -388,6 +401,7 @@ class ProductDetail extends React.Component {
                 width="26px"
               />
             </Home>
+            a
             <My>
               <img
                 src={`${process.env.PUBLIC_URL}/images/me.png`}

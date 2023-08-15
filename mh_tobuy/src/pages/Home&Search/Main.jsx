@@ -363,7 +363,7 @@ const Main = () => {
     setInputFocused(true);
     // 이곳에서 API나 로컬 저장소에서 최근 검색어를 가져올 수 있습니다.
     // 일단은 더미 데이터를 사용해보겠습니다.
-    setRecentSearches(["검색어 1", "검색어 2", "검색어 3"]);
+    setRecentSearches(["검색어 1", "검색어 2", "검색어 3", "2"]);
   };
 
   const handleInputBlur = () => {
@@ -393,6 +393,19 @@ const Main = () => {
 
   const openModalHandler = () => {
     setIsOpen(!isOpen);
+  };
+
+  const goMenu = () => {
+    navigate("/Category");
+  };
+  const goSearch = () => {
+    navigate("/Main");
+  };
+  const goMain = () => {
+    navigate("/Main");
+  };
+  const goMyPage = () => {
+    navigate("/MypageMain");
   };
 
   return (
@@ -554,7 +567,7 @@ const Main = () => {
         </Info>
         <CoachMark>
           <img
-            src={`${process.env.PUBLIC_URL}/images/help.png`}
+            src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
             width="48px"
             onClick={openModalHandler}
           />
@@ -575,25 +588,26 @@ const Main = () => {
           </ModalBackdrop>
         ) : null}
         <BottomBar>
-          <Menu>
+          <Menu onClick={goMenu}>
             <img
               src={`${process.env.PUBLIC_URL}/images/menu.png`}
               width="26px"
             />
           </Menu>
-          <Search>
+          <Search onClick={goSearch}>
             <img
               src={`${process.env.PUBLIC_URL}/images/search.png`}
               width="26px"
             />
           </Search>
-          <Home>
+          <Home onClick={goMain}>
             <img
               src={`${process.env.PUBLIC_URL}/images/home.png`}
               width="26px"
             />
           </Home>
-          <My>
+          a
+          <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>
         </BottomBar>

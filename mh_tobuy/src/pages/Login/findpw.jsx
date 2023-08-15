@@ -386,6 +386,7 @@ const Findpw = () => {
             <img
               src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
               alt="coachmark"
+              width="48px"
               onClick={openModalHandler2}
             />{" "}
           </Infoimg>
