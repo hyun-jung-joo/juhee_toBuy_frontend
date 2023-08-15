@@ -281,7 +281,6 @@ const SuccessSearch = () => {
               width="26px"
             />
           </Home>
-          a
           <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>

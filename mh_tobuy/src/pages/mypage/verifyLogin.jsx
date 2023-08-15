@@ -94,7 +94,7 @@ const Description = styled.div`
   top: 15px;
   text-align: left;
   left: 26px;
-  width: 69%;
+  width: 75%;
   font-size: 14px;
   line-height: normal;
 `;
@@ -132,6 +132,7 @@ const BottomBar = styled.footer`
   position: fixed;
   bottom: 0;
   width: 100%;
+  background: white;
   @media (hover: hover) {
     width: 390px;
     margin: 0 auto;
@@ -390,7 +391,6 @@ const VerifyLogin = () => {
               width="26px"
             />
           </Home>
-          a
           <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>
