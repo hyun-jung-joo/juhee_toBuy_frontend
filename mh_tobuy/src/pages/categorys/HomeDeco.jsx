@@ -111,8 +111,6 @@ const ProductArea = styled.div`
   position: relative;
   width: 100%;
   height: 545px;
-  background: red;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
   display: flex;
   justify-content: space-evenly;
@@ -124,7 +122,6 @@ const Product = styled.div`
   position: relative;
   height: 250px;
   width: 180px;
-  background: blue;
 `;
 
 const Image = styled.div`
@@ -140,7 +137,6 @@ const Image = styled.div`
 
 const Name = styled.div`
   position: relative;
-  background: orange;
   margin: auto;
   margin-top: 8px;
   width: 160px;
@@ -151,7 +147,6 @@ const Name = styled.div`
 
 const Price = styled.div`
   position: relative;
-  background: green;
   margin: auto;
   margin-top: 8px;
   width: 160px;
@@ -161,18 +156,6 @@ const Price = styled.div`
   font-size: 16px;
 `;
 
-const CoachMark = styled.div`
-  position: fixed;
-  bottom: 80px;
-  text-align: right;
-  display: flex;
-  flex-direction: row-reverse;
-  width: 100%;
-  @media (hover: hover) {
-    width: 390px;
-    margin: 0 auto;
-  }
-`;
 const HomeDeco = () => {
   const navigate = useNavigate();
   const goBack = () => {
@@ -226,12 +209,24 @@ const HomeDeco = () => {
         <ProductArea>
           <Product>
             <Image></Image>
-            <Name>권지민</Name>
-            <Price>5억</Price>
+            <Name></Name>
+            <Price></Price>
           </Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
+          <Product>
+            <Image></Image>
+            <Name></Name>
+            <Price></Price>
+          </Product>
+          <Product>
+            <Image></Image>
+            <Name></Name>
+            <Price></Price>
+          </Product>
+          <Product>
+            <Image></Image>
+            <Name></Name>
+            <Price></Price>
+          </Product>
         </ProductArea>
         <BottomBar>
           <Menu onClick={goMenu}>

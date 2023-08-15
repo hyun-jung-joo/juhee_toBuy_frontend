@@ -126,14 +126,6 @@ const InputSearch = styled.input`
   caret-color: white; /* 커서 색상 설정 */
 `;
 
-// const Body = styled.div`
-//   height: 752px;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   gap: 20px;
-//   flex-shrink: 0;
-// `;
-
 const Gra = styled.div`
   position: relative;
   background: linear-gradient(to right, #e02d11, #05bba2);
@@ -147,24 +139,13 @@ const AdvArea = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background: blue;
   height: 300px;
-  margin-top: 38px;
-`;
-
-const Left = styled.div`
-  width: 30px;
-  cursor: pointer;
+  margin-top: 15px;
 `;
 
 const Adv1 = styled.div`
-  width: 300px;
-  cursor: pointer;
-`;
-
-const Right = styled.div`
-  width: 30px;
-  cursor: pointer;
+  width: 360px;
+  margin: auto;
 `;
 
 const Cate = styled.div`
@@ -194,13 +175,13 @@ const Product = styled.div`
   position: relative;
   height: 250px;
   width: 180px;
-  background: blue;
+  // background: blue;
 `;
 
 const Image = styled.div`
   position: relative;
   margin: auto;
-  margin-top: 7px;
+  margin-top: 20px;
   width: 160px;
   height: 160px;
   background: white;
@@ -210,7 +191,7 @@ const Image = styled.div`
 
 const Name = styled.div`
   position: relative;
-  background: orange;
+  // background: orange;
   margin: auto;
   margin-top: 8px;
   width: 160px;
@@ -221,7 +202,7 @@ const Name = styled.div`
 
 const Price = styled.div`
   position: relative;
-  background: green;
+  // background: green;
   margin: auto;
   margin-top: 8px;
   width: 160px;
@@ -320,20 +301,6 @@ const ModalBackdrop = styled.div`
   right: 0;
   bottom: 0;
 `;
-
-// const ExitBtn = styled.div`
-//   display: flex;
-//   margin: auto;
-//   width: 50px;
-//   height: 50px;
-//   font-size: 40px;
-//   font-weight: 900;
-//   justify-content: center;
-//   align-items: center;
-//   flex-shrink: 0;
-//   cursor: pointer;
-//   color: #fff;
-// `;
 
 const CmLogo = styled.div`
   display: flex;
@@ -474,85 +441,96 @@ const Main = () => {
         </SearchBox>
         <Gra></Gra>
         <AdvArea>
-          <Left>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/left1.png`}
-              width="15px"
-            />
-          </Left>
-
           <Adv1>
             <img
               src={`${process.env.PUBLIC_URL}/images/adv1.png`}
-              width="300px"
+              width="360px"
             />
           </Adv1>
-          <Right>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/right1.png`}
-              width="15px"
-            />
-          </Right>
         </AdvArea>
         <Cate>패션의류 / 잡화</Cate>
         <Gra></Gra>
         <ProductArea>
           <Product>
             <Image></Image>
-            <Name>권지민</Name>
-            <Price>5억</Price>
+            <Name></Name>
+            <Price></Price>
           </Product>
-          <Product></Product>
+          <Product>
+            <Image></Image>
+            <Name></Name>
+            <Price></Price>
+          </Product>
         </ProductArea>
         <Cate>뷰티</Cate>
         <Gra></Gra>
         <ProductArea>
           <Product>
             <Image></Image>
-            <Name>권지민</Name>
-            <Price>5억</Price>
+            <Name></Name>
+            <Price></Price>
           </Product>
-          <Product></Product>
+          <Product>
+            <Image></Image>
+            <Name></Name>
+            <Price></Price>
+          </Product>
         </ProductArea>
         <Cate>식품</Cate>
         <Gra></Gra>
         <ProductArea>
           <Product>
             <Image></Image>
-            <Name>권지민</Name>
-            <Price>5억</Price>
+            <Name></Name>
+            <Price></Price>
           </Product>
-          <Product></Product>
+          <Product>
+            <Image></Image>
+            <Name></Name>
+            <Price></Price>
+          </Product>
         </ProductArea>
         <Cate>생필품</Cate>
         <Gra></Gra>
         <ProductArea>
           <Product>
             <Image></Image>
-            <Name>권지민</Name>
-            <Price>5억</Price>
+            <Name></Name>
+            <Price></Price>
           </Product>
-          <Product></Product>
+          <Product>
+            <Image></Image>
+            <Name></Name>
+            <Price></Price>
+          </Product>
         </ProductArea>
         <Cate>홈 데코</Cate>
         <Gra></Gra>
         <ProductArea>
           <Product>
             <Image></Image>
-            <Name>권지민</Name>
-            <Price>5억</Price>
+            <Name></Name>
+            <Price></Price>
           </Product>
-          <Product></Product>
+          <Product>
+            <Image></Image>
+            <Name></Name>
+            <Price></Price>
+          </Product>
         </ProductArea>
         <Cate>건강</Cate>
         <Gra></Gra>
         <ProductArea>
           <Product>
             <Image></Image>
-            <Name>권지민</Name>
-            <Price>5억</Price>
+            <Name></Name>
+            <Price></Price>
           </Product>
-          <Product></Product>
+          <Product>
+            <Image></Image>
+            <Name></Name>
+            <Price></Price>
+          </Product>
         </ProductArea>
         <Info>
           <img
@@ -606,7 +584,6 @@ const Main = () => {
               width="26px"
             />
           </Home>
-          a
           <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>

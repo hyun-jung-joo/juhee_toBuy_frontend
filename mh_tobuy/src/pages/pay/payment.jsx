@@ -344,6 +344,7 @@ const BottomBar = styled.footer`
   height: 60px;
   position: fixed;
   bottom: 0;
+  background: white;
   width: 100%;
   @media (hover: hover) {
     width: 390px;
@@ -951,7 +952,6 @@ const Payment = () => {
               width="26px"
             />
           </Home>
-          a
           <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>
