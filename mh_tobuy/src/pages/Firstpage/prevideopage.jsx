@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   background-color: #fffff;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -95,7 +94,6 @@ const VideoText = styled.div`
   margin-top: 17%;
   margin-left: -11%;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 13px;
   font-style: normal;
   font-weight: 900;

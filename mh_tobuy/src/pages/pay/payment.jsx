@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
 
   @media (hover: hover) {
@@ -90,7 +89,6 @@ const ProductInfoWrapper = styled.div`
 `;
 const ProductName = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -100,7 +98,6 @@ const ProductName = styled.div`
 `;
 const PriceWrapper = styled.div`
 color: #000;
-    font-family: S-Core Dream;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -117,7 +114,6 @@ const TotalWrapper = styled.div`
   align-items: center;
   padding: 0 18px;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -125,7 +121,6 @@ const TotalWrapper = styled.div`
 `;
 const QuantityWrapper = styled.div`
   color: #60716f;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -149,7 +144,6 @@ const HowHeader = styled.div`
   margin-bottom: 1px;
 `;
 const HowHeaderContent = styled.div`
-  font-family: "S-Core Dream";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -163,7 +157,6 @@ const MyCardWrapper = styled.div`
   top: 29.5px;
   right: 15px;
   color: #05bba2;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-weight: 300;
   display: flex;
@@ -206,7 +199,6 @@ const NumWrapper = styled.div`
   width: auto;
   margin-right: auto;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   line-height: normal;
@@ -240,7 +232,6 @@ const Unum = styled.span`
 `;
 const Pw = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -250,7 +241,6 @@ const Pw = styled.span`
 `;
 const Upw = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -259,7 +249,6 @@ const Upw = styled.span`
 `;
 const CVC = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -269,7 +258,6 @@ const CVC = styled.span`
 `;
 const Ucvc = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -278,7 +266,6 @@ const Ucvc = styled.span`
 `;
 const Date = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -288,7 +275,6 @@ const Date = styled.span`
 `;
 const Udate = styled.span`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -325,7 +311,6 @@ const QuickPayImg = styled.div`
 `;
 const Cardinfo = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 9.452px;
   font-style: normal;
   font-weight: 500;
@@ -431,7 +416,6 @@ export const ExitBtn = styled(ModalBtn)`
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -457,7 +441,6 @@ export const ModalView = styled.div.attrs((props) => ({
   position: relative;
   > div.desc {
     color: #000;
-    font-family: S-Core Dream;
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
@@ -473,7 +456,6 @@ const CardHeader = styled.div`
 `;
 
 const CardHeaderContent = styled.div`
-  font-family: "S-Core Dream";
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -484,7 +466,6 @@ const CardHeaderContent = styled.div`
 `;
 
 const Uname = styled.div`
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -523,7 +504,6 @@ const CardBalanceWrapper = styled.div`
 const Balance = styled.span`
   color: #60716f;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -532,7 +512,6 @@ const Balance = styled.span`
 const UbalanceWrapper = styled.div`
   display: inline-block;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;

@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   background-color: #fffff;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -49,7 +48,6 @@ const Toptitle = styled.div`
   margin: 0 auto;
 
   color: #081c19;
-  font-family: S-Core Dream;
   font-size: 18px;
   font-style: normal;
   font-weight: 900;
@@ -83,7 +81,6 @@ const Toptext = styled.div`
   margin-top: 5%;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 900;
@@ -94,7 +91,6 @@ const Topsecondtext = styled.div`
   margin: 0 auto;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -126,7 +122,6 @@ const CardinfoBox = styled.div`
 
 const Cardnumtxt = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
@@ -135,7 +130,6 @@ const Cardnumtxt = styled.div`
 
 const Cardnum = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
@@ -144,7 +138,6 @@ const Cardnum = styled.div`
 
 const Pwnumtxt = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
@@ -153,7 +146,6 @@ const Pwnumtxt = styled.div`
 
 const Pwnum = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
@@ -162,7 +154,6 @@ const Pwnum = styled.div`
 
 const Cvctxt = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
@@ -171,7 +162,6 @@ const Cvctxt = styled.div`
 
 const Cvcnum = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
@@ -180,7 +170,6 @@ const Cvcnum = styled.div`
 
 const Usedatetxt = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
@@ -189,7 +178,6 @@ const Usedatetxt = styled.div`
 
 const Usedate = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
@@ -212,7 +200,6 @@ const RemainaccountBox = styled.div`
 const Remainaccounttxt = styled.div`
   color: #60716f;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -221,7 +208,6 @@ const Remainaccounttxt = styled.div`
 
 const Remainaccount = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -245,7 +231,6 @@ const MintBox = styled.div`
 `;
 const MintText = styled.div`
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -265,7 +250,6 @@ const Ment = styled.div`
   display: flex;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -279,7 +263,6 @@ const MentTB = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 600;
@@ -294,7 +277,6 @@ const Mentmint = styled.div`
   cursor: pointer;
   display: flex;
   color: #05bba2;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;

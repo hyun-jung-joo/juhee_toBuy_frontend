@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   background-color: #fffff;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -49,7 +48,6 @@ const Toptitle = styled.div`
   margin: 0 auto;
 
   color: #081c19;
-  font-family: S-Core Dream;
   font-size: 18px;
   font-style: normal;
   font-weight: 900;
@@ -102,7 +100,6 @@ const MentBox = styled.div`
 const Menttxt = styled.div`
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -110,7 +107,6 @@ const Menttxt = styled.div`
 `;
 
 const MentLogotxt = styled.div`
-  font-family: Sonsie One;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -146,7 +142,6 @@ const MintBox = styled.div`
 `;
 const MintText = styled.div`
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -166,7 +161,6 @@ const Ment = styled.div`
   display: flex;
   color: #000;
   text-align: center;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -180,7 +174,6 @@ const MentTB = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 600;
@@ -195,7 +188,6 @@ const Mentmint = styled.div`
   cursor: pointer;
   display: flex;
   color: #05bba2;
-  font-family: S-Core Dream;
   font-size: 10px;
   font-style: normal;
   font-weight: 300;

@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   background-color: #fffff;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -49,7 +48,6 @@ const Toptitle = styled.div`
   margin: 0 auto;
 
   color: #081c19;
-  font-family: S-Core Dream;
   font-size: 18px;
   font-style: normal;
   font-weight: 900;
@@ -152,7 +150,6 @@ const MintBox = styled.div`
 `;
 const FindText = styled.div`
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -226,7 +223,6 @@ const Cmtextemph = styled.div`
 const Cmtext = styled.div`
   display: flex;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 24px;
   font-style: normal;
   font-weight: 300;
@@ -252,7 +248,6 @@ const BtmBox = styled.div`
 `;
 const Btmtext = styled.div`
   color: #fff;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

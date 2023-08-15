@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -92,7 +91,6 @@ const Cate = styled.div`
   position: relative;
   width: 200px;
   margin-top: 12%;
-  font-family: "S-Core Dream", sans-serif;
   font-size: 20px;
   font-weight: bold;
   margin-left: 5%;
@@ -180,6 +178,9 @@ const HomeDeco = () => {
   const goBack = () => {
     navigate(-1); // 바로 이전 페이지로 이동, '/main' 등 직접 지정도 당연히 가능
   };
+  const navigateToVideo = () => {
+    navigate("/PlayVideo");
+  };
 
   const goMenu = () => {
     navigate("/Category");
@@ -212,7 +213,7 @@ const HomeDeco = () => {
               width="90px"
             />
           </Logo>
-          <Video>
+          <Video onClick={navigateToVideo}>
             <img
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"

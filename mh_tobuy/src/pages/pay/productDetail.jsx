@@ -10,7 +10,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
 
   @media (hover: hover) {
@@ -72,7 +71,6 @@ const HeaderContent = styled.div`
   bottom: 4px;
   left: 26px;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -93,7 +91,6 @@ const FormContent = styled.div`
 const PayImg = styled.div``;
 const ProductName = styled.div`
   color: #000;
-  font-family: S-Core Dream;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -112,7 +109,6 @@ const ProductWrapper = styled.div`
   align-items: center;
   padding: 0 5px;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -141,7 +137,6 @@ const TotalWrapper = styled.div`
   align-items: center;
   padding: 0 18px;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;

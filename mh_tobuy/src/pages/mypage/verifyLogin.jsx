@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,7 +11,6 @@ const Container = styled.div`
   text-align: center;
   //   background-color: #f5f0e4;
   -ms-overflow-style: none;
-  font-family: "Inter", sans-serif;
   overflow: hidden;
 
   /* 미디어 쿼리 적용 */
@@ -74,7 +74,6 @@ const HeaderContent = styled.div`
   bottom: 4px;
   left: 26px;
   color: #000;
-  font-family: S-Core Dream;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -97,7 +96,6 @@ const Description = styled.div`
   text-align: left;
   left: 26px;
   width: 69%;
-  font-family: S-Core Dream;
   font-size: 14px;
   line-height: normal;
 `;
