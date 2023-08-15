@@ -425,6 +425,10 @@ const Main = () => {
     navigate("/MypageMain");
   };
 
+  const url1 =
+    "https://harvest-machine-d20.notion.site/77980ca8efd3435e9915e88b830a5ca4";
+  const url2 =
+    "https://harvest-machine-d20.notion.site/d76bf5b332524288a9db8d1857c6bc19";
   return (
     <Container>
       <BodyWrapper>
@@ -578,8 +582,20 @@ const Main = () => {
             height="47px"
           />
           <Info2>
-            <Detail>개인정보 처리방침</Detail>
-            <Detail>서비스 이용약관</Detail>
+            <Detail
+              onClick={() => {
+                window.open(url2);
+              }}
+            >
+              개인정보 처리방침
+            </Detail>
+            <Detail
+              onClick={() => {
+                window.open(url1);
+              }}
+            >
+              서비스 이용약관
+            </Detail>
           </Info2>
         </Info>
         <CoachMark>
