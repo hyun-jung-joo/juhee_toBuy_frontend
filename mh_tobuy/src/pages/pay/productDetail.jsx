@@ -297,91 +297,96 @@ const ProductDetail = () => {
           </Video>
         </Topbar>
 
-        <Body>
-          <FormContent>
-            <PayImg>
+          <Body>
+            <FormContent>
+              <PayImg>
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/productSample.png`}
+                  width="326px"
+                  height="326px"
+                ></img>
+              </PayImg>
+              <ProductName>상품명</ProductName>
+              <Gra></Gra>
+              <ProductWrapper>
+                <PriceWrapper>
+                  <Price>{price.toLocaleString()}</Price>
+                  <Won> 원</Won>
+                </PriceWrapper>
+                <CountWrapper>
+                  <button
+                    className="minus"
+                    style={countStyles.minus}
+                    onClick={this.minusValue}
+                  >
+                    -
+                  </button>
+                  <input
+                    className="inputCount"
+                    style={countStyles.inputCount}
+                    onChange={this.inputValue}
+                    value={value}
+                  ></input>
+                  <button
+                    className="plus"
+                    style={countStyles.plus}
+                    onClick={this.addValue}
+                  >
+                    +
+                  </button>
+                </CountWrapper>
+              </ProductWrapper>
+              <Gra></Gra>
+              <TotalWrapper>
+                <Whole>총 </Whole>
+                <PriceWrapper>
+                  <TotalPrice>{totalPriceValue.toLocaleString()}</TotalPrice>
+                  <Won> 원</Won>
+                </PriceWrapper>
+              </TotalWrapper>
+            </FormContent>
+            <Submit>
+              <button formAction="" style={submitStyle}>
+                구매하기
+              </button>
+            </Submit>
+            <CoachMark>
               <img
-                src={`${process.env.PUBLIC_URL}/images/productSample.png`}
-                width="326px"
-                height="326px"
-              ></img>
-            </PayImg>
-            <ProductName>상품명</ProductName>
-            <Gra></Gra>
-            <ProductWrapper>
-              <PriceWrapper>
-                <Price>{price.toLocaleString()}</Price>
-                <Won> 원</Won>
-              </PriceWrapper>
-              <CountWrapper>
-                <button
-                  className="minus"
-                  style={countStyles.minus}
-                  onClick={minusValue}
-                >
-                  -
-                </button>
-                <input
-                  className="inputCount"
-                  style={countStyles.inputCount}
-                  onChange={inputValue}
-                  value={value}
-                ></input>
-                <button
-                  className="plus"
-                  style={countStyles.plus}
-                  onClick={addValue}
-                >
-                  +
-                </button>
-              </CountWrapper>
-            </ProductWrapper>
-            <Gra></Gra>
-            <TotalWrapper>
-              <Whole>총 </Whole>
-              <PriceWrapper>
-                <TotalPrice>{totalPriceValue.toLocaleString()}</TotalPrice>
-                <Won> 원</Won>
-              </PriceWrapper>
-            </TotalWrapper>
-          </FormContent>
-          <Submit>
-            <button formAction="" style={submitStyle}>
-              구매하기
-            </button>
-          </Submit>
-          <CoachMark>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
-              width="48px"
-            />
-          </CoachMark>
-        </Body>
-        <BottomBar>
-          <Menu>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/menu.png`}
-              width="26px"
-            />
-          </Menu>
-          <Search>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/search.png`}
-              width="26px"
-            />
-          </Search>
-          <Home>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/home.png`}
-              width="26px"
-            />
-          </Home>
-          <My>
-            <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
-          </My>
-        </BottomBar>
-      </BodyWrapper>
-    </Container>
-  );
-};
+                src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
+                width="48px"
+              />
+            </CoachMark>
+          </Body>
+          <BottomBar>
+            <Menu>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/menu.png`}
+                width="26px"
+              />
+            </Menu>
+            <Search>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/search.png`}
+                width="26px"
+              />
+            </Search>
+            <Home>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/home.png`}
+                width="26px"
+              />
+            </Home>
+            <My>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/me.png`}
+                width="26px"
+              />
+            </My>
+          </BottomBar>
+        </BodyWrapper>
+      </Container>
+    );
+  }
+}
+
 export default ProductDetail;

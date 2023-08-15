@@ -393,6 +393,7 @@ const Login = () => {
               <img
                 src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
                 alt="coachmark"
+                width="48px"
                 onClick={openModalHandler}
               />
             </Infoimg>
