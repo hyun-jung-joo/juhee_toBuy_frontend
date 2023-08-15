@@ -154,12 +154,7 @@ const ProductName = styled.div`
   margin-right: auto;
 `;
 const PriceWrapper = styled.div`
-<<<<<<< HEAD
 color: #000;
-=======
-color: #000;
-    font-family: S-Core Dream;
->>>>>>> 09df5173a9857bb44610563be75a793192a2553e
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -171,12 +166,7 @@ const Price = styled.span``;
 const Won = styled.span``;
 const QuantityWrapper = styled.div`
   color: #60716f;
-<<<<<<< HEAD
   font-size: 16px;
-=======
-  font-family: S-Core Dream;
-  font-size: 16px;
->>>>>>> 09df5173a9857bb44610563be75a793192a2553e
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -291,7 +281,8 @@ const Complete = () => {
         </Ment>
         <Check>
           <img
-            src={`${process.env.PUBLIC_URL}/images/checkBtn.png`}
+            onClick={goMain}
+            src={`${process.env.PUBLIC_URL}/images/Frame 33.png`}
             width="300px"
           />
         </Check>
@@ -314,7 +305,7 @@ const Complete = () => {
               width="26px"
             />
           </Home>
-          a
+
           <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>
