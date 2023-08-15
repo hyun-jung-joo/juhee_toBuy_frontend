@@ -98,7 +98,7 @@ const BottomBar = styled.footer`
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: white;
+  background: white;
 
   /* 미디어 쿼리 적용 */
   @media (hover: hover) {
@@ -153,6 +153,15 @@ const Category = () => {
     navigate("/Health");
   };
 
+  const goMenu = () => {
+    navigate("/Category");
+  };
+  const goSearch = () => {
+    navigate("/Main");
+  };
+  const goMain = () => {
+    navigate("/Main");
+  };
   const goMyPage = () => {
     navigate("/MypageMain");
   };
@@ -240,19 +249,19 @@ const Category = () => {
           </Go>
         </CateKind>
         <BottomBar>
-          <Menu>
+          <Menu onClick={goMenu}>
             <img
               src={`${process.env.PUBLIC_URL}/images/menu.png`}
               width="26px"
             />
           </Menu>
-          <Search>
+          <Search onClick={goSearch}>
             <img
               src={`${process.env.PUBLIC_URL}/images/search.png`}
               width="26px"
             />
           </Search>
-          <Home>
+          <Home onClick={goMain}>
             <img
               src={`${process.env.PUBLIC_URL}/images/home.png`}
               width="26px"

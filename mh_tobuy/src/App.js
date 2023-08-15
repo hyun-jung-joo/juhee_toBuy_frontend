@@ -13,7 +13,6 @@ import PasswordChange from "./pages/mypage/passwordChange";
 import PayHistory from "./pages/mypage/payHistory";
 import Charge from "./pages/mypage/charge";
 import ProductDetail from "./pages/pay/productDetail";
-import PaymentSuccess from "./pages/pay/paymentSuccess";
 import Payment from "./pages/pay/payment";
 import Complete from "./pages/pay/Complete";
 import Findid from "./pages/Login/findid";
@@ -55,7 +54,6 @@ function App() {
           <Route path="/Charge" element={<Charge />} />
           <Route path="/PlayVideo" element={<PlayVideo />} />
           <Route path="/ProductDetail" element={<ProductDetail />} />
-          <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
           <Route path="/Payment" element={<Payment />} />
           <Route path="/Main" element={<Main />} />
           <Route path="/FailSearch" element={<FailSearch />} />

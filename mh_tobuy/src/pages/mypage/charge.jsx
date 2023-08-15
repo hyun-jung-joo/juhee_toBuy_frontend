@@ -258,6 +258,18 @@ const Charge = () => {
     window.history.back();
   };
 
+  const goMenu = () => {
+    navigate("/Category");
+  };
+  const goSearch = () => {
+    navigate("/Main");
+  };
+  const goMain = () => {
+    navigate("/Main");
+  };
+  const goMyPage = () => {
+    navigate("/MypageMain");
+  };
   const openModalHandler = (amount) => {
     setIsOpen(!isOpen);
     setModalAmount(amount);
@@ -434,25 +446,26 @@ const Charge = () => {
           </CoachMark>
         </Body>
         <BottomBar>
-          <Menu>
+          <Menu onClick={goMenu}>
             <img
               src={`${process.env.PUBLIC_URL}/images/menu.png`}
               width="26px"
             />
           </Menu>
-          <Search>
+          <Search onClick={goSearch}>
             <img
               src={`${process.env.PUBLIC_URL}/images/search.png`}
               width="26px"
             />
           </Search>
-          <Home>
+          <Home onClick={goMain}>
             <img
               src={`${process.env.PUBLIC_URL}/images/home.png`}
               width="26px"
             />
           </Home>
-          <My>
+          a
+          <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>
         </BottomBar>
