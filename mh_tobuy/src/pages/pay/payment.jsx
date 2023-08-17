@@ -745,11 +745,6 @@ const Payment = () => {
     validDate: "",
     balance: "",
   });
-  const [register, setRegister] = useState("");
-  useEffect(function () {
-    GetCard();
-  }, []);
-
   useEffect(function () {
     GetCard();
   }, []);
@@ -776,44 +771,11 @@ const Payment = () => {
   };
 
   const [showCard, setShowCard] = useState("false");
-  const IsRegister = async (e) => {
-    try {
-      const response = await axios.get("http://127.0.0.1:8000/purchase/", {
-        headers: {
-          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
-        },
-      });
-      const registerValue = response.data[0].register;
-      setRegister(registerValue);
-      console.log("register 값:", registerValue);
-      if (registerValue) {
-        setShowCard(true);
-      }
-      setShowCard(true);
-      if (!registerValue) {
-        setShowCard(false);
-      }
-    } catch (error) {
-      console.error("에러 발생:", error);
-    }
-  };
-
-  const RegisterUpdate = async (mydata) => {
-    try {
-      const registerValue = mydata;
-      setRegister(registerValue);
-      console.log("updateregister 값:", registerValue);
-
-      if (registerValue) {
-        setShowCard(true);
-      }
-      setShowCard(true);
-      if (!registerValue) {
-        setShowCard(false);
-      }
-    } catch (error) {
-      console.error("에러 발생:", error);
-    }
+  const IsRegister= (pass)=> {
+   if(pass == "카드 등록이 완료되었습니다.")
+   {
+    setShowCard(true);
+   }
   };
 
   const handleClick = async (e) => {
@@ -918,9 +880,9 @@ const Payment = () => {
         },
       })
       .then((response) => {
-        console.log("간편결제 등록 성공:", response.data.register);
-
-        RegisterUpdate(response.data.register);
+        console.log("간편결제 등록 성공:", response.data.message);
+        const passregister = response.data.message;
+        IsRegister(passregister);
       })
 
       .catch((error) => {
