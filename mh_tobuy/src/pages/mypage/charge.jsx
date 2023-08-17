@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -253,7 +254,9 @@ const Charge = () => {
   const navigateToBack = () => {
     window.history.back();
   };
-
+  const navigateToVideo = () => {
+    navigate("/PlayVideo");
+  };
   const goMenu = () => {
     navigate("/Category");
   };
@@ -266,9 +269,57 @@ const Charge = () => {
   const goMyPage = () => {
     navigate("/MypageMain");
   };
-  const openModalHandler = (amount) => {
+  const openModalHandler = () => {
     setIsOpen(!isOpen);
-    setModalAmount(amount);
+  };
+  const [card, setCard] = useState({
+    balance: "",
+  });
+  const charging = () => {
+    // 카드 잔액을 충전하기 위한 API 호출
+    axios
+      .post(
+        "http://127.0.0.1:8000/cards/recharge/",
+        {
+          message: "Balance added successfully",
+        }, // 충전할 금액을 요청 바디에 담아 보냅니다
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("충전 성공", response.data);
+        setIsOpen(false); // 충전 후 모달을 닫습니다
+      })
+      .catch((error) => {
+        console.error("충전 실패:", error);
+        console.log("충전 실패 시 데이터:", {
+          balance: balance,
+          message: "Balance added successfully",
+          recharge_amount: 30000,
+        });
+      });
+  };
+  const [balance, setBalance] = useState(0);
+  const getBalance = async () => {
+    console.log("함수실행됨");
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/cards/", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`,
+        },
+      });
+
+      if (response.data.length > 0) {
+        // 응답 데이터가 존재하는 경우에만
+        const receivedBalance = response.data[0].balance; // 응답 데이터에서 잔액 정보를 가져옴
+        setBalance(receivedBalance); // 상태 업데이트
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
   };
 
   return (
@@ -289,7 +340,7 @@ const Charge = () => {
               width="90px"
             />
           </Logo>
-          <Video>
+          <Video onClick={navigateToVideo}>
             <img
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"
@@ -312,7 +363,13 @@ const Charge = () => {
                   height="84px"
                 />
               </Ad>
-              <Circle onClick={() => openModalHandler(10000)}>
+
+              <Circle
+                onClick={() => {
+                  openModalHandler();
+                  getBalance();
+                }}
+              >
                 <CardImg>
                   <img
                     src={`${process.env.PUBLIC_URL}/images/charge.png`}
@@ -322,17 +379,31 @@ const Charge = () => {
                 </CardImg>
                 <AmountWrapper>
                   <Plus>+</Plus>
-                  <Amount>10,000</Amount>
+                  <Amount>30000</Amount>
                   <Won>원</Won>
                 </AmountWrapper>
               </Circle>
               {isOpen ? (
-                <ModalBackdrop onClick={() => setIsOpen(false)}>
+                <ModalBackdrop
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                >
                   <ModalView onClick={(e) => e.stopPropagation()}>
                     <div className="desc">
-                      카드잔액 {modalAmount}원이 충전 되었습니다!
+                      카드잔액 {balance}원이
+                      <br />
+                      충전 되었습니다!
                     </div>
-                    <ExitBtn onClick={() => setIsOpen(false)}>확인</ExitBtn>
+                    {/* <ExitBtn onClick={() => setIsOpen(false)}>확인</ExitBtn> */}
+                    <ExitBtn
+                      onClick={() => {
+                        setIsOpen(false);
+                        charging();
+                      }}
+                    >
+                      확인
+                    </ExitBtn>
                   </ModalView>
                 </ModalBackdrop>
               ) : null}
@@ -346,7 +417,7 @@ const Charge = () => {
                   height="84px"
                 />
               </Ad>
-              <Circle onClick={() => openModalHandler(20000)}>
+              <Circle onClick={() => openModalHandler(30000)}>
                 <CardImg>
                   <img
                     src={`${process.env.PUBLIC_URL}/images/charge.png`}
@@ -356,7 +427,7 @@ const Charge = () => {
                 </CardImg>
                 <AmountWrapper>
                   <Plus>+</Plus>
-                  <Amount>20,000</Amount>
+                  <Amount>30000</Amount>
                   <Won>원</Won>
                 </AmountWrapper>
               </Circle>
@@ -380,7 +451,7 @@ const Charge = () => {
                 </CardImg>
                 <AmountWrapper>
                   <Plus>+</Plus>
-                  <Amount>30,000</Amount>
+                  <Amount>30000</Amount>
                   <Won>원</Won>
                 </AmountWrapper>
               </Circle>
@@ -394,7 +465,7 @@ const Charge = () => {
                   height="84px"
                 />
               </Ad>
-              <Circle onClick={() => openModalHandler(40000)}>
+              <Circle onClick={() => openModalHandler(30000)}>
                 <CardImg>
                   <img
                     src={`${process.env.PUBLIC_URL}/images/charge.png`}
@@ -404,7 +475,7 @@ const Charge = () => {
                 </CardImg>
                 <AmountWrapper>
                   <Plus>+</Plus>
-                  <Amount>40,000</Amount>
+                  <Amount>30000</Amount>
                   <Won>원</Won>
                 </AmountWrapper>
               </Circle>
@@ -418,7 +489,7 @@ const Charge = () => {
                   height="84px"
                 />
               </Ad>
-              <Circle onClick={() => openModalHandler(50000)}>
+              <Circle onClick={() => openModalHandler(30000)}>
                 <CardImg>
                   <img
                     src={`${process.env.PUBLIC_URL}/images/charge.png`}
@@ -428,18 +499,12 @@ const Charge = () => {
                 </CardImg>
                 <AmountWrapper>
                   <Plus>+</Plus>
-                  <Amount>50,000</Amount>
+                  <Amount>30000</Amount>
                   <Won>원</Won>
                 </AmountWrapper>
               </Circle>
             </ContentBox>
           </List>
-          <CoachMark>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
-              width="48px"
-            />
-          </CoachMark>
         </Body>
         <BottomBar>
           <Menu onClick={goMenu}>

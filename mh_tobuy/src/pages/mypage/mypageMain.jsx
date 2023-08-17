@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -91,6 +92,7 @@ const Logout = styled.div`
   position: absolute;
   top: 43px;
   right: 20px;
+  cursor: pointer;
 `;
 
 const MemberInfo = styled.div`
@@ -118,6 +120,7 @@ const Edit = styled.div`
   font-size: 10px;
   font-weight: 300;
   text-decoration-line: underline;
+  cursor: pointer;
 `;
 const Gra = styled.div`
   position: relative;
@@ -154,6 +157,18 @@ const Uname = styled.div`
   width: 125px;
   text-align: left;
   display: inline;
+`;
+
+const Username = styled.div`
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 125px;
+  text-align: left;
+  display: inline;
+  top: 64px;
+  left: 37%;
 `;
 const Id = styled.div`
   color: #60716f;
@@ -236,6 +251,7 @@ const NumWrapper = styled.div`
   text-align: left;
   width: 220px;
   margin-right: auto;
+
   color: #000;
   font-size: 10px;
   font-style: normal;
@@ -255,13 +271,14 @@ const CVCWrapper = styled.div`
 const DateWrapper = styled.div`
   text-align: left;
   width: 110px;
-  margin-right: auto;
+
+  margin-top: -20px;
   display: inline-block;
 `;
 const CardBalanceWrapper = styled.div`
   text-align: left;
-  width: 110px;
   margin-right: auto;
+
   display: inline-block;
 `;
 const Num = styled.span`
@@ -323,6 +340,7 @@ const Udate = styled.span`
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+  top: -15%;
 `;
 const Balance = styled.span`
   color: #60716f;
@@ -333,16 +351,17 @@ const Balance = styled.span`
   line-height: normal;
 `;
 const UbalanceWrapper = styled.div`
-  display: inline-block;
+  display: flex;
   color: #000;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin-left: 8px;
+  display: inline;
 `;
 const Ubalance = styled.span``;
-const Won = styled.span``;
+
 const Charge = styled.div`
   color: #e22d11;
   text-align: center;
@@ -354,6 +373,7 @@ const Charge = styled.div`
   width: 85px;
   text-align: left;
   padding-top: 5px;
+  cursor: pointer;
 `;
 
 const PayHistory = styled.div`
@@ -410,19 +430,24 @@ const ProductName = styled.div`
   font-weight: 500;
   line-height: normal;
   width: 80px;
+  margin-right: auto;
 `;
 const QuantityWrapper = styled.div`
-  color: #000;
-  font-size: 12px;
+  color: #60716f;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  padding-top: 4px;
-  margin-right: auto;
+  margin: 0 auto;
+  margin-top: 8%;
 `;
 const Whole = styled.span``;
 const Quantity = styled.span``;
 const Count = styled.span``;
+const Price = styled.span`
+  margin: 0 auto;
+`;
+const Won = styled.span``;
 const Detail = styled.div`
   width: 123px;
   text-align: right;
@@ -442,13 +467,12 @@ const PriceWrapper = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  width: 300px;
-  margin-right: auto;
   text-align: left;
-  margin-left: 13px;
-  margin-top: 8px;
+  margin-left: auto;
+  margin: 0 auto;
+  margin-top: 10%;
 `;
-const Price = styled.span``;
+
 const TypeWrapper = styled.div`
   color: #000;
   font-size: 10px;
@@ -519,7 +543,7 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 390px;
+  width: 100%;
   margin: 0 auto;
 
   top: 0;
@@ -566,7 +590,20 @@ const ModalView = styled.div.attrs((props) => ({
 
 const MypageMain = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [userData, setUserData] = useState({
+    name: "", // 이름 정보를 저장할 상태 변수
+    email: "", // 이메일 정보를 저장할 상태 변수
+    phone: "", // 연락처 정보를 저장할 상태 변수
 
+    purchases: [], // 추가: 결제 내역 정보를 저장할 상태 변수
+  });
+  const [card, setCard] = useState({
+    num: "",
+    pw: "",
+    cvc: "",
+    validDate: "",
+    balance: "",
+  });
   const navigate = useNavigate();
   const navigateToVerify = () => {
     navigate("/VerifyLogin");
@@ -576,15 +613,14 @@ const MypageMain = () => {
     navigate("/Charge");
   };
 
-  const navigateToHistory = () => {
-    navigate("/PayHistory"); //해당 박스의 결제내역으로 이동하도록 수정해야함
-  };
-
   const navigateToBack = () => {
     window.history.back();
   };
   const navigateToFirstpage = () => {
     navigate("/");
+  };
+  const navigateToVideo = () => {
+    navigate("/PlayVideo");
   };
   //스크롤 방지
   useEffect(() => {
@@ -607,7 +643,7 @@ const MypageMain = () => {
         window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
       }
     };
-  }, [isOpen]);
+  });
 
   const openModalHandler = () => {
     // isOpen의 상태를 변경하는 메소드를 구현
@@ -627,7 +663,62 @@ const MypageMain = () => {
   const goMyPage = () => {
     navigate("/MypageMain");
   };
+  const navigateToMain = () => {
+    navigate("/Main");
+  };
+  const onClicklogout = () => {
+    axios
+      .post("http://127.0.0.1:8000/api/logout/")
+      .then((response) => {
+        console.log("로그아웃 성공:", response.data);
+        // access_token을 로컬 스토리지에서 삭제하는 예제
+        localStorage.removeItem("access_token");
 
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("로그아웃 실패:", error);
+      });
+  };
+  useEffect(() => {
+    // 페이지가 로드될 때, 사용자 정보를 가져와서 상태 변수에 저장
+    axios
+      .get("http://127.0.0.1:8000/mypage/", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`,
+        },
+      }) // 사용자 정보를 불러오는 API 엔드포인트
+      .then((response) => {
+        const { name, email, phone } = response.data.profile; // API 응답에서 name, email, phone 정보 추출
+        const { num, pw, cvc, validDate, balance } = response.data.card; // API 응답에서 num, pw, cvc, validDate, balance(카드 잔액)정보 추출
+        const purchases = response.data.purchases; // 결제 내역 정보
+        setUserData({
+          name,
+          email,
+          phone,
+
+          purchases,
+        });
+      })
+      .catch((error) => {
+        console.error("사용자 정보 불러오기 실패:", error);
+      });
+  }, []);
+  useEffect(function () {
+    axios
+      .get("http://127.0.0.1:8000/cards/", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
+        },
+      })
+      .then(function (result) {
+        setCard(result.data[0]); // 상태 업데이트
+        console.log("카드 상세정보 입니다", result);
+      })
+      .catch(function (error) {
+        console.error("에러 발생 : ", error);
+      });
+  }, []);
   return (
     <Container>
       <BodyWrapper>
@@ -644,6 +735,7 @@ const MypageMain = () => {
               src={`${process.env.PUBLIC_URL}/images/로고3.png`}
               alt="logo"
               width="90px"
+              onClick={navigateToMain}
             />
           </Logo>
           <Video>
@@ -651,6 +743,7 @@ const MypageMain = () => {
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"
               alt="video"
+              onClick={navigateToVideo}
             />
           </Video>
         </Topbar>
@@ -663,8 +756,10 @@ const MypageMain = () => {
                 width="100px"
                 height="100px"
               ></ProFileImg>
-              <ProFileName>000 님</ProFileName>
-              <Logout onClick={navigateToFirstpage}>로그아웃</Logout>
+              <ProFileName>
+                <Username>{userData.name}</Username> 님
+              </ProFileName>
+              <Logout onClick={onClicklogout}>로그아웃</Logout>
             </ProfileContent>
           </Profile>
 
@@ -676,18 +771,18 @@ const MypageMain = () => {
             <Gra></Gra>
             <MemContent>
               <Name>고객명</Name>
-              <Uname>000</Uname>
+              <Uname>{userData.name}</Uname> {/* 이름 정보 표시 */}
               <Id>아이디</Id>
-              <Uid>00000@naver.com</Uid>
+              <Uid>{userData.email}</Uid> {/* 이메일 정보 표시 */}
               <Phone>연락처</Phone>
-              <Uphone>010-0000-0000</Uphone>
+              <Uphone>{userData.phone}</Uphone> {/* 연락처 정보 표시 */}
             </MemContent>
           </MemberInfo>
 
           <Card>
             <CardHeader>
               <CardHeaderContent>
-                <Uname>ㅇㅇㅇ</Uname>님의 카드
+                <Uname>{userData.name}</Uname>님의 카드
               </CardHeaderContent>
             </CardHeader>
             <Gra></Gra>
@@ -702,24 +797,29 @@ const MypageMain = () => {
               <CardinfoWrapper>
                 <NumWrapper>
                   <Num>카드번호</Num>
-                  <Unum>0000 0000 0000 0000</Unum>
+                  <Unum>{card.num}</Unum>
                 </NumWrapper>
                 <PwWrapper>
                   <Pw>비밀번호</Pw>
-                  <Upw>0000</Upw>
+                  <Upw>{card.pw}</Upw>
                 </PwWrapper>
                 <CVCWrapper>
                   <CVC>CVC</CVC>
-                  <Ucvc>000</Ucvc>
+                  <Ucvc>{card.cvc}</Ucvc>
                 </CVCWrapper>
                 <DateWrapper>
                   <Date>유효기간 년/월</Date>
-                  <Udate>25/08</Udate>
+                  <br />
+                  <Udate>{card.validDate}</Udate>
                 </DateWrapper>
                 <CardBalanceWrapper>
                   <Balance>카드 잔액</Balance>
                   <UbalanceWrapper>
-                    <Ubalance>00,000</Ubalance>
+                    {card && card.balance !== undefined ? (
+                      <Ubalance>{card.balance.toLocaleString()}</Ubalance>
+                    ) : (
+                      <Ubalance>0</Ubalance>
+                    )}
                     <Won>원</Won>
                   </UbalanceWrapper>
                 </CardBalanceWrapper>
@@ -734,90 +834,32 @@ const MypageMain = () => {
             </PayHeader>
             <Gra></Gra>
             <PayContent>
-              <WhiteBox>
-                <PayWrapper>
-                  <PayImg>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/images/productSample.png`}
-                      width="70px"
-                      height="70px"
-                    ></img>
-                  </PayImg>
-                  <PayinfoWrapper>
-                    <ProductName>상품명</ProductName>
-                    <QuantityWrapper>
-                      <Whole>총 </Whole>
-                      <Quantity>N</Quantity>
-                      <Count> 개</Count>
-                    </QuantityWrapper>
-                    <Detail onClick={navigateToHistory}>더보기</Detail>
-                    <PriceWrapper>
-                      <Price>00,000</Price>
-                      <Won> 원</Won>
-                    </PriceWrapper>
-                    <TypeWrapper>
-                      <WhatType>결제 유형-</WhatType>
-                      <Type>일반 카드 결제</Type>
-                    </TypeWrapper>
-                  </PayinfoWrapper>
-                </PayWrapper>
-              </WhiteBox>
-              <WhiteBox>
-                <PayWrapper>
-                  <PayImg>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/images/productSample.png`}
-                      width="70px"
-                      height="70px"
-                    ></img>
-                  </PayImg>
-                  <PayinfoWrapper>
-                    <ProductName>상품명</ProductName>
-                    <QuantityWrapper>
-                      <Whole>총 </Whole>
-                      <Quantity>N</Quantity>
-                      <Count> 개</Count>
-                    </QuantityWrapper>
-                    <Detail onClick={navigateToHistory}>더보기</Detail>
-                    <PriceWrapper>
-                      <Price>00,000</Price>
-                      <Won> 원</Won>
-                    </PriceWrapper>
-                    <TypeWrapper>
-                      <WhatType>결제 유형-</WhatType>
-                      <Type>일반 카드 결제</Type>
-                    </TypeWrapper>
-                  </PayinfoWrapper>
-                </PayWrapper>
-              </WhiteBox>
-              <WhiteBox>
-                <PayWrapper>
-                  <PayImg>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/images/productSample.png`}
-                      width="70px"
-                      height="70px"
-                    ></img>
-                  </PayImg>
-                  <PayinfoWrapper>
-                    <ProductName>상품명</ProductName>
-                    <QuantityWrapper>
-                      <Whole>총 </Whole>
-                      <Quantity>N</Quantity>
-                      <Count> 개</Count>
-                    </QuantityWrapper>
-                    <Detail onClick={navigateToHistory}>더보기</Detail>
-                    <PriceWrapper>
-                      <Price>00,000</Price>
-                      <Won> 원</Won>
-                    </PriceWrapper>
-                    <TypeWrapper>
-                      <WhatType>결제 유형-</WhatType>
-                      <Type>일반 카드 결제</Type>
-                    </TypeWrapper>
-                  </PayinfoWrapper>
-                </PayWrapper>
-              </WhiteBox>
+              {userData.purchases.map((purchase, index) => (
+                <WhiteBox key={index}>
+                  <PayWrapper>
+                    <PayImg>
+                      <img
+                        src={`http://127.0.0.1:8000${purchase.image}`}
+                        width="70px"
+                        height="70px"
+                        alt="product"
+                      />
+                    </PayImg>
+                    <PayinfoWrapper>
+                      <ProductName>{purchase.name}</ProductName>
+                      <QuantityWrapper>
+                        <Whole>총 </Whole>
+                        <Quantity>{purchase.count}</Quantity>
+                        <Count> 개</Count>
+                      </QuantityWrapper>
+                      <PriceWrapper>
+                        <Price>{purchase.total.toLocaleString()}</Price>
+                        <Won> 원</Won>
+                      </PriceWrapper>
+                    </PayinfoWrapper>
+                  </PayWrapper>
+                </WhiteBox>
+              ))}
             </PayContent>
           </PayHistory>
           <CoachMark>

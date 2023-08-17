@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -53,27 +53,6 @@ const Logo = styled.div`
 const Video = styled.div`
   cursor: pointer;
   width: 30px;
-`;
-
-const Body = styled.div`
-  height: 752px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-  flex-shrink: 0;
-`;
-
-const CoachMark = styled.div`
-  position: fixed;
-  bottom: 80px;
-  text-align: right;
-  display: flex;
-  flex-direction: row-reverse;
-  width: 100%;
-  @media (hover: hover) {
-    width: 390px;
-    margin: 0 auto;
-  }
 `;
 const BottomBar = styled.footer`
   display: flex;
@@ -151,8 +130,9 @@ const ProductName = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  width: 80px;
-  margin-right: auto;
+  width: 280px;
+  text-align: left;
+  // margin-right: auto;
 `;
 const PriceWrapper = styled.div`
 color: #000;
@@ -162,6 +142,7 @@ color: #000;
     line-height: normal;
     text-align: left;
     margin-left: auto;
+    margin-top: 3px;
 }`;
 const Price = styled.span``;
 const Won = styled.span``;
@@ -171,6 +152,7 @@ const QuantityWrapper = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin-top: 3px;
 `;
 const Whole = styled.span``;
 const Quantity = styled.span``;
@@ -180,9 +162,8 @@ const Ment = styled.div`
   width: 300px;
   height: 58px;
 
-  font-family: "S-Core Dream";
   font-style: normal;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 14px;
   line-height: 22px;
   text-align: center;
@@ -204,6 +185,9 @@ const Complete = () => {
   const navigateToBack = () => {
     window.history.back();
   };
+  const navigateToVideo = () => {
+    navigate("/PlayVideo");
+  };
 
   const goMenu = () => {
     navigate("/Category");
@@ -217,6 +201,16 @@ const Complete = () => {
   const goMyPage = () => {
     navigate("/MypageMain");
   };
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const productName = queryParams.get("productName");
+  const unitPrice = queryParams.get("unitPrice");
+  const quantity = queryParams.get("quantity");
+  const imagePath = queryParams.get("imagePath");
+
+  // 총 가격 계산
+  const totalPrice = unitPrice * quantity;
 
   return (
     <Container>
@@ -236,7 +230,7 @@ const Complete = () => {
               width="90px"
             />
           </Logo>
-          <Video>
+          <Video onClick={navigateToVideo}>
             <img
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"
@@ -255,20 +249,20 @@ const Complete = () => {
         <ProductWrapper>
           <ProductImg>
             <img
-              src={`${process.env.PUBLIC_URL}/images/productSample.png`}
+              src={`http://127.0.0.1:8000${imagePath}`}
+              alt={productName}
               width="70px"
-              height="70px"
-            ></img>
+            />
           </ProductImg>
           <ProductInfoWrapper>
-            <ProductName>상품명</ProductName>
+            <ProductName>{productName}</ProductName>
             <QuantityWrapper>
               <Whole>총 </Whole>
-              <Quantity>N</Quantity>
+              <Quantity>{quantity}</Quantity>
               <Count> 개</Count>
             </QuantityWrapper>
             <PriceWrapper>
-              <Price>00,000</Price>
+              <Price>{totalPrice}</Price>
               <Won> 원</Won>
             </PriceWrapper>
           </ProductInfoWrapper>

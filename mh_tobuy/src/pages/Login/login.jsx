@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -139,7 +140,7 @@ const Input = styled.input`
 `;
 const FindLinks = styled.div`
   margin-bottom: -10%;
-  margin-left: 55%;
+  margin-left: 67%;
   display: flex;
   gap: 10px; /* 아이디 찾기와 비밀번호 찾기 간격 조정 */
 `;
@@ -265,13 +266,14 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 390px;
+  width: 100%;
   margin: 0 auto;
 
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100%;
 `;
 const ExitBtn = styled.div`
   display: flex;
@@ -335,21 +337,17 @@ const Login = () => {
   const navigateToCategory = () => {
     navigate("/Category");
   };
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
 
   const [isOpen, setIsOpen] = useState(false);
-  //스크롤 방지
+
   useEffect(() => {
     if (isOpen) {
-      // 모달 창이 열려 있는 경우에는 스크롤 방지
       document.body.style.cssText = `
         position: fixed; 
         top: -${window.scrollY}px;
         overflow-y: scroll;
         width: 100%;`;
     } else {
-      // 모달 창이 닫혀 있는 경우에는 스크롤 가능하도록 설정
       document.body.style.cssText = "";
     }
 
@@ -363,8 +361,6 @@ const Login = () => {
   }, [isOpen]);
 
   const openModalHandler = () => {
-    // isOpen의 상태를 변경하는 메소드를 구현
-    // !false -> !true -> !false
     setIsOpen(!isOpen);
   };
 
@@ -372,6 +368,52 @@ const Login = () => {
     "https://harvest-machine-d20.notion.site/77980ca8efd3435e9915e88b830a5ca4";
   const url2 =
     "https://harvest-machine-d20.notion.site/d76bf5b332524288a9db8d1857c6bc19";
+
+  const [loginId, setLoginId] = useState("");
+  const [loginPw, setLoginPw] = useState("");
+
+  const [divs, setDivs] = useState([]);
+  const [failDivAdded, setFailDivAdded] = useState(false);
+
+  const onClick = () => {
+    const userData = {
+      username: loginId,
+      password: loginPw,
+    };
+
+    axios
+      .post("http://127.0.0.1:8000/api/login/", userData)
+      .then((response) => {
+        console.log("로그인 성공:", response.data);
+        if (response.data.key) {
+          localStorage.setItem("access_token", response.data.key);
+          console.log("저장 성공");
+        }
+        navigate("/Signup2");
+      })
+
+      .catch((error) => {
+        console.error("로그인 실패:", error);
+
+        if (!failDivAdded) {
+          const newFailDiv = (
+            <div key={divs.length} className="failDiv" style={failStyle}>
+              로그인에 실패했습니다. <br />
+              아이디와 비밀번호를 다시 한 번 확인해주세요.
+            </div>
+          );
+          setDivs([...divs, newFailDiv]);
+          setFailDivAdded(true);
+        }
+      });
+  };
+
+  const failStyle = {
+    color: "red",
+    textAlign: "left",
+    margin: "0 auto",
+    marginTop: "10px",
+  };
   return (
     <Container>
       <BodyWrapper>
@@ -428,30 +470,32 @@ const Login = () => {
               <Input
                 type="text"
                 placeholder="아이디 (이메일)"
-                onChange={(e) => setUsername(e.target.value)}
+                value={loginId}
+                onChange={(e) => setLoginId(e.target.value)}
               />
             </InputBox>
             <InputBox>
               <Input
                 type="text"
                 placeholder="비밀번호"
-                onChange={(e) => setPassword(e.target.value)}
+                value={loginPw}
+                onChange={(e) => setLoginPw(e.target.value)}
               />
             </InputBox>
+            {divs}
           </BoxContainer>
           <FindLinks>
             <Findidment onClick={navigateTofindid}>아이디 찾기</Findidment>
-            <Findpwment onClick={navigateTofindpw}>비밀번호 찾기</Findpwment>
           </FindLinks>
-          <LoginBox onClick={navigateToCategory}>
+          <LoginBox onClick={onClick}>
             <LoginText>로그인</LoginText>
           </LoginBox>
           <MiddleMentBox>
-            <p>
+            <div>
               <Memberq>아직 회원이 아니신가요?</Memberq>
               <br />
               <Signup onClick={navigateToSignup}>회원가입</Signup>
-            </p>
+            </div>
           </MiddleMentBox>
         </Body>
         <MentBox>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -168,7 +169,7 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 390px;
+  width: 100%;
   margin: 0 auto;
 
   top: 0;
@@ -236,19 +237,12 @@ const VerifyLogin = () => {
 
   const navigate = useNavigate();
 
-  const navigateToChange = () => {
-    navigate("/PasswordChange");
-  };
-
   const navigateToBack = () => {
     window.history.back();
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault(); // 폼 제출 기본 동작 막기
-    console.log("Form submitted!");
+  const navigateToVideo = () => {
+    navigate("/PlayVideo");
   };
-
   const goMenu = () => {
     navigate("/Category");
   };
@@ -285,10 +279,66 @@ const VerifyLogin = () => {
   }, [isOpen]);
 
   const openModalHandler = () => {
-    // isOpen의 상태를 변경하는 메소드를 구현
-    // !false -> !true -> !false
     setIsOpen(!isOpen);
   };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const [divs, setDivs] = useState([]);
+  const [failDivAdded, setFailDivAdded] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const requestData = {
+      password: password,
+      email: email,
+    };
+
+    axios
+      .post("http://127.0.0.1:8000/api/user-info/", requestData, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
+        },
+      })
+      .then((response) => {
+        console.log("회원정보 일치");
+        navigate("/PasswordChange");
+      })
+      .catch((error) => {
+        console.error("실패:", error);
+
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.non_field_errors
+        ) {
+          setError(error.response.data.non_field_errors[0]);
+        } else {
+          setError("An error occurred.");
+        }
+
+        if (!failDivAdded) {
+          const newFailDiv = (
+            <div key={divs.length} className="failDiv" style={failStyle}>
+              회원정보가 일치하지 않습니다. <br />
+              아이디, 비밀번호를 다시 한 번 확인해주세요.
+            </div>
+          );
+          setDivs([...divs, newFailDiv]);
+          setFailDivAdded(true);
+        }
+      });
+  };
+
+  const failStyle = {
+    color: "red",
+    textAlign: "left",
+    margin: "0 auto",
+  };
+
   return (
     <Container>
       <BodyWrapper>
@@ -307,7 +357,7 @@ const VerifyLogin = () => {
               width="90px"
             />
           </Logo>
-          <Video>
+          <Video onClick={navigateToVideo}>
             <img
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"
@@ -321,7 +371,7 @@ const VerifyLogin = () => {
             <HeaderContent>회원정보 확인</HeaderContent>
           </Header>
           <Gra></Gra>
-          <form onSubmit={handleSubmit}>
+          <form>
             <DescriptionWrapper>
               <Description>
                 정보를 안전하게 보호하기 위해 로그인을 다시 한번 진행해주세요.
@@ -332,6 +382,9 @@ const VerifyLogin = () => {
                 <input
                   type="email"
                   placeholder="아이디 (이메일)"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   style={inputStyle}
                 />
               </Id>
@@ -339,11 +392,20 @@ const VerifyLogin = () => {
                 <input
                   type="password"
                   placeholder="비밀번호"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   style={inputStyle}
                 />
               </Pw>
-              <Submit onClick={navigateToChange}>
-                <button formAction="" style={submitStyle}>
+              {divs}
+              <Submit>
+                <button
+                  onClick={(e) => {
+                    handleSubmit(e);
+                  }}
+                  style={submitStyle}
+                >
                   확인
                 </button>
               </Submit>

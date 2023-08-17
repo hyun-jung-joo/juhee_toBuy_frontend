@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -56,25 +58,11 @@ const Video = styled.div`
 `;
 
 const Body = styled.div`
-  height: 752px;
+  height: 690px;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
   flex-shrink: 0;
-`;
-const Header = styled.div`
-  height: 94px;
-  position: relative;
-`;
-const HeaderContent = styled.div`
-  position: absolute;
-  bottom: 4px;
-  left: 26px;
-  color: #000;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
 `;
 const Gra = styled.div`
   position: relative;
@@ -88,7 +76,12 @@ const FormContent = styled.div`
   margin: 43px 32px;
   margin-bottom: 0;
 `;
-const PayImg = styled.div``;
+const PayImg = styled.div`
+  margin: auto;
+  width: 326px;
+  height: 326px;
+  border-radius: 10px;
+`;
 const ProductName = styled.div`
   color: #000;
   font-size: 24px;
@@ -99,6 +92,7 @@ const ProductName = styled.div`
   padding-top: 22px;
   box-sizing: border-box;
   text-align: left;
+  margin-bottom: 20px;
 `;
 const ProductWrapper = styled.div`
   height: 58px;
@@ -113,8 +107,8 @@ const ProductWrapper = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-bottom: 19px;
-  margin-top: 1px;
+  margin-bottom: 8px;
+  margin-top: 8px;
 `;
 const PriceWrapper = styled.div`
   display: inline;
@@ -151,7 +145,7 @@ const Submit = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 const CoachMark = styled.div`
   position: fixed;
@@ -201,8 +195,29 @@ const My = styled.div`
 `;
 
 const ProductDetail = () => {
+  const navigate = useNavigate();
+  const { category, productId } = useParams(); // 경로 파라미터 값 가져오기
+  const [productDetail, setProductDetail] = useState(null);
   const [value, setValue] = useState(1);
-  const price = 15000;
+
+  useEffect(() => {
+    // API 요청을 위한 URL 조합
+    const apiUrl = `http://127.0.0.1:8000/products/${category}/${productId}/`;
+
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setProductDetail(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("에러 발생 : ", error);
+      });
+  }, [category, productId]);
+
+  if (!productDetail) {
+    return <div>Loading...</div>; // 로딩 중일 때 표시할 내용
+  }
 
   const inputValue = (e) => {
     const { value } = e.target;
@@ -223,8 +238,6 @@ const ProductDetail = () => {
     setValue(value - 1);
   };
 
-  const navigate = useNavigate();
-
   const navigateToBack = () => {
     window.history.back();
   };
@@ -233,7 +246,7 @@ const ProductDetail = () => {
     navigate("/PlayVideo");
   };
 
-  const totalPriceValue = value * price;
+  const totalPriceValue = value * productDetail.price;
 
   const submitStyle = {
     width: "222px",
@@ -283,6 +296,17 @@ const ProductDetail = () => {
   const goMyPage = () => {
     navigate("/MypageMain");
   };
+  const flex = () => {
+    const queryParams = new URLSearchParams();
+    queryParams.append("productName", productDetail.name);
+    queryParams.append("unitPrice", productDetail.price);
+    queryParams.append("quantity", value);
+    queryParams.append("imagePath", productDetail.image);
+    queryParams.append("productId", productDetail.id);
+
+    // URL 쿼리 파라미터로 데이터를 전달하면서 페이지 이동
+    navigate(`/payment?${queryParams.toString()}`);
+  };
 
   return (
     <Container>
@@ -310,21 +334,21 @@ const ProductDetail = () => {
             />
           </Video>
         </Topbar>
-
         <Body>
           <FormContent>
             <PayImg>
               <img
-                src={`${process.env.PUBLIC_URL}/images/productSample.png`}
+                src={`http://127.0.0.1:8000${productDetail.image}`}
+                alt={productDetail.name}
                 width="326px"
-                height="326px"
-              ></img>
+              />
             </PayImg>
-            <ProductName>상품명</ProductName>
+            <ProductName>{productDetail.name}</ProductName>
             <Gra></Gra>
             <ProductWrapper>
               <PriceWrapper>
-                <Price>{price.toLocaleString()}</Price>
+                {/* <Price>{price.toLocaleString()}</Price> */}
+                <Price>{productDetail.price}</Price>
                 <Won> 원</Won>
               </PriceWrapper>
               <CountWrapper>
@@ -360,7 +384,7 @@ const ProductDetail = () => {
             </TotalWrapper>
           </FormContent>
           <Submit>
-            <button formAction="" style={submitStyle}>
+            <button formAction="" style={submitStyle} onClick={flex}>
               구매하기
             </button>
           </Submit>

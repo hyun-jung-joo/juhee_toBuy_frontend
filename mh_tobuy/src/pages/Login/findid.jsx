@@ -166,7 +166,7 @@ const ModalBackdrop1 = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 390px;
+  width: 100%;
   margin: 0 auto;
 
   top: 0;

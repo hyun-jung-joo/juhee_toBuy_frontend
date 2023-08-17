@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ const Topbar = styled.div`
   flex-shrink: 0;
   background-color: #fffff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  justify-content: space-evenly;
 `;
 
 const Back = styled.div`
@@ -44,14 +46,8 @@ const Back = styled.div`
   cursor: pointer;
 `;
 
-const Toptitle = styled.div`
-  margin: 0 auto;
-
-  color: #081c19;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: normal;
+const Logo = styled.div`
+  cursor: pointer;
 `;
 
 const Close = styled.div`
@@ -292,8 +288,33 @@ const Signupcard = () => {
     navigate("/");
   };
   const navigateToSignup2 = () => {
-    navigate("/Signup2");
+    navigate("/Main", { state: { card } });
   };
+
+  const [card, setCard] = useState({
+    num: "",
+    pw: "",
+    cvc: "",
+    validDate: "",
+    balance: "",
+  });
+
+  useEffect(function () {
+    axios
+      .get("http://127.0.0.1:8000/cards/", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
+        },
+      })
+      .then(function (result) {
+        setCard(result.data[0]); // 상태 업데이트
+        console.log("카드 상세정보 입니다", result);
+      })
+      .catch(function (error) {
+        console.error("에러 발생 : ", error);
+      });
+  }, []);
+
   const url1 =
     "https://harvest-machine-d20.notion.site/77980ca8efd3435e9915e88b830a5ca4";
   const url2 =
@@ -310,7 +331,13 @@ const Signupcard = () => {
               onClick={() => navigate(-1)}
             />
           </Back>
-          <Toptitle>회원가입</Toptitle>
+          <Logo>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/로고3.png`}
+              alt="logo"
+              width="90px"
+            />
+          </Logo>
           <Close>
             <img
               src={`${process.env.PUBLIC_URL}/images/close.png`}
@@ -320,7 +347,7 @@ const Signupcard = () => {
           </Close>
         </Topbar>
         <Body>
-          <Toptext>000님 에게 발급된 카드 입니다.</Toptext>
+          <Toptext>발급된 카드 입니다.</Toptext>
           <Topsecondtext>
             마이페이지에서 자신의 카드정보를
             <br />
@@ -337,23 +364,23 @@ const Signupcard = () => {
           </Cardimg>
           <CardinfoBox>
             <Cardnumtxt>카드번호</Cardnumtxt>
-            <Cardnum>0000 0000 0000 0000</Cardnum>
+            <Cardnum>{card.num}</Cardnum>
             <br />
             <Pwnumtxt>비밀번호</Pwnumtxt>
-            <Pwnum>0000</Pwnum>
+            <Pwnum>{card.pw}</Pwnum>
             <Cvctxt>CVC</Cvctxt>
-            <Cvcnum>000</Cvcnum>
+            <Cvcnum>{card.cvc}</Cvcnum>
             <br />
             <Usedatetxt>유효기간 년/월</Usedatetxt>
-            <Usedate>25/08</Usedate>
+            <Usedate>{card.validDate}</Usedate>
           </CardinfoBox>
           <RemainaccountBox>
             <Remainaccounttxt>카드 잔액</Remainaccounttxt>
-            <Remainaccount>500,000 원</Remainaccount>
+            <Remainaccount>{card.balance}</Remainaccount>
           </RemainaccountBox>
           <ButtonContainer>
             <MintBox onClick={navigateToSignup2}>
-              <MintText>회원가입 완료하기</MintText>
+              <MintText>확인</MintText>
             </MintBox>
           </ButtonContainer>
         </Body>

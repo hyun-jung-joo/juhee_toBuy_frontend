@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
 // import { Carousel } from "react-responsive-carousel";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -107,6 +109,7 @@ const RedSearch = styled.div`
   top: 65px; /* 세로 가운데 정렬 */
   left: 10%; /* 원하는 가로 위치 조절 */
   transform: translateY(-50%); /* 세로 가운데 정렬을 위한 조정 */
+  cursor: pointer;
 `;
 
 const InputSearch = styled.input`
@@ -197,14 +200,16 @@ const Name = styled.div`
   width: 160px;
   height: 30px;
   text-align: left;
-  font-size: 18px;
+  font-size: 16px;
+  // white-space: nowrap;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
 `;
 
 const Price = styled.div`
   position: relative;
-  // background: green;
   margin: auto;
-  margin-top: 8px;
+  margin-top: 14px;
   width: 160px;
   height: 30px;
   text-align: left;
@@ -291,7 +296,7 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 390px;
+  width: 100%;
   margin: 0 auto;
 
   top: 0;
@@ -346,22 +351,17 @@ const Main = () => {
   const [inputFocused, setInputFocused] = useState(false); // 초기값 설정
   const [inputValue, setInputValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [products, setProducts] = useState([]);
 
   const handleInputFocus = () => {
     setInputFocused(true);
-    // 이곳에서 API나 로컬 저장소에서 최근 검색어를 가져올 수 있습니다.
-    // 일단은 더미 데이터를 사용해보겠습니다.
-    setRecentSearches(["검색어 1", "검색어 2", "검색어 3", "2"]);
   };
 
   const handleInputBlur = () => {
-    setInputFocused(false);
-  };
-
-  // RecentSearchItem 컴포넌트에서 검색어를 클릭했을 때 해당 검색어를 인풋 창에 넣어주는 함수
-  const handleRecentSearchClick = (term) => {
-    setInputValue(term);
-    setInputFocused(false);
+    // 검색어 입력창이 포커스를 잃었을 때, 최근 검색어 목록이 사라지지 않도록 처리
+    setTimeout(() => {
+      setInputFocused(false);
+    }, 200);
   };
 
   //스크롤 방지
@@ -392,6 +392,9 @@ const Main = () => {
     // !false -> !true -> !false
     setIsOpen(!isOpen);
   };
+  const navigateToVideo = () => {
+    navigate("/PlayVideo");
+  };
 
   const goMenu = () => {
     navigate("/Category");
@@ -410,6 +413,87 @@ const Main = () => {
     "https://harvest-machine-d20.notion.site/77980ca8efd3435e9915e88b830a5ca4";
   const url2 =
     "https://harvest-machine-d20.notion.site/d76bf5b332524288a9db8d1857c6bc19";
+
+  const location = useLocation();
+
+  const [search, setSearch] = useState("");
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleSearchSubmit = () => {
+    // 검색어와 함께 검색 결과 페이지로 이동
+    const encodedSearch = encodeURIComponent(search);
+    setRecentSearches((prevSearches) => {
+      // 중복되는 검색어는 추가하지 않도록 검사
+      if (!prevSearches.includes(encodedSearch)) {
+        return [encodedSearch, ...prevSearches.slice(0, 4)]; // 최근 5개만 유지
+      }
+      return prevSearches;
+    });
+
+    // Axios를 사용하여 GET 요청 보내기
+    axios
+      .get(
+        `http://127.0.0.1:8000/products?search=${encodedSearch}`, // 수정된 부분
+
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
+      .then((response) => {
+        navigate(`/products?search=${encodedSearch}`);
+      })
+      .catch((error) => {
+        console.error({
+          message: "로그인을 해주세요.",
+        });
+      });
+  };
+  useEffect(function () {
+    axios
+      .get("http://127.0.0.1:8000/products/main/")
+      .then(function (result) {
+        setProducts(result.data);
+        console.log(result);
+        console.log("성공");
+      })
+      .catch(function (error) {
+        console.error("에러 발생 : ", error);
+      });
+  }, []);
+
+  const groupedProducts = products.reduce((acc, product) => {
+    if (!acc[product.category]) {
+      acc[product.category] = [];
+    }
+    acc[product.category].push(product);
+    return acc;
+  }, {});
+
+  const getCategoryDisplayName = (category) => {
+    switch (category) {
+      case "cate1":
+        return "패션의류 / 잡화";
+      case "cate2":
+        return "뷰티";
+      case "cate3":
+        return "식품";
+      case "cate4":
+        return "생필품";
+      case "cate5":
+        return "홈 데코";
+      case "cate6":
+        return "건강";
+      // 추가적인 카테고리에 대한 처리를 여기에 추가할 수 있습니다.
+      default:
+        return category;
+    }
+  };
+
   return (
     <Container>
       <BodyWrapper>
@@ -428,7 +512,7 @@ const Main = () => {
               width="90px"
             />
           </Logo>
-          <Video>
+          <Video onClick={navigateToVideo}>
             <img
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"
@@ -436,7 +520,7 @@ const Main = () => {
             />
           </Video>
         </Topbar>
-        <SearchBox inputFocused={inputFocused}>
+        <SearchBox inputfocused={inputFocused ? "true" : "false"}>
           <img
             src={`${process.env.PUBLIC_URL}/images/검색창.png`}
             width="90%"
@@ -446,29 +530,27 @@ const Main = () => {
             <img
               src={`${process.env.PUBLIC_URL}/images/redsearch.png`}
               width="28px"
+              onClick={handleSearchSubmit}
             />
           </RedSearch>
           <InputSearch
             placeholder="검색어를 입력하세요."
-            onFocus={handleInputFocus}
             onBlur={handleInputBlur}
-            value={inputValue} // 인풋 값 설정
-            onChange={(e) => setInputValue(e.target.value)} // 인풋 값 변경 함수
+            onFocus={handleInputFocus}
+            value={search}
+            onChange={handleSearchChange}
           />
           {inputFocused && recentSearches.length > 0 && (
             <RecentSearches>
-              {recentSearches.map((term, index) => (
-                <RecentSearchItem
-                  key={index}
-                  onClick={() => handleRecentSearchClick(term)}
-                >
+              {recentSearches.map((encodedSearch, index) => (
+                <RecentSearchItem key={index}>
                   <Clock>
                     <img
                       src={`${process.env.PUBLIC_URL}/images/time.png`}
                       width="24px"
                     />
                   </Clock>
-                  {term}
+                  {decodeURIComponent(encodedSearch)}
                 </RecentSearchItem>
               ))}
             </RecentSearches>
@@ -483,90 +565,41 @@ const Main = () => {
             />
           </Adv1>
         </AdvArea>
-        <Cate>패션의류 / 잡화</Cate>
-        <Gra></Gra>
-        <ProductArea>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-        </ProductArea>
-        <Cate>뷰티</Cate>
-        <Gra></Gra>
-        <ProductArea>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-        </ProductArea>
-        <Cate>식품</Cate>
-        <Gra></Gra>
-        <ProductArea>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-        </ProductArea>
-        <Cate>생필품</Cate>
-        <Gra></Gra>
-        <ProductArea>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-        </ProductArea>
-        <Cate>홈 데코</Cate>
-        <Gra></Gra>
-        <ProductArea>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-        </ProductArea>
-        <Cate>건강</Cate>
-        <Gra></Gra>
-        <ProductArea>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-        </ProductArea>
+        {Object.entries(groupedProducts).map(
+          ([category, productsInCategory]) => (
+            <React.Fragment key={category}>
+              <Cate>{getCategoryDisplayName(category)}</Cate>
+              <Gra></Gra>
+              <ProductArea>
+                {productsInCategory.length > 0 ? (
+                  productsInCategory.slice(0, 2).map((product) => (
+                    <Product
+                      key={product.productId}
+                      onClick={() =>
+                        navigate(
+                          `/products/${product.category}/${product.productId}/`
+                        )
+                      }
+                    >
+                      <Image>
+                        <img
+                          src={`http://127.0.0.1:8000${product.image}`}
+                          alt={product.name}
+                          width="160px"
+                        />
+                      </Image>
+                      <Name>{product.name}</Name>
+                      <Price>{product.price}원</Price>
+                    </Product>
+                  ))
+                ) : (
+                  <p>로딩 중...</p>
+                )}
+              </ProductArea>
+            </React.Fragment>
+          )
+        )}
+
         <Info>
           <img
             src={`${process.env.PUBLIC_URL}/images/bottomInfo.png`}

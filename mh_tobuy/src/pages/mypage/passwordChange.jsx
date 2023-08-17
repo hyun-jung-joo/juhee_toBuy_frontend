@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -174,7 +175,7 @@ const ModalBackdrop = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 390px;
+  width: 100%;
   margin: 0 auto;
 
   top: 0;
@@ -243,14 +244,12 @@ const PasswordChange = () => {
   const navigateToMypage = () => {
     navigate("/MypageMain");
   };
+  const navigateToVideo = () => {
+    navigate("/PlayVideo");
+  };
 
   const navigateToBack = () => {
     window.history.back();
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault(); // 폼 제출 기본 동작 막기
-    console.log("Form submitted!");
   };
 
   const goMenu = () => {
@@ -292,6 +291,63 @@ const PasswordChange = () => {
     // !false -> !true -> !false
     setIsOpen(!isOpen);
   };
+
+  const [password, setPassword] = useState("");
+  const [new_password, setNewPassword] = useState("");
+  const [new_password_check, setnewPasswordcheck] = useState("");
+  const [error, setError] = useState("");
+
+  const [divs, setDivs] = useState([]);
+  const [failDivAdded, setFailDivAdded] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const requestData = {
+      password: password,
+      new_password: new_password,
+      new_password_check: new_password_check,
+    };
+
+    axios
+      .post("http://127.0.0.1:8000/api/change-password/", requestData, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
+        },
+      })
+      .then((response) => {
+        console.log("비밀번호 업데이트");
+        navigate("/MypageMain");
+      })
+      .catch((error) => {
+        console.error("실패:", error);
+
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.non_field_errors
+        ) {
+          setError(error.response.data.non_field_errors[0]);
+        } else {
+          setError("An error occurred.");
+        }
+
+        if (!failDivAdded) {
+          const newFailDiv = (
+            <div key={divs.length} className="failDiv" style={failStyle}>
+              다시 한 번 확인해주세요.
+            </div>
+          );
+          setDivs([...divs, newFailDiv]);
+          setFailDivAdded(true);
+        }
+      });
+  };
+  const failStyle = {
+    color: "red",
+    textAlign: "left",
+    margin: "0 auto",
+  };
   return (
     <Container>
       <BodyWrapper>
@@ -310,7 +366,7 @@ const PasswordChange = () => {
               width="90px"
             />
           </Logo>
-          <Video>
+          <Video onClick={navigateToVideo}>
             <img
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"
@@ -324,23 +380,46 @@ const PasswordChange = () => {
             <HeaderContent>비밀번호 수정</HeaderContent>
           </Header>
           <Gra></Gra>
-          <form onSubmit={handleSubmit}>
+          <form>
             <FormContent>
               <Pwlabel>비밀번호</Pwlabel>
               <Pw>
-                <input type="password" style={inputStyle} />
+                <input
+                  type="password"
+                  style={inputStyle}
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </Pw>
               <Pwlabel>새 비밀번호</Pwlabel>
               <Pw>
-                <input type="password" style={inputStyle} />
+                <input
+                  type="password"
+                  style={inputStyle}
+                  id="new_password"
+                  value={new_password}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
               </Pw>
               <Pwlabel>새 비밀번호 재입력</Pwlabel>
               <Pw>
-                <input type="password" style={inputStyle} />
+                <input
+                  type="password"
+                  style={inputStyle}
+                  id="new_password_check"
+                  value={new_password_check}
+                  onChange={(e) => setnewPasswordcheck(e.target.value)}
+                />
               </Pw>
             </FormContent>
-            <Submit onClick={navigateToMypage}>
-              <button formAction="" style={submitStyle}>
+            <Submit>
+              <button
+                onClick={(e) => {
+                  handleSubmit(e);
+                }}
+                style={submitStyle}
+              >
                 저장하기
               </button>
             </Submit>

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ const Topbar = styled.div`
   flex-shrink: 0;
   background-color: #fffff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  justify-content: space-evenly;
 `;
 
 const Back = styled.div`
@@ -44,14 +46,8 @@ const Back = styled.div`
   cursor: pointer;
 `;
 
-const Toptitle = styled.div`
-  margin: 0 auto;
-
-  color: #081c19;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: normal;
+const Logo = styled.div`
+  cursor: pointer;
 `;
 
 const Close = styled.div`
@@ -68,12 +64,13 @@ const Close = styled.div`
 const Body = styled.div`
   margin: auto;
   display: flex;
-  height: 650px;
+  height: 550px;
   padding: 30px;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
   flex-shrink: 0;
+  padding-bottom: 0;
 `;
 
 const Welcomeimg = styled.div`
@@ -197,19 +194,115 @@ const Mentmint = styled.div`
 const MentBox2 = styled.div`
   height: 60px;
 `;
+const RedBox = styled.div``;
+const RedText = styled.div``;
+
 const Signup2 = () => {
   const navigate = useNavigate();
   const navigateToFirstpage = () => {
     navigate("/");
   };
   const navigateToLogin = () => {
-    navigate("/Login");
+    navigate("/Signupcard");
   };
+  const navigateToMain = () => {
+    navigate("/Main");
+  };
+
+  const [name, setName] = useState("");
+  const [divs, setDivs] = useState([]); // divs 상태 추가
+  const [failDivAdded, setFailDivAdded] = useState(false);
+  const [showRedButton, setShowRedButton] = useState(false);
+
+  const handleSubmit = async (e) => {
+    console.log("handleSubmit called");
+
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/mypage/", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`,
+        },
+      });
+
+      // 여기서 받아온 데이터 중에서 name 값을 가져옴
+      const receivedName = response.data.profile.name; // 실제 데이터 구조에 따라 수정
+
+      // 받아온 name 값을 상태로 업데이트
+      setName(receivedName);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const card = () => {
+    // 로그인 여부 확인
+    const accessToken = localStorage.getItem("access_token");
+    console.log(accessToken);
+
+    // 로그인된 경우 카드 발급 요청 보내기
+    axios
+      .post("http://127.0.0.1:8000/cards/", null, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
+        },
+      })
+      .then((response) => {
+        console.log("카드 발급", response.data);
+        navigate("/Signupcard"); // 카드 발급 성공 시 페이지 이동
+      })
+      .catch((error) => {
+        console.error("카드 발급 실패:", error);
+        // 카드 발급 실패 처리 로직
+
+        if (!failDivAdded) {
+          const newFailDiv = (
+            <div key={divs.length} className="failDiv" style={failStyle}>
+              이미 발급된 카드가 있습니다.<br></br>
+              위의 버튼을 한 번 더 클릭해주세요.
+            </div>
+          );
+          setDivs([...divs, newFailDiv]);
+          setFailDivAdded(true);
+          setShowRedButton(true);
+        }
+      });
+  };
+  useEffect(() => {
+    handleSubmit();
+  }, []);
 
   const url1 =
     "https://harvest-machine-d20.notion.site/77980ca8efd3435e9915e88b830a5ca4";
   const url2 =
     "https://harvest-machine-d20.notion.site/d76bf5b332524288a9db8d1857c6bc19";
+  const failStyle = {
+    color: "red",
+    textAlign: "center",
+    margin: "0 auto",
+    marginBottom: "40px",
+  };
+  const redboxstyle = {
+    display: "flex",
+    margin: "auto",
+    cursor: "pointer",
+    width: "145px",
+    height: "53px",
+    padding: "10px",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "10px",
+    flexShrink: "0",
+    borderRadius: "6px",
+    background: "red",
+    boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+  };
+  const redtextstyle = {
+    color: "#fff",
+    fontSize: "14px",
+    fontStyle: "normal",
+    fontWeight: "500",
+    lineHeight: "normal",
+  };
   return (
     <Container>
       <BodyWrapper>
@@ -221,7 +314,13 @@ const Signup2 = () => {
               onClick={() => navigate(-1)}
             />
           </Back>
-          <Toptitle>회원가입</Toptitle>
+          <Logo>
+            <img
+              src={`${process.env.PUBLIC_URL}/images/로고3.png`}
+              alt="logo"
+              width="90px"
+            />
+          </Logo>
           <Close>
             <img
               src={`${process.env.PUBLIC_URL}/images/close.png`}
@@ -238,7 +337,7 @@ const Signup2 = () => {
             />
           </Welcomeimg>
           <MentBox>
-            <Menttxt>어서오세요 000님!</Menttxt>
+            <Menttxt>어서오세요 {name}님!</Menttxt>
             <br />
             <MentLogotxt>
               <StyledText>To buy</StyledText>
@@ -249,14 +348,22 @@ const Signup2 = () => {
             <Menttxt>오늘도 상품주문 연습 해볼까요?</Menttxt>
           </MentBox>
           <ButtonContainer>
-            <MintBox onClick={navigateToLogin}>
-              <MintText>로그인 하러가기</MintText>
-            </MintBox>
+            {!showRedButton && (
+              <MintBox onClick={(navigateToLogin, card)}>
+                <MintText>카드 발급 하러가기</MintText>
+              </MintBox>
+            )}
+            {showRedButton && ( // showRedButton이 true일 때만 RedBox 표시
+              <RedBox onClick={navigateToMain} style={redboxstyle}>
+                <RedText style={redtextstyle}>메인으로 가기</RedText>
+              </RedBox>
+            )}
           </ButtonContainer>
         </Body>
+        {divs}
         <MentBox2>
           <Ment>
-            계속 진행시 <MentTB>투 바이</MentTB>의{" "}
+            계속 진행시 <MentTB>투 바이</MentTB>의
             <Mentmint
               onClick={() => {
                 window.open(url1);

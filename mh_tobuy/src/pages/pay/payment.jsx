@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -93,7 +95,7 @@ const ProductName = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  width: 80px;
+  //width: 80px;
   margin-right: auto;
 `;
 const PriceWrapper = styled.div`
@@ -130,7 +132,16 @@ const Whole = styled.span``;
 const Quantity = styled.span``;
 const Count = styled.span``;
 const TotalPrice = styled.span``;
+const TotalPrice2 = styled.span``;
 
+const PriceWrapper2 = styled.div`
+color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: left;
+}`;
 const Gra = styled.div`
   position: relative;
   background: linear-gradient(to right, #e02d11, #05bba2);
@@ -172,11 +183,9 @@ const Content = styled.div`
   height: auto;
 `;
 const PayWrapper = styled.div`
-  height: 116px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 44px;
-  margin-left: 40px;
+  margin-left: 46px;
 `;
 const PayHeader = styled.div`
   margin-right: auto;
@@ -289,6 +298,7 @@ const QuickPayWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 28px;
+  margin-top: 20px;
 `;
 const QuickPayHeader = styled.div`
   margin-right: auto;
@@ -316,7 +326,6 @@ const Cardinfo = styled.div`
   font-weight: 500;
   line-height: normal;
   margin-right: auto;
-  margin-left: 20px;
   margin-bottom: 11px;
 `;
 const Submit = styled.div`
@@ -498,7 +507,7 @@ const MCardinfoWrapper = styled.div`
 `;
 const CardBalanceWrapper = styled.div`
   text-align: left;
-  width: 110px;
+  width: 120px;
   margin-right: auto;
   display: inline-block;
 `;
@@ -520,16 +529,70 @@ const UbalanceWrapper = styled.div`
   margin-left: 8px;
 `;
 const Ubalance = styled.span``;
+const ModalBackdrop2 = styled.div`
+  // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
+  z-index: 1; //위치지정 요소
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
 
+  width: 100%;
+  margin: 0 auto;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+const ExitBtn2 = styled.div`
+  display: flex;
+  margin: 0 auto;
+
+  font-size: 35px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+`;
+
+const CmLogo = styled.div`
+  display: flex;
+  margin: auto;
+  margin-top: -0%;
+  flex-shrink: 0;
+`;
+
+const ModalView2 = styled.div.attrs((props) => ({
+  role: "dialog",
+}))`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 90%;
+  height: 90%;
+  background-color: #ffffff;
+  overflow-y: auto; /* 스크롤을 추가 */
+
+  div.desc {
+    margin: 50px;
+    font-size: 20px;
+    color: var(--coz-purple-600);
+  }
+`;
 const Payment = () => {
   const UnumStyle = {
-    width: "59px",
+    width: "150px",
     height: "20px",
     display: "inline",
     marginLeft: "4px",
     borderRadius: "6px",
     border: "1px solid #60716F",
     boxSizing: "border-box",
+    paddingLeft: "10px",
+    paddingTop: "3px",
   };
   const UpwStyle = {
     width: "104px",
@@ -589,7 +652,35 @@ const Payment = () => {
     window.history.back();
   };
   const [inputStatus, setInputStatus] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  //스크롤 방지
+  useEffect(() => {
+    if (isOpen) {
+      // 모달 창이 열려 있는 경우에는 스크롤 방지
+      document.body.style.cssText = `
+          position: fixed; 
+          top: -${window.scrollY}px;
+          overflow-y: scroll;
+          width: 100%;`;
+    } else {
+      // 모달 창이 닫혀 있는 경우에는 스크롤 가능하도록 설정
+      document.body.style.cssText = "";
+    }
 
+    return () => {
+      if (isOpen) {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
+    };
+  }, [isOpen]);
+
+  const openModalHandler = () => {
+    // isOpen의 상태를 변경하는 메소드를 구현
+    // !false -> !true -> !false
+    setIsOpen(!isOpen);
+  };
   const handleClickRadioButton = (radioBtnName) => {
     setInputStatus(radioBtnName);
   };
@@ -606,15 +697,8 @@ const Payment = () => {
   };
 
   const openModalHandler2 = () => {
+    console.log("간편등록창 엽니다");
     setIsModal2Open(!isModal2Open);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault(); // 폼 제출 기본 동작 막기
-    console.log("Form submitted!");
-  };
-  const navigateToHome = () => {
-    navigate("/ProductDetail");
   };
 
   const goMenu = () => {
@@ -628,6 +712,235 @@ const Payment = () => {
   };
   const goMyPage = () => {
     navigate("/MypageMain");
+  };
+  const goPlayvideo = () => {
+    navigate("/PlayVideo");
+  };
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const productName = queryParams.get("productName");
+  const unitPrice = queryParams.get("unitPrice");
+  const quantity = queryParams.get("quantity");
+  const imagePath = queryParams.get("imagePath");
+  const productId = queryParams.get("productId");
+
+  // 총 가격 계산
+  const totalPrice = unitPrice * quantity;
+
+  const pay = () => {
+    const queryParams = new URLSearchParams();
+    queryParams.append("productName", productName);
+    queryParams.append("unitPrice", unitPrice);
+    queryParams.append("quantity", quantity);
+    queryParams.append("imagePath", imagePath);
+
+    // URL 쿼리 파라미터로 데이터를 전달하면서 페이지 이동
+    navigate(`/Complete?${queryParams.toString()}`);
+  };
+
+  const [card, setCard] = useState({
+    num: "",
+    pw: "",
+    cvc: "",
+    validDate: "",
+    balance: "",
+  });
+  const [register, setRegister] = useState("");
+  useEffect(function () {
+    GetCard();
+  }, []);
+
+  useEffect(function () {
+    GetCard();
+  }, []);
+  const GetCard = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/cards/", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`,
+        },
+      });
+
+      // Assuming the response.data is an array and you want to extract the first element
+      if (Array.isArray(response.data) && response.data.length > 0) {
+        const cardData = response.data[0];
+        setCard(cardData);
+        console.log("카드 상세정보 입니다", cardData);
+        IsRegister();
+      } else {
+        console.error("카드 정보가 없습니다.");
+      }
+    } catch (error) {
+      console.error("에러 발생 : ", error);
+    }
+  };
+
+  const [showCard, setShowCard] = useState("false");
+  const IsRegister = async (e) => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/purchase/", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
+        },
+      });
+      const registerValue = response.data[0].register;
+      setRegister(registerValue);
+      console.log("register 값:", registerValue);
+      if (registerValue) {
+        setShowCard(true);
+      }
+      setShowCard(true);
+      if (!registerValue) {
+        setShowCard(false);
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
+  };
+
+  const RegisterUpdate = async (mydata) => {
+    try {
+      const registerValue = mydata;
+      setRegister(registerValue);
+      console.log("updateregister 값:", registerValue);
+
+      if (registerValue) {
+        setShowCard(true);
+      }
+      setShowCard(true);
+      if (!registerValue) {
+        setShowCard(false);
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+
+    if (inputStatus === "paybtn") {
+      PaymentonClick();
+    } else if (inputStatus === "quickpaybtn" && register) {
+      QuickPaymentonClick();
+    }
+  };
+
+  const [email, setEmail] = useState("");
+  const [count, setCount] = useState(""); // 여기서 count는 변수로 제공되어야 합니다.
+  const [product, setProduct] = useState("");
+  const [cvc, setCVC] = useState("");
+  const [num, setNum] = useState("");
+  const [validDate, setValidDate] = useState("");
+  const [pw, setPw] = useState("");
+
+  const [divs1, setDivs1] = useState([]);
+  const [failDivAdded1, setFailDivAdded1] = useState(false);
+
+  const [divs2, setDivs2] = useState([]);
+  const [failDivAdded2, setFailDivAdded2] = useState(false);
+  const PaymentonClick = () => {
+    console.log("일반결제 된당");
+    const userData = {
+      purchase_type: "type1",
+      cvc: cvc,
+      num: num,
+      validDate: validDate,
+      pw: pw,
+      count: quantity,
+      product: productId,
+    };
+
+    axios
+      .post("http://127.0.0.1:8000/purchase/", userData, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
+        },
+      })
+      .then((response) => {
+        console.log("결제 성공:", response.id);
+        // navigate("/ProductDetail");
+      })
+
+      .catch((error) => {
+        console.error("결제 실패:", error);
+
+        if (!failDivAdded1) {
+          const newFailDiv = (
+            <div key={divs1.length - 1} className="failDiv" style={NoneStyle}>
+              카드정보가 존재하지 않습니다.
+            </div>
+          );
+          setDivs1([...divs1, newFailDiv]);
+          setFailDivAdded1(true);
+        }
+      });
+  };
+
+  const QuickPaymentonClick = () => {
+    console.log("간편결제 된당");
+    const userData = {
+      purchase_type: "type2",
+      count: quantity,
+      product: productId,
+      register: "True",
+    };
+
+    axios
+      .post("http://127.0.0.1:8000/purchase/", userData, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
+        },
+      })
+      .then((response) => {
+        console.log("결제 성공:", response.data);
+        // navigate("/ProductDetail");
+      })
+
+      .catch((error) => {
+        console.error("결제 실패:", error);
+      });
+  };
+  const QuickPaymentRegister = () => {
+    console.log("간편결제 등록창 떠요");
+    const userData = {
+      purchase_type: "type2",
+      cvc: cvc,
+      num: num,
+      validDate: validDate,
+      pw: pw,
+      count: quantity,
+      product: productId,
+      input_register: "yes",
+    };
+
+    axios
+      .post("http://127.0.0.1:8000/purchase/register/", userData, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("access_token")}`, // 토큰을 헤더에 추가
+        },
+      })
+      .then((response) => {
+        console.log("간편결제 등록 성공:", response.data.register);
+
+        RegisterUpdate(response.data.register);
+        // navigate("/ProductDetail");
+      })
+
+      .catch((error) => {
+        console.error("결제 실패:", error);
+        console.log("userData:", userData);
+
+        if (!failDivAdded2) {
+          const newFailDiv = (
+            <div key={divs2.length} className="failDiv" style={NoneStyle}>
+              카드정보가 존재하지 않습니다.
+            </div>
+          );
+          setDivs2([...divs2, newFailDiv]);
+          setFailDivAdded2(true);
+        }
+      });
   };
 
   return (
@@ -648,7 +961,7 @@ const Payment = () => {
               width="90px"
             />
           </Logo>
-          <Video>
+          <Video onClick={goPlayvideo}>
             <img
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"
@@ -661,15 +974,15 @@ const Payment = () => {
           <ProductWrapper>
             <ProductImg>
               <img
-                src={`${process.env.PUBLIC_URL}/images/productSample.png`}
+                src={`http://127.0.0.1:8000${imagePath}`}
+                alt={productName}
                 width="70px"
-                height="70px"
               ></img>
             </ProductImg>
             <ProductInfoWrapper>
-              <ProductName>상품명</ProductName>
+              <ProductName>{productName}</ProductName>
               <PriceWrapper>
-                <Price>00,000</Price>
+                <Price>{unitPrice}</Price>
                 <Won> 원</Won>
               </PriceWrapper>
             </ProductInfoWrapper>
@@ -678,19 +991,25 @@ const Payment = () => {
           <TotalWrapper>
             <QuantityWrapper>
               <Whole>총 </Whole>
-              <Quantity>N</Quantity>
+              <Quantity>{quantity}</Quantity>
               <Count> 개</Count>
             </QuantityWrapper>
-            <PriceWrapper>
+            <PriceWrapper2>
               <Whole>총 </Whole>
-              <TotalPrice>00,000</TotalPrice>
+              <TotalPrice>{totalPrice}</TotalPrice>
               <Won> 원</Won>
-            </PriceWrapper>
+            </PriceWrapper2>
           </TotalWrapper>
           <Gra></Gra>
           <HowHeader>
             <HowHeaderContent>결제수단</HowHeaderContent>
-            <MyCardWrapper onClick={openModalHandler1}>
+
+            <MyCardWrapper
+              onClick={() => {
+                GetCard();
+                openModalHandler1();
+              }}
+            >
               <MyCard>내 카드 정보 확인하기</MyCard>
               <MyCardImg>
                 <img
@@ -707,9 +1026,7 @@ const Payment = () => {
                   <div className="desc">
                     <Card>
                       <CardHeader>
-                        <CardHeaderContent>
-                          <Uname>ㅇㅇㅇ</Uname>님의 카드
-                        </CardHeaderContent>
+                        <CardHeaderContent>카드 정보 확인</CardHeaderContent>
                       </CardHeader>
                       <Gra></Gra>
                       <CardWrapper>
@@ -723,24 +1040,24 @@ const Payment = () => {
                         <MCardinfoWrapper>
                           <NumWrapper>
                             <Num>카드번호</Num>
-                            <Unum>0000 0000 0000 0000</Unum>
+                            <Unum>{card.num}</Unum>
                           </NumWrapper>
                           <PwWrapper>
                             <Pw>비밀번호</Pw>
-                            <Upw>0000</Upw>
+                            <Upw>{card.pw}</Upw>
                           </PwWrapper>
                           <CVCWrapper>
                             <CVC>CVC</CVC>
-                            <Ucvc>000</Ucvc>
+                            <Ucvc>{card.cvc}</Ucvc>
                           </CVCWrapper>
                           <DateWrapper>
                             <Date>유효기간 년/월</Date>
-                            <Udate>25/08</Udate>
+                            <Udate>{card.validDate}</Udate>
                           </DateWrapper>
                           <CardBalanceWrapper>
                             <Balance>카드 잔액</Balance>
                             <UbalanceWrapper>
-                              <Ubalance>00,000</Ubalance>
+                              <Ubalance>{card.balance}</Ubalance>
                               <Won>원</Won>
                             </UbalanceWrapper>
                           </CardBalanceWrapper>
@@ -753,7 +1070,7 @@ const Payment = () => {
               </ModalBackdrop>
             ) : null}
           </HowHeader>
-          <form onSubmit={handleSubmit}>
+          <form>
             <Content>
               <PayWrapper>
                 <PayHeader>
@@ -768,53 +1085,66 @@ const Payment = () => {
                   </PayBtn>
                   <label htmlFor="paybtn">일반 카드결제</label>
                 </PayHeader>
-                <CardinfoWrapper>
-                  <NumWrapper>
-                    <Num>카드번호</Num>
-                    {/* <Unum>0000 0000 0000 0000</Unum> */}
-                    <Unum>
-                      <input style={UnumStyle} maxLength={4} />
-                      <input style={UnumStyle} maxLength={4} />
-                      <input style={UnumStyle} maxLength={4} />
-                      <input style={UnumStyle} maxLength={4} />
-                    </Unum>
-                  </NumWrapper>
-                  <PwWrapper>
-                    <Pw>카드 비밀번호</Pw>
-                    {/* <Upw>0000</Upw> */}
-                    <input style={UpwStyle} maxLength={4} />
-                  </PwWrapper>
-                  <CVCWrapper>
-                    <CVC>CVC</CVC>
-                    {/* <Ucvc>000</Ucvc> */}
-                    <input style={UcvcStyle} maxLength={3} />
-                  </CVCWrapper>
-                  <DateWrapper>
-                    <Date>유효기간</Date>
-                    {/* <Udate>25/08</Udate> */}
-                    <Udate>
-                      <input
-                        style={UdateStyle}
-                        maxLength={2}
-                        placeholder="MM"
-                      />
-                      <Stroke>
-                        <img
-                          src={`${process.env.PUBLIC_URL}/images/stroke.png`}
-                          width="9px"
-                          height="21.5px"
-                          style={stroke}
-                        ></img>
-                      </Stroke>
-                      <input
-                        style={UdateStyle}
-                        maxLength={2}
-                        placeholder="YY"
-                      />
-                    </Udate>
-                  </DateWrapper>
-                </CardinfoWrapper>
-                <None style={NoneStyle}>카드정보가 존재하지 않습니다.</None>
+                {inputStatus === "paybtn" && (
+                  <>
+                    <CardinfoWrapper>
+                      <NumWrapper>
+                        <Num>카드번호</Num>
+                        <Unum>
+                          <input
+                            id="num"
+                            value={num}
+                            onChange={(e) => setNum(e.target.value)}
+                            style={UnumStyle}
+                          />
+                        </Unum>
+                      </NumWrapper>
+                      <PwWrapper>
+                        <Pw>카드 비밀번호</Pw>
+                        <input
+                          style={UpwStyle}
+                          maxLength={4}
+                          id="pw"
+                          value={pw}
+                          onChange={(e) => setPw(e.target.value)}
+                        />
+                      </PwWrapper>
+                      <CVCWrapper>
+                        <CVC>CVC</CVC>
+                        <input
+                          style={UcvcStyle}
+                          maxLength={3}
+                          id="cvc"
+                          value={cvc}
+                          onChange={(e) => setCVC(e.target.value)}
+                        />
+                      </CVCWrapper>
+                      <DateWrapper>
+                        <Date>유효기간</Date>
+                        <Udate>
+                          <input
+                            style={UdateStyle}
+                            placeholder="MM"
+                            id="validDate"
+                            value={validDate}
+                            onChange={(e) => setValidDate(e.target.value)}
+                          />
+                          <Stroke>
+                            <img
+                              src={`${process.env.PUBLIC_URL}/images/stroke.png`}
+                              width="9px"
+                              height="21.5px"
+                              style={stroke}
+                            ></img>
+                          </Stroke>
+                          <input style={UdateStyle} placeholder="YY" />
+                        </Udate>
+                      </DateWrapper>
+                    </CardinfoWrapper>
+                    {/* <None style={NoneStyle}>카드정보가 존재하지 않습니다.</None> */}
+                    {divs1}
+                  </>
+                )}
               </PayWrapper>
               <QuickPayWrapper>
                 <QuickPayHeader>
@@ -829,98 +1159,130 @@ const Payment = () => {
                   </PayBtn>
                   <label htmlFor="quickpaybtn">간편 카드결제</label>
                 </QuickPayHeader>
-                <QuickPayImg onClick={openModalHandler2}>
-                  <img
-                    src={`${process.env.PUBLIC_URL}/images/plus2.png`}
-                    width="22px"
-                    height="22px"
-                  ></img>
+                {inputStatus === "quickpaybtn" && (
+                  <>
+                    <QuickPayImg onClick={openModalHandler2}>
+                      {!showCard && (
+                        <img
+                          src={`${process.env.PUBLIC_URL}/images/plus2.png`}
+                          width="22px"
+                          height="22px"
+                        ></img>
+                      )}
+                      {showCard && (
+                        <Card>
+                          <Cardinfo>등록된 카드</Cardinfo>
 
-                  {/* <Cardinfo>
-                    등록된 <Uname>ㅇㅇㅇ</Uname>님의 카드
-                  </Cardinfo>
-                  <Card>
-                    <img
-                      src={`${process.env.PUBLIC_URL}/images/card.png`}
-                      width="174px"
-                      height="103px"
-                    ></img>
-                  </Card> */}
-                </QuickPayImg>
-                {isModal2Open ? (
-                  <ModalBackdrop onClick={openModalHandler2}>
-                    <ModalView onClick={(e) => e.stopPropagation()}>
-                      <div className="desc">
-                        <CardHeader>
-                          <CardHeaderContent>카드 등록</CardHeaderContent>
-                        </CardHeader>
-                        <Gra></Gra>
-                        <CardinfoWrapper>
-                          <NumWrapper>
-                            <Num>카드번호</Num>
-                            {/* <Unum>0000 0000 0000 0000</Unum> */}
-                            <Unum>
-                              <input style={UnumStyle} maxLength={4} />
-                              <input style={UnumStyle} maxLength={4} />
-                              <input style={UnumStyle} maxLength={4} />
-                              <input style={UnumStyle} maxLength={4} />
-                            </Unum>
-                          </NumWrapper>
-                          <PwWrapper>
-                            <Pw>카드 비밀번호</Pw>
-                            {/* <Upw>0000</Upw> */}
-                            <input style={UpwStyle} maxLength={4} />
-                          </PwWrapper>
-                          <CVCWrapper>
-                            <CVC>CVC</CVC>
-                            {/* <Ucvc>000</Ucvc> */}
-                            <input style={UcvcStyle} maxLength={3} />
-                          </CVCWrapper>
-                          <DateWrapper>
-                            <Date>유효기간</Date>
-                            {/* <Udate>25/08</Udate> */}
-                            <Udate>
-                              <input
-                                style={UdateStyle}
-                                maxLength={2}
-                                placeholder="MM"
-                              />
-                              <Stroke>
-                                <img
-                                  src={`${process.env.PUBLIC_URL}/images/stroke.png`}
-                                  width="9px"
-                                  height="21.5px"
-                                  style={stroke}
-                                ></img>
-                              </Stroke>
-                              <input
-                                style={UdateStyle}
-                                maxLength={2}
-                                placeholder="YY"
-                              />
-                            </Udate>
-                          </DateWrapper>
-                        </CardinfoWrapper>
-                        <None style={NoneStyle}>
-                          카드정보가 존재하지 않습니다.
-                        </None>
-                      </div>
-                      <ExitBtn onClick={openModalHandler2}>확인</ExitBtn>
-                    </ModalView>
-                  </ModalBackdrop>
-                ) : null}
+                          <img
+                            src={`${process.env.PUBLIC_URL}/images/card.png`}
+                            width="174px"
+                            height="103px"
+                          ></img>
+                        </Card>
+                      )}
+                    </QuickPayImg>
+                    {isModal2Open ? (
+                      <ModalBackdrop onClick={openModalHandler2}>
+                        <ModalView onClick={(e) => e.stopPropagation()}>
+                          <div className="desc">
+                            <CardHeader>
+                              <CardHeaderContent>카드 등록</CardHeaderContent>
+                            </CardHeader>
+                            <Gra></Gra>
+                            <CardinfoWrapper>
+                              <NumWrapper>
+                                <Num>카드번호</Num>
+                                <Unum>
+                                  <input
+                                    id="num"
+                                    value={num}
+                                    onChange={(e) => setNum(e.target.value)}
+                                    style={UnumStyle}
+                                  />
+                                </Unum>
+                              </NumWrapper>
+                              <PwWrapper>
+                                <Pw>카드 비밀번호</Pw>
+                                <input
+                                  style={UpwStyle}
+                                  maxLength={4}
+                                  id="pw"
+                                  value={pw}
+                                  onChange={(e) => setPw(e.target.value)}
+                                />
+                              </PwWrapper>
+                              <CVCWrapper>
+                                <CVC>CVC</CVC>
+                                <input
+                                  style={UcvcStyle}
+                                  maxLength={3}
+                                  id="cvc"
+                                  value={cvc}
+                                  onChange={(e) => setCVC(e.target.value)}
+                                />
+                              </CVCWrapper>
+                              <DateWrapper>
+                                <Date>유효기간</Date>
+                                <Udate>
+                                  <input
+                                    style={UdateStyle}
+                                    maxLength={2}
+                                    placeholder="MM"
+                                    id="validDate"
+                                    value={validDate}
+                                    onChange={(e) =>
+                                      setValidDate(e.target.value)
+                                    }
+                                  />
+                                  <Stroke>
+                                    <img
+                                      src={`${process.env.PUBLIC_URL}/images/stroke.png`}
+                                      width="9px"
+                                      height="21.5px"
+                                      style={stroke}
+                                    ></img>
+                                  </Stroke>
+                                  <input
+                                    style={UdateStyle}
+                                    maxLength={2}
+                                    placeholder="YY"
+                                  />
+                                </Udate>
+                              </DateWrapper>
+                            </CardinfoWrapper>
+                            {divs2}
+                          </div>
+                          <ExitBtn
+                            onClick={() => {
+                              QuickPaymentRegister();
+                              openModalHandler2();
+                            }}
+                          >
+                            확인
+                          </ExitBtn>
+                        </ModalView>
+                      </ModalBackdrop>
+                    ) : null}
+                  </>
+                )}
               </QuickPayWrapper>
             </Content>
             <Gra></Gra>
             <TotalWrapper>
               <Whole>총 결제금액</Whole>
               <PriceWrapper>
-                <TotalPrice>00,000</TotalPrice>
+                <TotalPrice2>{totalPrice}</TotalPrice2>
                 <Won> 원</Won>
               </PriceWrapper>
             </TotalWrapper>
-            <Submit onClick={navigateToHome}>
-              <button formAction="" style={submitStyle}>
+            <Submit>
+              <button
+                formAction=""
+                style={submitStyle}
+                onClick={(e) => {
+                  handleClick(e);
+                }}
+              >
                 결제하기
               </button>
             </Submit>
@@ -929,8 +1291,24 @@ const Payment = () => {
             <img
               src={`${process.env.PUBLIC_URL}/images/coachmark.png`}
               width="48px"
+              onClick={openModalHandler}
             />
           </CoachMark>
+          {isOpen ? (
+            <ModalBackdrop2 onClick={openModalHandler}>
+              <ModalView2 onClick={(e) => e.stopPropagation()}>
+                <ExitBtn2 onClick={openModalHandler}>x</ExitBtn2>
+                <CmLogo>
+                  <img
+                    src={`${process.env.PUBLIC_URL}/images/paymentcoachmark.png`}
+                    alt="paymentcoachmark"
+                    width="300"
+                    height="700"
+                  />
+                </CmLogo>
+              </ModalView2>
+            </ModalBackdrop2>
+          ) : null}
         </Body>
 
         <BottomBar>

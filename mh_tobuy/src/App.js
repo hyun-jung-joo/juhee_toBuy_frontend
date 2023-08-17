@@ -10,13 +10,11 @@ import Category from "./pages/categorys/category";
 import MypageMain from "./pages/mypage/mypageMain";
 import VerifyLogin from "./pages/mypage/verifyLogin";
 import PasswordChange from "./pages/mypage/passwordChange";
-import PayHistory from "./pages/mypage/payHistory";
 import Charge from "./pages/mypage/charge";
 import ProductDetail from "./pages/pay/productDetail";
 import Payment from "./pages/pay/payment";
 import Complete from "./pages/pay/Complete";
 import Findid from "./pages/Login/findid";
-import Findpw from "./pages/Login/findpw";
 import Fashion from "./pages/categorys/Fashion";
 import Beauty from "./pages/categorys/Beauty";
 import Food from "./pages/categorys/Food";
@@ -41,7 +39,6 @@ function App() {
           <Route path="/Signup2" element={<Signup2 />} />
           <Route path="/Category" element={<Category />} />
           <Route path="/Findid" element={<Findid />} />
-          <Route path="/Findpw" element={<Findpw />} />
           <Route path="/Fashion" element={<Fashion />} />
           <Route path="/Beauty" element={<Beauty />} />
           <Route path="/Food" element={<Food />} />
@@ -51,15 +48,20 @@ function App() {
           <Route path="/MypageMain" element={<MypageMain />} />
           <Route path="/VerifyLogin" element={<VerifyLogin />} />
           <Route path="/PasswordChange" element={<PasswordChange />} />
-          <Route path="/PayHistory" element={<PayHistory />} />
           <Route path="/Charge" element={<Charge />} />
           <Route path="/PlayVideo" element={<PlayVideo />} />
-          <Route path="/ProductDetail" element={<ProductDetail />} />
+          {/*/ <Route path="/ProductDetail" element={<ProductDetail />} /> */}
           <Route path="/Payment" element={<Payment />} />
           <Route path="/Main" element={<Main />} />
           <Route path="/FailSearch" element={<FailSearch />} />
-          <Route path="/SuccessSearch" element={<SuccessSearch />} />
+          {/* <Route path="/SuccessSearch" element={<SuccessSearch />} /> */}
+          <Route path="/products" element={<SuccessSearch />} />;
           <Route path="/Complete" element={<Complete />} />
+          {/* <Route path="/Detail" element={<Detail />} /> */}
+          <Route
+            path="/products/:category/:productId/"
+            element={<ProductDetail />}
+          />
         </Routes>
       </div>
     </BrowserRouter>

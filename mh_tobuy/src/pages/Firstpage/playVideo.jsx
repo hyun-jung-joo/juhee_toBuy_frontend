@@ -8,7 +8,7 @@ const Container = styled.div`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  background-color: #fffff;
+  //   background-color: #f5f0e4;
   -ms-overflow-style: none;
   overflow: hidden;
 
@@ -48,11 +48,7 @@ const Back = styled.div`
 
 const Logo = styled.div`
   cursor: pointer;
-`;
-
-const Video = styled.div`
-  cursor: pointer;
-  width: 30px;
+  margin: auto;
 `;
 
 const Body = styled.div`
@@ -142,6 +138,18 @@ const PlayVideo = () => {
     window.history.back();
   };
 
+  const goMenu = () => {
+    navigate("/Category");
+  };
+  const goSearch = () => {
+    navigate("/Main");
+  };
+  const goMain = () => {
+    navigate("/Main");
+  };
+  const goMyPage = () => {
+    navigate("/MypageMain");
+  };
   return (
     <Container>
       <BodyWrapper>
@@ -158,15 +166,9 @@ const PlayVideo = () => {
               src={`${process.env.PUBLIC_URL}/images/로고3.png`}
               alt="logo"
               width="90px"
+              onClick={goMain}
             />
           </Logo>
-          <Video>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
-              width="30px"
-              alt="video"
-            />
-          </Video>
         </Topbar>
 
         <Body>
@@ -318,25 +320,25 @@ const PlayVideo = () => {
           </List>
         </Body>
         <BottomBar>
-          <Menu>
+          <Menu onClick={goMenu}>
             <img
               src={`${process.env.PUBLIC_URL}/images/menu.png`}
               width="26px"
             />
           </Menu>
-          <Search>
+          <Search onClick={goSearch}>
             <img
               src={`${process.env.PUBLIC_URL}/images/search.png`}
               width="26px"
             />
           </Search>
-          <Home>
+          <Home onClick={goMain}>
             <img
               src={`${process.env.PUBLIC_URL}/images/home.png`}
               width="26px"
             />
           </Home>
-          <My>
+          <My onClick={goMyPage}>
             <img src={`${process.env.PUBLIC_URL}/images/me.png`} width="26px" />
           </My>
         </BottomBar>

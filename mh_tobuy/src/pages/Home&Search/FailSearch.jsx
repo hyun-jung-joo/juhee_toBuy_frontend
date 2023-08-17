@@ -161,6 +161,9 @@ const FailSearch = () => {
   const navigateToBack = () => {
     window.history.back();
   };
+  const navigateToVideo = () => {
+    navigate("/PlayVideo");
+  };
 
   const goMenu = () => {
     navigate("/Category");
@@ -193,7 +196,7 @@ const FailSearch = () => {
               width="90px"
             />
           </Logo>
-          <Video>
+          <Video onClick={navigateToVideo}>
             <img
               src={`${process.env.PUBLIC_URL}/images/carousel-video.png`}
               width="30px"

@@ -113,7 +113,7 @@ const Prevideopage = () => {
             <img
               src={`${process.env.PUBLIC_URL}/images/backbutton.png`}
               alt="back"
-              onClick={navigateToFirstpage}
+              onClick={() => navigate(-1)}
             />
           </Back>
           <Toplogo>

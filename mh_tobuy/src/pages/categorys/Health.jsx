@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -90,7 +91,7 @@ const My = styled.div`
 const Cate = styled.div`
   position: relative;
   width: 200px;
-  margin-top: 12%;
+  margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
   margin-left: 5%;
@@ -103,8 +104,8 @@ const Gra = styled.div`
   width: 100%;
   height: 2px;
   border: none; /* 선 없애기 */
-  margin-top: 7%;
-  margin-bottom: 7%;
+  margin-top: 20px;
+  margin-bottom: 5%;
 `;
 
 const ProductArea = styled.div`
@@ -127,10 +128,9 @@ const Product = styled.div`
 const Image = styled.div`
   position: relative;
   margin: auto;
-  margin-top: 7px;
+  margin-top: -8px;
   width: 160px;
   height: 160px;
-  background: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
 `;
@@ -142,13 +142,13 @@ const Name = styled.div`
   width: 160px;
   height: 30px;
   text-align: left;
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 const Price = styled.div`
   position: relative;
   margin: auto;
-  margin-top: 8px;
+  margin-top: 14px;
   width: 160px;
   height: 30px;
   text-align: left;
@@ -177,6 +177,21 @@ const Health = () => {
   const goMyPage = () => {
     navigate("/MypageMain");
   };
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(function () {
+    axios
+      .get("http://127.0.0.1:8000/products/cate6/")
+      .then(function (result) {
+        setProducts(result.data);
+        console.log("성공");
+      })
+      .catch(function (error) {
+        console.error("에러 발생 : ", error);
+      });
+  }, []);
+
   return (
     <Container>
       <BodyWrapper>
@@ -206,26 +221,24 @@ const Health = () => {
         <Cate>건강</Cate>
         <Gra></Gra>
         <ProductArea>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
-          <Product>
-            <Image></Image>
-            <Name></Name>
-            <Price></Price>
-          </Product>
+          {products.map((product) => (
+            <Product
+              key={product.productId}
+              onClick={() =>
+                navigate(`/products/${product.category}/${product.productId}/`)
+              }
+            >
+              <Image>
+                <img
+                  src={`http://127.0.0.1:8000${product.image}`}
+                  alt={product.name}
+                  width="160px"
+                />
+              </Image>
+              <Name>{product.name}</Name>
+              <Price>{product.price}원</Price>
+            </Product>
+          ))}
         </ProductArea>
         <BottomBar>
           <Menu onClick={goMenu}>
