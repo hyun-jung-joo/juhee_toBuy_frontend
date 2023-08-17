@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -183,7 +184,7 @@ const ModalBackdrop2 = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 
-  width: 390px;
+  width: 100%;
   margin: 0 auto;
 
   top: 0;
@@ -253,6 +254,7 @@ const Btmtext = styled.div`
   font-weight: 500;
   line-height: normal;
 `;
+const Plus = styled.div``;
 
 const ModalView = styled.div.attrs((props) => ({
   role: "dialog",
@@ -358,8 +360,61 @@ const Findid = () => {
     setIsOpen2(!isOpen2);
   };
 
-  const [username, setUsername] = useState("");
-  const [password, setPhonenum] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
+  const [divs, setDivs] = useState([]);
+  const [failDivAdded, setFailDivAdded] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("handleSubmit called");
+
+    const requestData = {
+      name: name,
+      phone: phone,
+    };
+
+    axios
+      .post("http://127.0.0.1:8000/api/forgot-email/", requestData)
+      .then((response) => {
+        console.log("이메일 찾음");
+        setEmail(response.data.email);
+        openModalHandler();
+      })
+      .catch((error) => {
+        console.error("실패:", error);
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.non_field_errors
+        ) {
+          setError(error.response.data.non_field_errors[0]);
+        } else {
+          setError("An error occurred.");
+        }
+
+        if (!failDivAdded) {
+          const newFailDiv = (
+            <div key={divs.length} className="failDiv" style={failStyle}>
+              이메일 찾기에 실패했습니다. <br />
+              이름과 비밀번호를 다시 한 번 확인해주세요.
+            </div>
+          );
+          setDivs([...divs, newFailDiv]);
+          setFailDivAdded(true);
+        }
+      });
+  };
+
+  const failStyle = {
+    color: "red",
+    textAlign: "left",
+    margin: "0 auto",
+  };
+
   return (
     <Container>
       <BodyWrapper>
@@ -407,39 +462,47 @@ const Findid = () => {
           <Logo>
             <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="logo" />
           </Logo>
-
           <InputBox>
             <Input
               type="text"
               placeholder="이름"
-              onChange={(e) => setUsername(e.target.value)}
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </InputBox>
           <InputBox>
             <Input
               type="text"
               placeholder="휴대폰 번호 입력"
-              onChange={(e) => setPhonenum(e.target.value)}
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </InputBox>
+          {divs}
 
-          <MintBox>
-            <FindText onClick={openModalHandler}>아이디 찾기</FindText>
+          <MintBox
+            onClick={(e) => {
+              handleSubmit(e);
+            }}
+          >
+            <FindText>아이디 찾기</FindText>
           </MintBox>
           {isOpen1 ? (
             <ModalBackdrop1 onClick={openModalHandler}>
               <ModalView onClick={(e) => e.stopPropagation()}>
                 <CmtxtBox>
                   <Cmtext>
-                    <Cmtextemph>000</Cmtextemph>
+                    <Cmtextemph>{name}</Cmtextemph>
                     님의 아이디는
                   </Cmtext>
                 </CmtxtBox>
 
                 <CmtxtBox>
                   <Cmtext>
-                    <Cmtextemph>ID0000</Cmtextemph>
-                    입니다.
+                    <Cmtextemph> {email && <div>{email}</div>}</Cmtextemph>
+                    <Plus>입니다.</Plus>
                   </Cmtext>
                 </CmtxtBox>
                 <BtmBox>

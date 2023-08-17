@@ -425,12 +425,14 @@ const PayinfoWrapper = styled.div`
 `;
 const ProductName = styled.div`
   color: #000;
-  font-size: 16px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   width: 80px;
   margin-right: auto;
+  display: flex;
+  align-items: center;
 `;
 const QuantityWrapper = styled.div`
   color: #60716f;
