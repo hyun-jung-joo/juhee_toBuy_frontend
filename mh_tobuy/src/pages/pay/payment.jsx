@@ -771,11 +771,10 @@ const Payment = () => {
   };
 
   const [showCard, setShowCard] = useState("false");
-  const IsRegister= (pass)=> {
-   if(pass == "카드 등록이 완료되었습니다.")
-   {
-    setShowCard(true);
-   }
+  const IsRegister = (pass) => {
+    if (pass == "카드 등록이 완료되었습니다.") {
+      setShowCard(true);
+    }
   };
 
   const handleClick = async (e) => {
@@ -783,7 +782,7 @@ const Payment = () => {
 
     if (inputStatus === "paybtn") {
       PaymentonClick();
-    } else if (inputStatus === "quickpaybtn" && register) {
+    } else if (inputStatus === "quickpaybtn") {
       QuickPaymentonClick();
     }
   };
@@ -880,7 +879,7 @@ const Payment = () => {
         },
       })
       .then((response) => {
-        console.log("간편결제 등록 성공:", response.data.message);
+        console.log("간편결제 등록 성공:", response.data[0].message);
         const passregister = response.data.message;
         IsRegister(passregister);
       })
