@@ -391,7 +391,7 @@ const Charge = () => {
                 >
                   <ModalView onClick={(e) => e.stopPropagation()}>
                     <div className="desc">
-                      카드잔액 {balance}원이
+                      카드잔액 {balance + 30000}원이
                       <br />
                       충전 되었습니다!
                     </div>

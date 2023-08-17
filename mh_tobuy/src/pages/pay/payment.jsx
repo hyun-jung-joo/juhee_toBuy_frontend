@@ -904,13 +904,10 @@ const Payment = () => {
   const QuickPaymentRegister = () => {
     console.log("간편결제 등록창 떠요");
     const userData = {
-      purchase_type: "type2",
       cvc: cvc,
       num: num,
       validDate: validDate,
       pw: pw,
-      count: quantity,
-      product: productId,
       input_register: "yes",
     };
 
@@ -924,7 +921,6 @@ const Payment = () => {
         console.log("간편결제 등록 성공:", response.data.register);
 
         RegisterUpdate(response.data.register);
-        // navigate("/ProductDetail");
       })
 
       .catch((error) => {
